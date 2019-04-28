@@ -1,0 +1,39 @@
+.m1 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.00) rgba(130, 117, 216, 1.00) rgba(130, 117, 216, 1.00) rgba(255, 255, 255, 0.00);
+}
+
+.m2 {
+    float: left;
+    width: 4px;
+    height: 4px;
+    background-color: rgba(130, 117, 216, 1.00);
+}
+
+.m3 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00) rgba(130, 117, 216, 1.00) rgba(130, 117, 216, 1.00);
+}
+
+.m4 {
+    float: left;
+    width: 24px;
+    height: 20px;
+    background-color: rgba(198, 145, 255, 1.00);
+}
+
+.m5 {
+    float: left;
+    width: 4px;
+    height: 8px;
+    margin-top: 6px;
+    background-color: rgba(255, 255, 255, 1.00);
+}
