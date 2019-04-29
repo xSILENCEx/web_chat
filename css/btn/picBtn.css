@@ -1,3 +1,10 @@
+body {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+}
+
 .pic1 {
     width: 24px;
     height: 24px;

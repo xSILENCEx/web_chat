@@ -1,21 +1,40 @@
-.msg-item-l {
+.msg-item {
     overflow: hidden;
     display: block;
     margin-top: 20px;
 }
 
 .head-img {
+    overflow: hidden;
     float: left;
     display: block;
+    border: none;
     width: 36px;
     height: 36px;
-    background-color: rgba(240, 240, 240, 1.00);
+    background-color: rgba(240, 240, 240, 0.00);
+}
+
+.head-img2 {
+    overflow: hidden;
+    float: right;
+    display: block;
+    border: none;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(240, 240, 240, 0.00);
 }
 
 .h-m {
     float: left;
     display: block;
     margin-left: 20px;
+}
+
+.h-m2 {
+    float: right;
+    text-align: end;
+    display: block;
+    margin-right: 20px;
 }
 
 .user-name {
@@ -31,7 +50,17 @@
     margin-top: 12px;
     border-width: 6px;
     border-style: solid;
-    border-color: rgba(255, 255, 255, 0.00) rgba(131, 73, 255, 1.00) rgba(131, 73, 255, 1.00) rgba(255, 255, 255, 0.00);
+    border-color: rgba(255, 255, 255, 0.00) rgba(88, 60, 140, 1.00) rgba(88, 60, 140, 1.00) rgba(255, 255, 255, 0.00);
+}
+
+.msg-r {
+    float: right;
+    width: 0px;
+    height: 0px;
+    margin-top: 12px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00) rgba(88, 60, 140, 1.00) rgba(88, 60, 140, 1.00);
 }
 
 .msg-box {
