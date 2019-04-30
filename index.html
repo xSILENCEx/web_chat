@@ -33,43 +33,19 @@
                 <p class="reg-login"><a href="#">登录</a> / <a href="#">注册</a></p>
             </div>
         </nav>
-        <div class="chat-box">
-            <div class="msg-item">
-                <iframe class="head-img" src="/headImages/system.html"></iframe>
-                <div class="h-m">
-                    <p class="user-name">系统提示</p>
-                    <div class="msg-l"></div>
-                    <p class="msg-box"> 你好，欢迎使用简聊Web! </p>
-                </div>
-            </div>
-            <div class="msg-item">
-                <iframe class="head-img2" src="/headImages/def-boy.html"></iframe>
-                <div class="h-m2">
-                    <p class="user-name">男性游客</p>
-                    <p class="msg-box"> 你好，欢迎使用简聊Web! </p>
-                    <div class="msg-r"></div>
-                </div>
-            </div>
-            <div class="msg-item">
-                <iframe class="head-img" src="/headImages/def-girl.html"></iframe>
-                <div class="h-m">
-                    <p class="user-name">女性游客</p>
-                    <div class="msg-l"></div>
-                    <p class="msg-box"> 你好，欢迎使用简聊Web! </p>
-                </div>
-            </div>
-        </div>
+        <div id="chat-box"></div>
         <div class="tool-bar">
             <iframe title="选择表情" class="fun-box" src="/btn-icon/moodBtn.html" style="margin-left:20px"></iframe>
             <iframe title="发送图片" class="fun-box" src="/btn-icon/picBtn.html"></iframe>
             <iframe title="发送文件" class="fun-box" src="/btn-icon/fileBtn.html"></iframe>
             <input id="send" type="button" title="发送" value="发送">
-            <input id="clear" type="button" title="清除" value="清除">
+            <input id="clear" type="button" title="清除" value="清除" onclick="clearEdit();">
         </div>
         <div class="edit-box">
             <textarea id="edit" placeholder="在这里输入消息"></textarea>
         </div>
     </section>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

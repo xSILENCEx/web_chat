@@ -36,7 +36,7 @@ a:hover {
     margin: 0 auto;
 }
 
-.chat-box {
+#chat-box {
     overflow-y: auto;
     max-width: 900px;
     height: 66%;
@@ -44,9 +44,10 @@ a:hover {
     margin-top: -100px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 1.00);
+    -webkit-overflow-scrolling: touch;
 }
 
-.chat-box::-webkit-scrollbar {
+#chat-box::-webkit-scrollbar {
     display: none
 }
 

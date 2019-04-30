@@ -1,3 +1,8 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
 .msg-item {
     overflow: hidden;
     display: block;
@@ -66,15 +71,40 @@
 .msg-box {
     float: left;
     resize: none;
-    overflow: hidden;
+    overflow: auto;
     word-wrap: break-word;
     min-width: 0px;
     min-height: 0px;
     max-width: 300px;
-    max-height: 600px;
+    max-height: 300px;
     margin-top: 12px;
     padding: 8px;
     font-size: 14px;
     color: rgba(255, 255, 255, 1.00);
     background-color: rgba(130, 117, 216, 1.00);
+}
+
+.msg-box::-webkit-scrollbar {
+    display: none;
+}
+
+.msg-box2 {
+    float: right;
+    text-align: left;
+    resize: none;
+    overflow: auto;
+    word-wrap: break-word;
+    min-width: 0px;
+    min-height: 0px;
+    max-width: 300px;
+    max-height: 300px;
+    margin-top: 12px;
+    padding: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    background-color: rgba(130, 117, 216, 1.00);
+}
+
+.msg-box2::-webkit-scrollbar {
+    display: none;
 }
