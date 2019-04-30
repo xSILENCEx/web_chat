@@ -65,7 +65,7 @@ body {
     margin-top: 12px;
     border-width: 6px;
     border-style: solid;
-    border-color: rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00) rgba(88, 60, 140, 1.00) rgba(88, 60, 140, 1.00);
+    border-color: rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00) rgba(54, 89, 160, 1.00) rgba(54, 89, 160, 1.00);
 }
 
 .msg-box {
@@ -95,14 +95,14 @@ body {
     overflow: auto;
     word-wrap: break-word;
     min-width: 0px;
-    min-height: 0px;
+    min-height: 36px;
     max-width: 300px;
     max-height: 300px;
     margin-top: 12px;
     padding: 8px;
     font-size: 14px;
     color: rgba(255, 255, 255, 1.00);
-    background-color: rgba(130, 117, 216, 1.00);
+    background-color: rgba(94, 153, 255, 1.00);
 }
 
 .msg-box2::-webkit-scrollbar {

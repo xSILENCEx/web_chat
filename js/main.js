@@ -106,3 +106,26 @@ document.onkeydown = function () {
         meSend();
     }
 }
+
+function chooseMood() {
+    console.log('dddd');
+    alert('表情发送暂未开放');
+}
+
+function sendPic() {
+    alert('图片发送暂未开放');
+}
+
+function sendFile() {
+    alert('文件发送暂未开放');
+}
+
+document.getElementById("sMood").contentDocument.onclick = function () {
+    chooseMood();
+}
+document.getElementById("sPic").contentDocument.onclick = function () {
+    sendPic();
+}
+document.getElementById("sFile").contentDocument.onclick = function () {
+    sendFile();
+}
