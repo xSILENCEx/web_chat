@@ -101,7 +101,7 @@ onload = function () {
     document.getElementById("send").onmousedown = function () {
         meSend();
     } //发送函数
-    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！试试左滑右滑~"); //发送一条提示信息
+    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>点击logo打开左边栏。"); //发送一条提示信息
 
     document.getElementById("logo").addEventListener("click", function (event) {
         if (isLeftOpen && isHuge()) {
