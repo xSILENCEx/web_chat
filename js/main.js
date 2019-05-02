@@ -126,7 +126,7 @@ onload = function () {
         var e = e || window.event;
         startPoint = e.touches[0];
     });
-    document.addEventListener("touchend", function (e) {
+    document.addEventListener("touchmove", function (e) {
         var e = e || window.event;
         //e.changedTouches能找到离开手机的手指，返回的是一个数组
         var endPoint = e.changedTouches[0];
@@ -134,16 +134,14 @@ onload = function () {
         var x = endPoint.clientX - startPoint.clientX;
         var y = endPoint.clientY - startPoint.clientY;
 
-        var d = 100; //滑动距离的参考值
+        var d = 80; //滑动距离的参考值
         if (Math.abs(x) > d) {
             if (x > 0) {
                 openLeft();
                 isLeftOpen = true;
-                console.log("向右滑动");
             } else {
                 closeLeft();
                 isLeftOpen = false;
-                console.log("向左滑动");
             }
         }
         if (Math.abs(y) > d) {
@@ -153,8 +151,8 @@ onload = function () {
                 console.log("向上滑动");
             }
         }
-
     });
+    document.addEventListener("touchend", function (e) {});
 }
 
 function meSend() {
