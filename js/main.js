@@ -103,7 +103,7 @@ onload = function () {
     } //发送函数
     leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>点击logo打开左边栏。"); //发送一条提示信息
 
-    document.getElementById("logo").addEventListener("click", function (event) {
+    document.getElementById("logo").addEventListener("click", function (event) { //点击logo打开左侧栏
         if (isLeftOpen && isHuge()) {
             closeLeft();
             isLeftOpen = false;
@@ -119,25 +119,31 @@ onload = function () {
         }
         event.stopPropagation();
     });
-    document.getElementById("settings").addEventListener("click", function (event) {
-        if (isRightOpen && isHuge()) {
+    if (isHuge) {
+        document.getElementById("settings").addEventListener("click", function (event) { //点击设置打开右侧栏
+            if (isRightOpen && isHuge()) {
+                closeRight();
+                isRightOpen = false;
+            } else if (isHuge()) {
+                if (isLeftOpen) {
+                    closeLeft();
+                    isLeftOpen = false;
+                }
+                openRight();
+                isRightOpen = true;
+            }
+            event.stopPropagation();
+        });
+    }
+    document.getElementById("whole").addEventListener("click", function () {
+        if (isLeftOpen) {
+            closeLeft();
+            isLeftOpen = false;
+        }
+        if (isRightOpen) {
             closeRight();
             isRightOpen = false;
-        } else if (isHuge()) {
-            if (isLeftOpen) {
-                closeLeft();
-                isLeftOpen = false;
-            }
-            openRight();
-            isRightOpen = true;
         }
-        event.stopPropagation();
-    });
-    document.getElementById("whole").addEventListener("click", function () {
-        closeLeft();
-        isLeftOpen = false;
-        closeRight();
-        isRightOpen = false;
     });
 
     //Enter键发送

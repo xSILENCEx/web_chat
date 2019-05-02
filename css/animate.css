@@ -27,6 +27,42 @@
     -o-transition: all 0.5s;
 }
 
+#ch-submit:hover {
+    background-color: rgba(54, 89, 160, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#log-btn:hover {
+    background-color: rgba(88, 60, 140, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#reg-btn:hover {
+    background-color: rgba(54, 89, 160, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#clear-msg:hover {
+    background-color: rgba(175, 73, 73, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
 #send:hover {
     background-color: rgba(149, 92, 224, 1.00);
     transition: all 0.5s;
