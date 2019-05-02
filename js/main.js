@@ -89,17 +89,29 @@ function rightSend(head, name) {
 
 
 onload = function () {
+
+    if (isHuge()) {
+        document.getElementById("reg-login").innerHTML = "<div id='settings'>设置</div>";
+    } else {
+        document.getElementById("reg-login").innerHTML = "<a class='a' href='#'>登录</a> / <a class='a' href='#'>注册</a>";
+    }
+
     var isLeftOpen = false; //左边栏是否打开
+    var isRightOpen = false; //右边栏是否打开
     document.getElementById("send").onmousedown = function () {
         meSend();
     } //发送函数
-    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！"); //发送一条提示信息
+    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！试试左滑右滑~"); //发送一条提示信息
 
     document.getElementById("logo").addEventListener("click", function (event) {
         if (isLeftOpen && isHuge()) {
             closeLeft();
             isLeftOpen = false;
         } else if (isHuge()) {
+            if (isRightOpen) {
+                closeRight();
+                isRightOpen = false;
+            }
             openLeft();
             isLeftOpen = true;
         } else {
@@ -107,9 +119,25 @@ onload = function () {
         }
         event.stopPropagation();
     });
+    document.getElementById("settings").addEventListener("click", function (event) {
+        if (isRightOpen && isHuge()) {
+            closeRight();
+            isRightOpen = false;
+        } else if (isHuge()) {
+            if (isLeftOpen) {
+                closeLeft();
+                isLeftOpen = false;
+            }
+            openRight();
+            isRightOpen = true;
+        }
+        event.stopPropagation();
+    });
     document.getElementById("whole").addEventListener("click", function () {
         closeLeft();
         isLeftOpen = false;
+        closeRight();
+        isRightOpen = false;
     });
 
     //Enter键发送
@@ -136,12 +164,27 @@ onload = function () {
 
         var d = 80; //滑动距离的参考值
         if (Math.abs(x) > d) {
-            if (x > 0) {
-                openLeft();
-                isLeftOpen = true;
-            } else {
-                closeLeft();
-                isLeftOpen = false;
+            if (x > 0 && isHuge()) {
+                if (isRightOpen) {
+                    closeRight();
+                    isRightOpen = false;
+                } else {
+                    openLeft();
+                    isLeftOpen = true;
+                }
+                var e = e || window.event;
+                startPoint = e.touches[0];
+            } else if (isHuge()) {
+                if (isLeftOpen) {
+                    closeLeft();
+                    isLeftOpen = false;
+                } else {
+                    openRight();
+                    isRightOpen = true;
+                }
+
+                var e = e || window.event;
+                startPoint = e.touches[0];
             }
         }
         if (Math.abs(y) > d) {
@@ -175,5 +218,15 @@ function openLeft() {
 
 function closeLeft() {
     document.getElementById("left-menu").style.transform = "translateX(-300px)";
+    document.getElementById("whole").style.transform = "translateX(0px)";
+}
+
+function openRight() {
+    document.getElementById("right-menu").style.transform = "translateX(0px)";
+    document.getElementById("whole").style.transform = "translateX(-200px)";
+}
+
+function closeRight() {
+    document.getElementById("right-menu").style.transform = "translateX(300px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
