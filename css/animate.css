@@ -9,6 +9,15 @@
     -o-transition: all 0.5s;
 }
 
+.per-box:hover {
+    transform: scale(0.9);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
 .fun-box:hover {
     opacity: 0.6;
     transition: all 0.5s;

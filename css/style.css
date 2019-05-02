@@ -9,18 +9,29 @@ body {
 
 a {
     user-select: none;
+    color: rgba(250, 250, 250, 0.80);
 }
 
 a:hover {
     text-decoration: none;
-    color: rgba(250, 250, 250, 0.80)
+    color: rgba(250, 250, 250, 0.80);
 }
 
-.whole {
+a:active {
+    color: rgba(250, 250, 250, 0.80);
+}
+
+#whole {
     position: fixed;
     width: 100%;
     height: 100%;
     background-color: rgba(240, 240, 240, 1.00);
+    transform: translateX(0px);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
 }
 
 .nav {
@@ -49,6 +60,78 @@ a:hover {
 
 #chat-box::-webkit-scrollbar {
     display: none
+}
+
+#left-menu {
+    position: fixed;
+    display: blocks;
+    width: 300px;
+    height: 100%;
+    padding: 20px;
+    background-color: rgba(250, 250, 250, 1.00);
+    transform: translateX(-300px);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.left-title {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    color: rgba(50, 50, 50, 1.00);
+}
+
+.left-article {
+    font-size: 12px;
+    color: rgba(50, 50, 50, 1.00);
+}
+
+.per-box {
+    float: left;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: rgba(240, 240, 240, 1.00);
+    transform: scale(1);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.per-h {
+    float: left;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(200, 200, 200, 1.00);
+}
+
+.per-name {
+    font-size: 12px;
+    line-height: 12px;
+    padding: 6px;
+    color: rgba(50, 50, 50, 1.00);
+}
+
+.per-art {
+    text-decoration: none;
+    font-size: 10px;
+    line-height: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: rgba(90, 90, 90, 1.00);
+}
+
+.left-foot {
+    position: absolute;
+    margin: 0 auto;
+    bottom: 20px;
+    font-size: 8px;
+    background-color: rgba(255, 255, 255, 1.00);
 }
 
 .logo {
@@ -180,7 +263,7 @@ a:hover {
     font-size: 14px;
     line-height: 24px;
     color: rgba(255, 255, 255, 1.00);
-    background-color: rgba(255, 91, 91, 1.00);
+    background-color: rgba(255, 120, 120, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;

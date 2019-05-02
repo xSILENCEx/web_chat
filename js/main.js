@@ -86,12 +86,75 @@ function rightSend(head, name) {
     clearEdit();
 }
 
-document.getElementById("send").onmousedown = function () {
-    meSend();
-}
+
 
 onload = function () {
-    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！");
+    var isLeftOpen = false; //左边栏是否打开
+    document.getElementById("send").onmousedown = function () {
+        meSend();
+    } //发送函数
+    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！"); //发送一条提示信息
+
+    document.getElementById("logo").addEventListener("click", function (event) {
+        if (isLeftOpen && isHuge()) {
+            closeLeft();
+            isLeftOpen = false;
+        } else if (isHuge()) {
+            openLeft();
+            isLeftOpen = true;
+        } else {
+            window.location.reload;
+        }
+        event.stopPropagation();
+    });
+    document.getElementById("whole").addEventListener("click", function () {
+        closeLeft();
+        isLeftOpen = false;
+    });
+
+    //Enter键发送
+    document.onkeydown = function () {
+        var isEditing = document.getElementById("edit");
+        if (event.keyCode == 13 && isEditing == document.activeElement) {
+            meSend();
+        }
+    }
+
+    //手势判断
+    var startPoint = null;
+    document.addEventListener("touchstart", function (e) {
+        var e = e || window.event;
+        startPoint = e.touches[0];
+    });
+    document.addEventListener("touchend", function (e) {
+        var e = e || window.event;
+        //e.changedTouches能找到离开手机的手指，返回的是一个数组
+        var endPoint = e.changedTouches[0];
+        //计算终点与起点的差值
+        var x = endPoint.clientX - startPoint.clientX;
+        var y = endPoint.clientY - startPoint.clientY;
+
+        var d = 100; //滑动距离的参考值
+        if (Math.abs(x) > d) {
+            if (x > 0) {
+                openLeft();
+                isLeftOpen = true;
+                console.log("向右滑动");
+            } else {
+                closeLeft();
+                isLeftOpen = false;
+                console.log("向左滑动");
+            }
+        }
+        if (Math.abs(y) > d) {
+            if (y > 0) {
+                console.log("向下滑动");
+            } else {
+                console.log("向上滑动");
+            }
+        }
+
+    });
 }
 
 function meSend() {
@@ -100,13 +163,19 @@ function meSend() {
     rightSend('/headImages/def-boy.html', '匿名游客');
 }
 
-document.onkeydown = function () {
-    var isEditing = document.getElementById("edit");
-    if (event.keyCode == 13 && isEditing == document.activeElement) {
-        meSend();
-    }
+function isHuge() {
+    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (w < 1400) return true;
+    else return false;
 }
 
-document.getElementById("logo").onmousedown = function () {
-    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！");
+
+function openLeft() {
+    document.getElementById("left-menu").style.transform = "translateX(0px)";
+    document.getElementById("whole").style.transform = "translateX(200px)";
+}
+
+function closeLeft() {
+    document.getElementById("left-menu").style.transform = "translateX(-300px)";
+    document.getElementById("whole").style.transform = "translateX(0px)";
 }
