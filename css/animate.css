@@ -27,7 +27,7 @@
     -o-transition: all 0.5s;
 }
 
-#ch-submit:hover {
+.ch-submit:hover {
     background-color: rgba(54, 89, 160, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -36,7 +36,7 @@
     -o-transition: all 0.5s;
 }
 
-#log-btn:hover {
+.log-btn:hover {
     background-color: rgba(88, 60, 140, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -45,7 +45,7 @@
     -o-transition: all 0.5s;
 }
 
-#reg-btn:hover {
+.reg-btn:hover {
     background-color: rgba(54, 89, 160, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -54,7 +54,7 @@
     -o-transition: all 0.5s;
 }
 
-#clear-msg:hover {
+.clear-msg:hover {
     background-color: rgba(175, 73, 73, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;

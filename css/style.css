@@ -96,6 +96,7 @@ a:active {
 
 .left-article {
     font-size: 12px;
+    line-height: 20px;
     color: rgba(50, 50, 50, 1.00);
 }
 
@@ -124,13 +125,14 @@ a:active {
 .per-name {
     font-size: 12px;
     line-height: 12px;
+    font-weight: bold;
     padding: 6px;
     color: rgba(50, 50, 50, 1.00);
 }
 
 .per-art {
     text-decoration: none;
-    font-size: 10px;
+    font-size: 8px;
     line-height: 10px;
     padding-left: 6px;
     padding-right: 6px;
@@ -167,7 +169,7 @@ a:active {
     -o-transition: all 0.5s;
 }
 
-#right-m-head {
+.right-m-head {
     float: left;
     width: 36px;
     height: 36px;
@@ -175,7 +177,7 @@ a:active {
     background-color: rgba(230, 230, 230, 1.00);
 }
 
-#right-m-n {
+.right-m-n {
     float: left;
     font-size: 14px;
     line-height: 14px;
@@ -186,7 +188,7 @@ a:active {
     color: rgba(90, 90, 90, 1.00);
 }
 
-#right-m-s {
+.right-m-s {
     float: left;
     font-size: 10px;
     line-height: 10px;
@@ -196,14 +198,14 @@ a:active {
     background-color: rgba(130, 117, 216, 1.00);
 }
 
-#right-m-sub {
+.right-m-sub {
     font-size: 10px;
     line-height: 10px;
     margin-top: 40px;
     color: rgba(80, 80, 80, 1.00);
 }
 
-#ch-name {
+.ch-name {
     float: left;
     width: 130px;
     height: 30px;
@@ -218,7 +220,7 @@ a:active {
     color: rgba(80, 80, 80, 1.00);
 }
 
-#ch-submit {
+.ch-submit {
     float: left;
     font-size: 12px;
     line-height: 30px;
@@ -237,7 +239,7 @@ a:active {
     -o-transition: all 0.5s;
 }
 
-#log-btn {
+.log-btn {
     float: left;
     width: 130px;
     height: 30px;
@@ -256,7 +258,7 @@ a:active {
     -o-transition: all 0.5s;
 }
 
-#reg-btn {
+.reg-btn {
     float: left;
     width: 130px;
     height: 30px;
@@ -275,7 +277,7 @@ a:active {
     -o-transition: all 0.5s;
 }
 
-#username {
+.username {
     width: 100%;
     height: 30px;
     outline: none;
@@ -289,7 +291,7 @@ a:active {
     color: rgba(80, 80, 80, 1.00);
 }
 
-#password {
+.password {
     width: 100%;
     height: 30px;
     outline: none;
@@ -303,7 +305,7 @@ a:active {
     color: rgba(80, 80, 80, 1.00);
 }
 
-#clear-msg {
+.clear-msg {
     position: fixed;
     width: 100%;
     height: 40px;
@@ -489,5 +491,52 @@ a:active {
 }
 
 #edit::-webkit-scrollbar {
+    display: none;
+}
+
+#big-left {
+    overflow: auto;
+    position: fixed;
+    top: 170px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -800px;
+}
+
+#big-left::-webkit-scrollbar {
+    display: none;
+}
+
+.big-l-item {
+    width: 300px;
+    height: auto;
+    margin-top: 40px;
+    background-color: rgba(255, 255, 255, 1.00);
+}
+
+.big-l-title {
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1.00);
+    background-color: rgba(94, 153, 255, 1.00);
+}
+
+#big-right {
+    overflow: auto;
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    top: 210px;
+    bottom: 0;
+    right: 50%;
+    padding: 20px;
+    margin-right: -800px;
+    background-color: rgba(255, 255, 255, 1.00);
+}
+
+#big-right::-webkit-scrollbar {
     display: none;
 }

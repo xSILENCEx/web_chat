@@ -90,10 +90,15 @@ function rightSend(head, name) {
 
 onload = function () {
 
-    if (isHuge()) {
+    if (isSmall()) {
         document.getElementById("reg-login").innerHTML = "<div id='settings'>设置</div>";
+        document.getElementById("big-left").style.display = "none";
+        document.getElementById("big-right").style.display = "none";
     } else {
-        document.getElementById("reg-login").innerHTML = "<a class='a' href='#'>登录</a> / <a class='a' href='#'>注册</a>";
+        document.getElementById("reg-login").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
+    }
+    if (!isHigher()) {
+        document.getElementById("b-info").style.display = "none";
     }
 
     var isLeftOpen = false; //左边栏是否打开
@@ -101,13 +106,13 @@ onload = function () {
     document.getElementById("send").onmousedown = function () {
         meSend();
     } //发送函数
-    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>点击logo打开左边栏。"); //发送一条提示信息
+    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>点击logo打开左边栏。(大屏幕忽略这条信息)"); //发送一条提示信息
 
     document.getElementById("logo").addEventListener("click", function (event) { //点击logo打开左侧栏
-        if (isLeftOpen && isHuge()) {
+        if (isLeftOpen && isSmall()) {
             closeLeft();
             isLeftOpen = false;
-        } else if (isHuge()) {
+        } else if (isSmall()) {
             if (isRightOpen) {
                 closeRight();
                 isRightOpen = false;
@@ -119,12 +124,12 @@ onload = function () {
         }
         event.stopPropagation();
     });
-    if (isHuge) {
+    if (isSmall()) {
         document.getElementById("settings").addEventListener("click", function (event) { //点击设置打开右侧栏
-            if (isRightOpen && isHuge()) {
+            if (isRightOpen && isSmall()) {
                 closeRight();
                 isRightOpen = false;
-            } else if (isHuge()) {
+            } else if (isSmall()) {
                 if (isLeftOpen) {
                     closeLeft();
                     isLeftOpen = false;
@@ -170,7 +175,7 @@ onload = function () {
 
         var d = 80; //滑动距离的参考值
         if (Math.abs(x) > d) {
-            if (x > 0 && isHuge()) {
+            if (x > 0 && isSmall()) {
                 if (isRightOpen) {
                     closeRight();
                     isRightOpen = false;
@@ -180,7 +185,7 @@ onload = function () {
                 }
                 var e = e || window.event;
                 startPoint = e.touches[0];
-            } else if (isHuge()) {
+            } else if (isSmall()) {
                 if (isLeftOpen) {
                     closeLeft();
                     isLeftOpen = false;
@@ -210,12 +215,17 @@ function meSend() {
     rightSend('/headImages/def-boy.html', '匿名游客');
 }
 
-function isHuge() {
+function isSmall() {
     var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (w < 1400) return true;
+    if (w < 1700) return true;
     else return false;
 }
 
+function isHigher() {
+    var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    if (h > 1150) return true;
+    else return false;
+}
 
 function openLeft() {
     document.getElementById("left-menu").style.transform = "translateX(0px)";
