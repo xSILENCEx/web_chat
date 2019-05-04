@@ -18,7 +18,7 @@ function leftSend(head, name, msg) {
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
 
-    var h = document.createElement("iframe");
+    var h = document.createElement("img");
     h.setAttribute("class", "head-img");
     h.setAttribute("src", head);
 
@@ -54,7 +54,7 @@ function rightSend(head, name) {
         var newMsg = document.createElement("div");
         newMsg.setAttribute("class", "msg-item");
 
-        var h = document.createElement("iframe");
+        var h = document.createElement("img");
         h.setAttribute("class", "head-img2");
         h.setAttribute("src", head);
 
@@ -106,7 +106,7 @@ onload = function () {
     document.getElementById("send").onmousedown = function () {
         meSend();
     } //发送函数
-    leftSend("/headImages/system.html", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>点击logo打开左边栏。(大屏幕忽略这条信息)"); //发送一条提示信息
+    leftSend("/img/system.svg", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。"); //发送一条提示信息
 
     document.getElementById("logo").addEventListener("click", function (event) { //点击logo打开左侧栏
         if (isLeftOpen && isSmall()) {
@@ -152,9 +152,9 @@ onload = function () {
     });
 
     //Enter键发送
-    document.onkeydown = function () {
+    document.onkeydown = function (e) {
         var isEditing = document.getElementById("edit");
-        if (event.keyCode == 13 && isEditing == document.activeElement) {
+        if ((13 == e.keyCode && e.ctrlKey) && isEditing == document.activeElement) {
             meSend();
         }
     }
@@ -209,40 +209,40 @@ onload = function () {
     document.addEventListener("touchend", function (e) {});
 }
 
-function meSend() {
+function meSend() { //当前用户发送消息的动作
     event.keyCode = 0;
     event.returnValue = false;
-    rightSend('/headImages/def-boy.html', '匿名游客');
+    rightSend('/img/def-boy.svg', '匿名游客');
 }
 
-function isSmall() {
+function isSmall() { //判断屏幕宽度是否大于1700
     var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (w < 1700) return true;
     else return false;
 }
 
-function isHigher() {
+function isHigher() { //判断屏幕高度是否大于1150
     var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     if (h > 1150) return true;
     else return false;
 }
 
-function openLeft() {
+function openLeft() { //打开左边栏
     document.getElementById("left-menu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(200px)";
 }
 
-function closeLeft() {
+function closeLeft() { //关闭左边栏
     document.getElementById("left-menu").style.transform = "translateX(-300px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
-function openRight() {
+function openRight() { //打开右边栏
     document.getElementById("right-menu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(-200px)";
 }
 
-function closeRight() {
+function closeRight() { //关闭右边栏
     document.getElementById("right-menu").style.transform = "translateX(300px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }

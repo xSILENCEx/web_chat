@@ -42,14 +42,14 @@ a:active {
 }
 
 .nav-bar {
-    width: 900px;
-    max-width: 900px;
+    width: 1400px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 #chat-box {
     overflow: auto;
-    max-width: 900px;
+    max-width: 1400px;
     height: 66%;
     margin: 0 auto;
     margin-top: -100px;
@@ -399,7 +399,7 @@ a:active {
 
 
 .tool-bar {
-    max-width: 900px;
+    max-width: 1400px;
     margin: 0 auto;
     height: 40px;
     background-color: rgba(250, 250, 250, 1.00);
@@ -472,7 +472,7 @@ a:active {
 }
 
 .edit-box {
-    max-width: 900px;
+    max-width: 1400px;
     height: 22%;
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 1.00);
@@ -500,7 +500,7 @@ a:active {
     top: 170px;
     bottom: 0;
     left: 50%;
-    margin-left: -800px;
+    margin-left: -1050px;
 }
 
 #big-left::-webkit-scrollbar {
@@ -533,7 +533,7 @@ a:active {
     bottom: 0;
     right: 50%;
     padding: 20px;
-    margin-right: -800px;
+    margin-right: -1050px;
     background-color: rgba(255, 255, 255, 1.00);
 }
 

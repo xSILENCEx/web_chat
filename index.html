@@ -35,9 +35,8 @@
         </nav>
         <div id="chat-box"></div>
         <div class="tool-bar">
-            <iframe class="fun-box" src="/btn-icon/moodBtn.html" style="margin-left:20px"></iframe>
-            <iframe class="fun-box" src="/btn-icon/picBtn.html"></iframe>
-            <iframe class="fun-box" src="/btn-icon/fileBtn.html"></iframe>
+            <img id="pic-box" title="发送图片" class="fun-box" src="/img/pic.svg">
+            <img id="file-box" title="发送文件" class="fun-box" src="/img/file.svg">
             <input id="send" type="button" title="发送" value="发送">
             <input id="clear" type="button" title="清除" value="清除" onclick="clearEdit();">
         </div>
@@ -100,7 +99,7 @@
                                     style="width:100%">
                             </div>
                             <div style="float:left">
-                                <div class="per-name">唐文韬</div>
+                                <div class="per-name">TwT</div>
                                 <div class="per-art">后台服务、网络通信、Web前端实现</div>
                             </div>
                         </div>
@@ -112,7 +111,7 @@
                                     style="width:100%">
                             </div>
                             <div style="float:left">
-                                <div class="per-name">刘光良</div>
+                                <div class="per-name">SILENCE</div>
                                 <div class="per-art">UI设计、交互设计、Web前端实现</div>
                             </div>
                         </div>
@@ -146,7 +145,7 @@
                             style="width:100%">
                     </div>
                     <div style="float:left">
-                        <div class="per-name">唐文韬</div>
+                        <div class="per-name">TwT</div>
                         <div class="per-art">后台服务、网络通信、Web前端实现</div>
                     </div>
                 </div>
@@ -158,7 +157,7 @@
                             style="width:100%">
                     </div>
                     <div style="float:left">
-                        <div class="per-name">刘光良</div>
+                        <div class="per-name">SILENCE</div>
                         <div class="per-art">UI设计、交互设计、Web前端实现</div>
                     </div>
                 </div>
@@ -208,6 +207,8 @@
         <div class="clear-msg">清空聊天记录</div>
     </section>
     <script src="/js/main.js"></script>
+    <script src="/js/pic.js"></script>
+    <script src="/js/file.js"></script>
 </body>
 
 </html>
