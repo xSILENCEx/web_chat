@@ -12,7 +12,6 @@ void Logger::MessageCreate(QtMsgType type, const QString& msg)
 {
 
 	QString message;
-
 	switch (type)
 	{
 	case QtDebugMsg:

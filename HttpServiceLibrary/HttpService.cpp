@@ -3,10 +3,9 @@
 HttpService::HttpService(QObject* parent)
 	: QObject(parent)
 {
-	StartHttpServer();
+	
 	SetHttpRoute();
 }
-
 HttpService::~HttpService()
 {
 }
@@ -23,62 +22,38 @@ bool HttpService::StartHttpServer()
 		return true;
 	}
 }
+void HttpService::FileResponse(QString fileName, QHttpServerResponder* responder)
+{
+	QFile file(fileName);
+	if (file.open(QIODevice::ReadOnly))
+	{
+		qDebug() << tr("QHttpServer Response Success:%1").arg(file.fileName());
+		QTextStream fileStream(&file);
+		fileStream.setCodec("UTF-8");
+		QMimeDatabase mimeDatabase;
+		responder->write(fileStream.readAll().toUtf8(), mimeDatabase.mimeTypeForFile(fileName).name().toUtf8());
+	}
+	else
+	{
+		qWarning() << tr("QQHttpServer Response Failure: File not open - %1").arg(file.fileName());
+		responder->write(QHttpServerResponder::StatusCode::NotFound);
+	}
+}
 void HttpService::SetHttpRoute()
 {
-	httpServer.route("/", []() {
-		QFile file(QString("Html/") + "index.html");
-		if (file.open(QIODevice::ReadOnly))
-		{
-			qDebug() << "QHttpServer Response Success:" + file.fileName();
-		}
-		else
-		{
-			qWarning() << "QHttpServer Response Failure: File not open - " + file.fileName();
-		}
-		
-		return  file.readAll();
+	httpServer.route("/", [=](QHttpServerResponder && responder) {
+		FileResponse(QString("Html/") + "index.html", &responder);
 		});
-	httpServer.route("/favicon.ico", []() {
-		QFile file(QString("Html/") + "favicon.ico");
-		if (file.open(QIODevice::ReadOnly))
-		{
-			qDebug() << "QHttpServer Response Success:" + file.fileName();
-		}
-		else
-		{
-			qWarning() << "QHttpServer Response Failure: File not open - " + file.fileName();
-		}
-		return  file.readAll();
+	httpServer.route("/favicon.ico", [=](QHttpServerResponder && responder) {
+		FileResponse(QString("Html/") + "favicon.ico", &responder);
 		});
-
-	httpServer.route("/<arg>/<arg>", [](QString fileName1, QString fileName2) {
-		QFile file;
-		if (fileName1 == "js" || fileName1 == "css" || fileName1 == "btn-icon" || fileName1 == "headImages")
-			file.setFileName(QString("Html/") + fileName1 + "/" + fileName2);
-		if (file.open(QIODevice::ReadOnly))
-		{
-			qDebug() << "QHttpServer Response Success:" + file.fileName();
-		}
-		else
-		{
-			qWarning() << "QHttpServer Response Failure: File not open - " + file.fileName();
-		}
-		return  file.readAll();
+	httpServer.route("/js/<arg>", [=](QString fileName,QHttpServerResponder && responder) {
+		FileResponse(QString("Html/js/") + fileName, &responder);
 		});
-	httpServer.route("/<arg>/<arg>/<arg>", [](QString fileName1, QString fileName2, QString fileName3) {
-		QFile file;
-		if (fileName1 == "css" || fileName1 == "headImages")
-			if (fileName2 == "btn" || fileName2 == "img-css")
-				file.setFileName(QString("Html/") + fileName1 + "/" + fileName2 + "/" + fileName3);
-		if (file.open(QIODevice::ReadOnly))
-		{
-			qDebug() << "QHttpServer Response Success:" + file.fileName();
-		}
-		else
-		{
-			qWarning() << "QHttpServer Response Failure: File not open - " + file.fileName();
-		}
-		return  file.readAll();
+	httpServer.route("/css/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
+		FileResponse(QString("Html/css/") + fileName, &responder);
 		});
-
+	httpServer.route("/img/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
+		FileResponse(QString("Html/img/") + fileName, &responder);
+		});
 }

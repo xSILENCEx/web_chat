@@ -15,9 +15,13 @@ class HTTPSERVICELIBRARY_EXPORT HttpService : public QObject
 public:
 	HttpService(QObject* = nullptr);
 	~HttpService();
+	
 	bool StartHttpServer();
+	
 	void SetHttpRoute();
+
 private:
 	QHttpServer httpServer;
+	void FileResponse(QString fileName, QHttpServerResponder* responder);
 };
 

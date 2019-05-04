@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	qDebug() << "Start Test\n\n\n";
 
 	HttpService httpService(&a);
-
+	httpService.StartHttpServer();
 
 	return a.exec();
 }
