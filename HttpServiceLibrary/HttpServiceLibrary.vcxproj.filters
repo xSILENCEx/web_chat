@@ -24,6 +24,27 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Html">
+      <UniqueIdentifier>{de4be180-4b58-43d6-99c4-d85550db8436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Html\headImages">
+      <UniqueIdentifier>{531c1abc-8220-4e48-b5f4-7e447f9238d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Html\btn-icon">
+      <UniqueIdentifier>{ffbce00d-a9c1-431b-b4ce-a16a96b9a991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Html\css">
+      <UniqueIdentifier>{9714c0cf-9764-4257-9a77-a1d23c917191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Html\js">
+      <UniqueIdentifier>{16447b9e-64be-4096-9ed6-dcbfe77f706c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Html\css\btn">
+      <UniqueIdentifier>{353ef732-aea0-4341-9714-b2067ec00e45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Html\headImages\img-css">
+      <UniqueIdentifier>{d99aa944-7d87-4677-a28e-cb035276144b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="httpservicelibrary_global.h">
@@ -39,5 +60,72 @@
     <QtMoc Include="HttpService.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Html\favicon.ico">
+      <Filter>Html</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Html\index.html">
+      <Filter>Html</Filter>
+    </None>
+    <None Include="Html\css\animate.css">
+      <Filter>Html\css</Filter>
+    </None>
+    <None Include="Html\css\chat.css">
+      <Filter>Html\css</Filter>
+    </None>
+    <None Include="Html\css\colors.css">
+      <Filter>Html\css</Filter>
+    </None>
+    <None Include="Html\css\style.css">
+      <Filter>Html\css</Filter>
+    </None>
+    <None Include="Html\css\btn\fileBtn.css">
+      <Filter>Html\css\btn</Filter>
+    </None>
+    <None Include="Html\css\btn\moodBtn.css">
+      <Filter>Html\css\btn</Filter>
+    </None>
+    <None Include="Html\css\btn\picBtn.css">
+      <Filter>Html\css\btn</Filter>
+    </None>
+    <None Include="Html\js\file.js">
+      <Filter>Html\js</Filter>
+    </None>
+    <None Include="Html\js\main.js">
+      <Filter>Html\js</Filter>
+    </None>
+    <None Include="Html\js\mood.js">
+      <Filter>Html\js</Filter>
+    </None>
+    <None Include="Html\js\pic.js">
+      <Filter>Html\js</Filter>
+    </None>
+    <None Include="Html\headImages\def-boy.html">
+      <Filter>Html\headImages</Filter>
+    </None>
+    <None Include="Html\headImages\def-girl.html">
+      <Filter>Html\headImages</Filter>
+    </None>
+    <None Include="Html\headImages\system.html">
+      <Filter>Html\headImages</Filter>
+    </None>
+    <None Include="Html\headImages\img-css\defUser.css">
+      <Filter>Html\headImages\img-css</Filter>
+    </None>
+    <None Include="Html\headImages\img-css\system.css">
+      <Filter>Html\headImages\img-css</Filter>
+    </None>
+    <None Include="Html\btn-icon\fileBtn.html">
+      <Filter>Html\btn-icon</Filter>
+    </None>
+    <None Include="Html\btn-icon\moodBtn.html">
+      <Filter>Html\btn-icon</Filter>
+    </None>
+    <None Include="Html\btn-icon\picBtn.html">
+      <Filter>Html\btn-icon</Filter>
+    </None>
   </ItemGroup>
 </Project>

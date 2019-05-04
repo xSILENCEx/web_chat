@@ -1,0 +1,50 @@
+body {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+}
+
+.f1 {
+    float: left;
+    width: 14px;
+    height: 4px;
+    background-color: rgba(45, 139, 255, 1.00);
+}
+
+.f2 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00) rgba(45, 139, 255, 1.00) rgba(45, 139, 255, 1.00);
+}
+
+.f2-1 {
+    float: left;
+    width: 24px;
+    height: 2px;
+    background-color: rgba(45, 139, 255, 1.00);
+}
+
+.f2-2 {
+    float: left;
+    height: 4px;
+    width: 20px;
+    background-color: rgba(255, 255, 255, 1.00);
+}
+
+.f2-3 {
+    float: left;
+    width: 2px;
+    height: 4px;
+    background-color: rgba(45, 139, 255, 1.00);
+}
+
+.f3 {
+    float: left;
+    width: 24px;
+    height: 14px;
+    background-color: rgba(122, 190, 255, 1.00);
+}

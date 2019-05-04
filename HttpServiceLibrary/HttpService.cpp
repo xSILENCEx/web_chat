@@ -3,6 +3,8 @@
 HttpService::HttpService(QObject* parent)
 	: QObject(parent)
 {
+	StartHttpServer();
+	SetHttpRoute();
 }
 
 HttpService::~HttpService()
@@ -24,22 +26,59 @@ bool HttpService::StartHttpServer()
 void HttpService::SetHttpRoute()
 {
 	httpServer.route("/", []() {
-		QFile a("index.html");
-		if (a.open(QIODevice::ReadOnly))
+		QFile file(QString("Html/") + "index.html");
+		if (file.open(QIODevice::ReadOnly))
 		{
-			qDebug() << "QHttpServer Response Success: index.html";
-			return  a.readAll();
+			qDebug() << "QHttpServer Response Success:" + file.fileName();
 		}
 		else
 		{
-			qDebug() << "QHttpServer Response Failure: index.html";
-			//return  QHttpServerResponder::StatusCode::NotFound;
+			qWarning() << "QHttpServer Response Failure: File not open - " + file.fileName();
 		}
+		
+		return  file.readAll();
 		});
-	httpServer.route("/<arg>.js", [](QString id, const QHttpServerRequest & request) {
-		//qDebug() << id;
-		QFile a(id);
-		a.open(QIODevice::ReadOnly);
-		return  a.readAll();
+	httpServer.route("/favicon.ico", []() {
+		QFile file(QString("Html/") + "favicon.ico");
+		if (file.open(QIODevice::ReadOnly))
+		{
+			qDebug() << "QHttpServer Response Success:" + file.fileName();
+		}
+		else
+		{
+			qWarning() << "QHttpServer Response Failure: File not open - " + file.fileName();
+		}
+		return  file.readAll();
 		});
+
+	httpServer.route("/<arg>/<arg>", [](QString fileName1, QString fileName2) {
+		QFile file;
+		if (fileName1 == "js" || fileName1 == "css" || fileName1 == "btn-icon" || fileName1 == "headImages")
+			file.setFileName(QString("Html/") + fileName1 + "/" + fileName2);
+		if (file.open(QIODevice::ReadOnly))
+		{
+			qDebug() << "QHttpServer Response Success:" + file.fileName();
+		}
+		else
+		{
+			qWarning() << "QHttpServer Response Failure: File not open - " + file.fileName();
+		}
+		return  file.readAll();
+		});
+	httpServer.route("/<arg>/<arg>/<arg>", [](QString fileName1, QString fileName2, QString fileName3) {
+		QFile file;
+		if (fileName1 == "css" || fileName1 == "headImages")
+			if (fileName2 == "btn" || fileName2 == "img-css")
+				file.setFileName(QString("Html/") + fileName1 + "/" + fileName2 + "/" + fileName3);
+		if (file.open(QIODevice::ReadOnly))
+		{
+			qDebug() << "QHttpServer Response Success:" + file.fileName();
+		}
+		else
+		{
+			qWarning() << "QHttpServer Response Failure: File not open - " + file.fileName();
+		}
+		return  file.readAll();
+		});
+
 }

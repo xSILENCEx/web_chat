@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
 	logger = new Logger(&a);
 
 	qInstallMessageHandler(LogMessage);
-	qDebug() << "start";
+	qDebug() << "Start Test\n\n\n";
 
 	HttpService httpService(&a);
-	httpService.StartHttpServer();
+
 
 	return a.exec();
 }

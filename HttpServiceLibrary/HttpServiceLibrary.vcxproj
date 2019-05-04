@@ -19,6 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -106,6 +107,29 @@
     <ClInclude Include="httpservicelibrary_global.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Html\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Html\btn-icon\fileBtn.html" />
+    <None Include="Html\btn-icon\moodBtn.html" />
+    <None Include="Html\btn-icon\picBtn.html" />
+    <None Include="Html\css\animate.css" />
+    <None Include="Html\css\btn\fileBtn.css" />
+    <None Include="Html\css\btn\moodBtn.css" />
+    <None Include="Html\css\btn\picBtn.css" />
+    <None Include="Html\css\chat.css" />
+    <None Include="Html\css\colors.css" />
+    <None Include="Html\css\style.css" />
+    <None Include="Html\headImages\def-boy.html" />
+    <None Include="Html\headImages\def-girl.html" />
+    <None Include="Html\headImages\img-css\defUser.css" />
+    <None Include="Html\headImages\img-css\system.css" />
+    <None Include="Html\headImages\system.html" />
+    <None Include="Html\index.html" />
+    <None Include="Html\js\file.js" />
+    <None Include="Html\js\main.js" />
+    <None Include="Html\js\mood.js" />
+    <None Include="Html\js\pic.js" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

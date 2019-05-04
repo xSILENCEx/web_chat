@@ -1,0 +1,40 @@
+body {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+}
+
+.icon-left {
+    float: left;
+    width: 0px;
+    height: 0px;
+    margin-top: 4px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: rgba(54, 89, 160, 0.00) rgba(54, 89, 160, 1.00) rgba(54, 89, 160, 1.00) rgba(54, 89, 160, 0.00);
+}
+
+.icon-right {
+    float: left;
+    width: 28px;
+    height: 28px;
+    margin-top: 4px;
+    background-color: rgba(94, 153, 255, 1.00);
+}
+
+.icon-in {
+    width: 20px;
+    height: 2px;
+    margin: 0 auto;
+    margin-top: 5px;
+    background-color: rgba(255, 255, 255, 1.00);
+}
+
+.ic {
+    width: 14px;
+    height: 2px;
+    margin-top: 5px;
+    margin-left: 4px;
+    background-color: rgba(255, 255, 255, 1.00);
+}
