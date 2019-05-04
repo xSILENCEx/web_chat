@@ -1,6 +1,12 @@
 #include <QtCore/QCoreApplication>
+
+
 #include "../OtherLibrary/Logger.h"
+#include "../HttpServiceLibrary/HttpService.h"
+
+
 #include <QDebug>
+
 Logger* logger;
 void LogMessage(QtMsgType type, const QMessageLogContext& context, const QString& msg)
 {
@@ -12,6 +18,10 @@ int main(int argc, char *argv[])
 	logger = new Logger(&a);
 
 	qInstallMessageHandler(LogMessage);
-	qDebug() << "123";
+	qDebug() << "start";
+
+	HttpService httpService(&a);
+	httpService.StartHttpServer();
+
 	return a.exec();
 }
