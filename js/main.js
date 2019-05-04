@@ -106,7 +106,7 @@ onload = function () {
     document.getElementById("send").onmousedown = function () {
         meSend();
     } //发送函数
-    leftSend("/img/system.svg", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。"); //发送一条提示信息
+    leftSend("../img/system.svg", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。"); //发送一条提示信息
 
     document.getElementById("logo").addEventListener("click", function (event) { //点击logo打开左侧栏
         if (isLeftOpen && isSmall()) {
@@ -212,12 +212,12 @@ onload = function () {
 function meSend() { //当前用户发送消息的动作
     event.keyCode = 0;
     event.returnValue = false;
-    rightSend('/img/def-boy.svg', '匿名游客');
+    rightSend('../img/def-boy.svg', '匿名游客');
 }
 
-function isSmall() { //判断屏幕宽度是否大于1700
+function isSmall() { //判断屏幕宽度是否大于2000
     var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (w < 1700) return true;
+    if (w < 2000) return true;
     else return false;
 }
 
