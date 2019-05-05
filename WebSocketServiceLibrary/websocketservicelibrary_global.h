@@ -1,0 +1,13 @@
+#pragma once
+
+#include <QtCore/qglobal.h>
+
+#ifndef BUILD_STATIC
+# if defined(WEBSOCKETSERVICELIBRARY_LIB)
+#  define WEBSOCKETSERVICELIBRARY_EXPORT Q_DECL_EXPORT
+# else
+#  define WEBSOCKETSERVICELIBRARY_EXPORT Q_DECL_IMPORT
+# endif
+#else
+# define WEBSOCKETSERVICELIBRARY_EXPORT
+#endif

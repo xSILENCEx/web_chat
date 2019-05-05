@@ -18,7 +18,7 @@ bool HttpService::StartHttpServer()
 	}
 	else
 	{
-		qInfo() << tr("QHttpServer Running on http://127.0.0.1:%1/").arg(port);
+		qInfo() << tr("QHttpServer Running on http://%1:%2/").arg("0.0.0.0").arg(port);
 		return true;
 	}
 }
@@ -27,11 +27,12 @@ void HttpService::FileResponse(QString fileName, QHttpServerResponder* responder
 	QFile file(fileName);
 	if (file.open(QIODevice::ReadOnly))
 	{
-		qDebug() << tr("QHttpServer Response Success:%1").arg(file.fileName());
-		QTextStream fileStream(&file);
-		fileStream.setCodec("UTF-8");
+		
+		//QTextStream fileStream(&file);
+		//fileStream.setCodec("UTF-8");
 		QMimeDatabase mimeDatabase;
-		responder->write(fileStream.readAll().toUtf8(), mimeDatabase.mimeTypeForFile(fileName).name().toUtf8());
+		qDebug() << tr("QHttpServer Response Success:%1 - %2").arg(file.fileName()).arg(mimeDatabase.mimeTypeForFile(fileName).name());
+		responder->write(file.readAll(), mimeDatabase.mimeTypeForFile(fileName).name().toUtf8());
 	}
 	else
 	{

@@ -3,6 +3,7 @@
 
 #include "../OtherLibrary/Logger.h"
 #include "../HttpServiceLibrary/HttpService.h"
+#include "../WebSocketServiceLibrary/WebSocketService.h"
 
 
 #include <QDebug>
@@ -19,6 +20,7 @@ int main(int argc, char *argv[])
 
 	qInstallMessageHandler(LogMessage);
 	qDebug() << "Start Test\n\n\n";
+	WebSocketService webSocketService(&a);
 
 	HttpService httpService(&a);
 	httpService.StartHttpServer();
