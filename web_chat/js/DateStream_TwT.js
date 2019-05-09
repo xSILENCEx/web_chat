@@ -20,18 +20,17 @@ function ConnectToServer() {
         connectSuccess();
         window.channel = new QWebChannel(socket, function (channel) {
             channel.objects.ChatServer.ForwardUserMessageToBrowser.connect(function (message) {
+                //console.log(message);
                 var json = JSON.parse(message);
-                console.log(message);
-                ReceiveByServer('../UserFavicon/' + json.UserFaviconID + '.svg', json.UserName, json.MessageContent);
+                AddUserMessageFromServer('../UserFavicon/' + json.UserFaviconID + '.svg', json.UserName, json.MessageContent);
             });
         });
     }
 }
 
-function SendMessageToServer(message) {
+function UserSendMessageToServer(message) {
     try {
-
-        channel.objects.ChatUser.UserSendMessage(message, function (value) {});
+        channel.objects.ChatUser.UserSendMessage(message, function (value) { });
     } catch (e) {
         errorInfo(e);
     }

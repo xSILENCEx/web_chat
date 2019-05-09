@@ -51,44 +51,11 @@ function leftSend(head, name, msg) {
 function rightSend(head, name) {
     var msg = document.getElementById("edit").value;
     //向服务器发送消息
-    SendMessageToServer(msg)
-    /*if (msg.length != 0) {
-         var newMsg = document.createElement("div");
-         newMsg.setAttribute("class", "msg-item");
-
-         var h = document.createElement("img");
-         h.setAttribute("class", "head-img2");
-         h.setAttribute("src", head);
-
-         var hm = document.createElement("div");
-         hm.setAttribute("class", "h-m2");
-
-         var lName = document.createElement("p");
-         lName.setAttribute("class", "user-name");
-         lName.appendChild(document.createTextNode(name));
-
-         var lMsg = document.createElement("p");
-         lMsg.setAttribute("class", "msg-box2");
-         lMsg.innerHTML = msg;
-
-         var lM = document.createElement("div");
-         lM.setAttribute("class", "msg-r");
-
-         hm.appendChild(lName);
-         hm.appendChild(lM);
-         hm.appendChild(lMsg);
-
-         newMsg.appendChild(h);
-         newMsg.appendChild(hm);
-
-         var chatBox = document.getElementById("chat-box");
-         chatBox.appendChild(newMsg);
-         scrollToBottom(lM);
-     }*/
+    UserSendMessageToServer(msg)
     clearEdit();
 }
 //接收来自服务器的消息，复制原rightSend(head, name)函数
-function ReceiveByServer(head, name, message) {
+function AddUserMessageFromServer(head, name, message) {
     var msg = message
     if (msg.length != 0) {
         var newMsg = document.createElement("div");
@@ -247,7 +214,7 @@ onload = function () {
             }
         }
     });
-    document.addEventListener("touchend", function (e) {});
+    document.addEventListener("touchend", function (e) { });
 
     document.getElementById("user-head").addEventListener("click", function () {
         openRegLogBox();
