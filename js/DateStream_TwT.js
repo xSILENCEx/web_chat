@@ -29,7 +29,6 @@ function ConnectToServer() {
 
 function SendMessageToServer(message) {
     try {
-
         channel.objects.testDataChannel.SendMessage(message, function (value) {});
     } catch (e) {
         errorInfo(e);
