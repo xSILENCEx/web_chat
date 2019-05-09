@@ -33,7 +33,16 @@ void WebSocketService::CreatChannel()
 	QWebSocket* webSocket = webSocketServer->nextPendingConnection();
 	qInfo() << tr("QWebSocketServer Creat New Connect. From ipv4: %1:%2").arg(webSocket->localAddress().toString()).arg(webSocket->localPort());
 	WebSocketTransport* webSocketTransport = new WebSocketTransport(webSocket);
-	QWebChannel* channel1 = new QWebChannel(webSocketTransport);
-	channel1->connectTo(webSocketTransport);
-	channel1->registerObject(QStringLiteral("testDataChannel"), &testDataChannel);
+	QWebChannel* webChannel = new QWebChannel(webSocketTransport);
+	ChatUser* chatUser=new ChatUser(webChannel);
+	chatUserList.append(chatUser);
+
+	QObject::connect(chatUser, &ChatUser::UserMessageToServer, &chatServer, &ChatServer::ReceiveUserMessage);
+
+
+	webChannel->connectTo(webSocketTransport);
+	webChannel->registerObject(QStringLiteral("testDataChannel"), &testDataChannel);
+	webChannel->registerObject(QStringLiteral("ChatServer"), &chatServer);
+	webChannel->registerObject(QStringLiteral("ChatUser"), chatUser);
+
 }

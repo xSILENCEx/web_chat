@@ -3,7 +3,7 @@
 HttpService::HttpService(QObject* parent)
 	: QObject(parent)
 {
-	
+
 	SetHttpRoute();
 }
 HttpService::~HttpService()
@@ -26,7 +26,7 @@ void HttpService::FileResponse(QString fileName, QHttpServerResponder* responder
 {
 	QFile file(fileName);
 	if (file.open(QIODevice::ReadOnly))
-	{	
+	{
 		QMimeDatabase mimeDatabase;
 		qDebug() << tr("QHttpServer Response Success:%1 - %2").arg(file.fileName()).arg(mimeDatabase.mimeTypeForFile(fileName).name());
 		responder->write(file.readAll(), mimeDatabase.mimeTypeForFile(fileName).name().toUtf8());
@@ -45,7 +45,7 @@ void HttpService::SetHttpRoute()
 	httpServer.route("/favicon.ico", [=](QHttpServerResponder && responder) {
 		FileResponse(QString("../web_chat/") + "favicon.ico", &responder);
 		});
-	httpServer.route("/js/<arg>", [=](QString fileName,QHttpServerResponder && responder) {
+	httpServer.route("/js/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
 		FileResponse(QString("../web_chat/js/") + fileName, &responder);
 		});
 	httpServer.route("/css/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
@@ -53,5 +53,8 @@ void HttpService::SetHttpRoute()
 		});
 	httpServer.route("/img/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
 		FileResponse(QString("../web_chat/img/") + fileName, &responder);
+		});
+	httpServer.route("/UserFavicon/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
+		FileResponse(QString("../UserFavicon/") + fileName, &responder);
 		});
 }
