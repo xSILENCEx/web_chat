@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OtherLibrary", "OtherLibrar
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebSocketServiceLibrary", "WebSocketServiceLibrary\WebSocketServiceLibrary.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UserManagementLibrary", "UserManagementLibrary\UserManagementLibrary.vcxproj", "{0FDF5136-531B-45E4-81B4-AB4B68476FF1}"
+EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web_chat", "web_chat\", "{D0781358-1F4C-4EB8-B0E3-77583B956D29}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -31,8 +33,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web_chat", "web_chat\", "{D
 		VWDPort = "50270"
 		SlnRelativePath = "web_chat\"
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UserManagementLibrary", "UserManagementLibrary\UserManagementLibrary.vcxproj", "{0FDF5136-531B-45E4-81B4-AB4B68476FF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,14 +56,14 @@ Global
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x64.Build.0 = Debug|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.Build.0 = Release|x64
-		{D0781358-1F4C-4EB8-B0E3-77583B956D29}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D0781358-1F4C-4EB8-B0E3-77583B956D29}.Debug|x64.Build.0 = Debug|Any CPU
-		{D0781358-1F4C-4EB8-B0E3-77583B956D29}.Release|x64.ActiveCfg = Debug|Any CPU
-		{D0781358-1F4C-4EB8-B0E3-77583B956D29}.Release|x64.Build.0 = Debug|Any CPU
 		{0FDF5136-531B-45E4-81B4-AB4B68476FF1}.Debug|x64.ActiveCfg = Debug|x64
 		{0FDF5136-531B-45E4-81B4-AB4B68476FF1}.Debug|x64.Build.0 = Debug|x64
 		{0FDF5136-531B-45E4-81B4-AB4B68476FF1}.Release|x64.ActiveCfg = Release|x64
 		{0FDF5136-531B-45E4-81B4-AB4B68476FF1}.Release|x64.Build.0 = Release|x64
+		{D0781358-1F4C-4EB8-B0E3-77583B956D29}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D0781358-1F4C-4EB8-B0E3-77583B956D29}.Debug|x64.Build.0 = Debug|Any CPU
+		{D0781358-1F4C-4EB8-B0E3-77583B956D29}.Release|x64.ActiveCfg = Debug|Any CPU
+		{D0781358-1F4C-4EB8-B0E3-77583B956D29}.Release|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
