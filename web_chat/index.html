@@ -10,13 +10,15 @@
     <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
     <link href="css/animate.css" type="text/css" rel="stylesheet" media="all">
     <link href="css/chat.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/colors.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/btn.css" type="text/css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
     <section id="whole">
-        <nav class="nav">
+        <nav class="nav theme">
             <div class="nav-bar">
                 <div id="logo" class="logo" title="Logo">
                     <div class="logo-left"></div>
@@ -32,10 +34,22 @@
         </nav>
         <div id="chat-box"></div>
         <div class="tool-bar">
-            <img id="pic-box" title="发送图片" class="fun-box" src="/img/pic.svg">
+            <div id="pic-box" title="发送图片">
+                <div class="pic-1">
+                    <div class="pic-2"></div>
+                    <div class="pic-3"></div>
+                    <div style="width:6px;height: 6px;"></div>
+                    <div class="pic-4"></div>
+                    <div class="pic-5"></div>
+                    <div style="width:6px;height: 6px;"></div>
+                    <div class="pic-6"></div>
+                    <div class="pic-7"></div>
+                </div>
+            </div>
             <img id="file-box" title="发送文件" class="fun-box" src="/img/file.svg">
-            <input id="send" type="button" title="发送" value="发送">
-            <input id="clear" type="button" title="清除" value="清除" onclick="clearEdit();">
+            <li id="connect" title="正在连接服务器">正在连接服务器</li>
+            <input id="send" class="theme" type="button" title="发送" value="发送">
+            <input id="clear" class="war-c" type="button" title="清除" value="清除" onclick="clearEdit();">
         </div>
         <div class="edit-box">
             <textarea id="edit" placeholder="在这里输入消息"></textarea>
@@ -195,14 +209,14 @@
         </div>
         <div class="clear-msg">清空聊天记录</div>
     </section>
-    <script type="text/javascript" src="/js/main.js"></script>
-    <script type="text/javascript" src="/js/pic.js"></script>
-    <script type="text/javascript" src="/js/file.js"></script>
-	<script type="text/javascript" src="/js/qwebchannel_TwT_lib.js"></script>
+    <script type="text/javascript" src="/js/main_SILENCE.js"></script>
+    <script type="text/javascript" src="/js/pic_SILENCE.js"></script>
+    <script type="text/javascript" src="/js/file_SILENCE.js"></script>
+    <script type="text/javascript" src="/js/qwebchannel_TwT_lib.js"></script>
     <script type="text/javascript" src="/js/reconnecting-websocket.min_TwT_lib.js"></script>
     <script type="text/javascript" src="/js/reconnecting-websocket_TwT_lib.js"></script>
     <script type="text/javascript" src="/js/DateStream_TwT.js"></script>
-
+    <script type="text/javascript" src="/js/change_SILENCE.js"></script>
 </body>
 
 </html>
