@@ -219,6 +219,9 @@ onload = function () {
     document.getElementById("user-head").addEventListener("click", function () {
         openRegLogBox();
     });
+    document.getElementById("user-head-b").addEventListener("click", function () {
+        openRegLogBox();
+    });
 }
 
 function meSend() { //当前用户发送消息的动作
