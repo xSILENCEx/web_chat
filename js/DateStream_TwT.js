@@ -1,6 +1,5 @@
 'use strict';
 var domain = document.domain;
-//var domain = "192.168.50.176";
 var wsUri = "ws://" + domain + ":12345";
 var socket;
 function ConnectToServer() {
@@ -17,14 +16,16 @@ function ConnectToServer() {
     socket.onopen = function () {
         console.log("web channel open")
         window.channel = new QWebChannel(socket, function (channel) {
-            channel.objects.testDataChannel.ForwardMessage.connect(function (message) {
-                ReceiveByServer('../img/def-boy.svg', '匿名游客',message)
+            channel.objects.ChatServer.ForwardUserMessageToBrowser.connect(function (message) {
+                var json = JSON.parse(message);
+                console.log(message);
+                ReceiveByServer('../UserFavicon/' + json.UserFaviconID + '.svg', json.UserName, json.MessageContent);
             });
         });
     }
 }
 function SendMessageToServer(message) {
-    channel.objects.testDataChannel.SendMessage(message)
+    channel.objects.ChatUser.UserSendMessage(message);
 }
 /*
 function UpladFile() {
