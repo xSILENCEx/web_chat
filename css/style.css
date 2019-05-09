@@ -5,6 +5,11 @@
 body {
     padding: 0px;
     margin: 0px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
 }
 
 a {
@@ -173,7 +178,6 @@ a:active {
     width: 36px;
     height: 36px;
     margin-right: 10px;
-    background-color: rgba(230, 230, 230, 1.00);
 }
 
 .right-m-n {
@@ -202,40 +206,6 @@ a:active {
     line-height: 10px;
     margin-top: 40px;
     color: rgba(80, 80, 80, 1.00);
-}
-
-.ch-name {
-    float: left;
-    width: 130px;
-    height: 30px;
-    outline: none;
-    border: none;
-    padding: 4px;
-    margin: 0;
-    margin-top: 10px;
-    background-color: rgba(230, 230, 230, 1.00);
-    font-size: 12px;
-    text-align: center;
-    color: rgba(80, 80, 80, 1.00);
-}
-
-.ch-submit {
-    float: left;
-    font-size: 12px;
-    line-height: 30px;
-    text-align: center;
-    width: 130px;
-    height: 30px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    background-color: rgba(94, 153, 255, 1.00);
-    color: rgba(255, 255, 255, 1.00);
-    user-select: none;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
 }
 
 .log-btn {
@@ -324,15 +294,6 @@ a:active {
     -o-transition: all 0.5s;
 }
 
-.ch-head {
-    float: left;
-    width: 36px;
-    height: 36px;
-    margin-right: 20px;
-    margin-top: 20px;
-    background-color: rgba(230, 230, 230, 1.00);
-}
-
 .logo {
     float: left;
     width: 160px;
@@ -383,6 +344,15 @@ a:active {
     font-size: 18px;
     color: rgba(250, 250, 250, 1.00);
     user-select: none;
+}
+
+#log-reg-box {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.30);
 }
 
 .a {
