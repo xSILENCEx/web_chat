@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <title>简聊</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/animate.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/chat.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/colors.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/btn.css" type="text/css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <section id="whole">
+        <nav class="nav theme">
+            <div class="nav-bar">
+                <div id="logo" class="logo" title="Logo">
+                    <div class="logo-left"></div>
+                    <div class="logo-right">
+                        <div class="logo-in"></div>
+                        <div class="logo-in"></div>
+                        <div class="logo-in" style="width:8px; margin: 0; margin-left: 4px; margin-top: 4px"></div>
+                    </div>
+                    <p class="logo-text">简聊</p>
+                </div>
+                <p id="reg-login"></p>
+            </div>
+        </nav>
+        <div id="chat-box"></div>
+        <div class="tool-bar">
+            <div id="pic-box" title="发送图片">
+                <div class="pic-1">
+                    <div class="pic-2"></div>
+                    <div class="pic-3"></div>
+                    <div style="width:6px;height: 6px;"></div>
+                    <div class="pic-4"></div>
+                    <div class="pic-5"></div>
+                    <div style="width:6px;height: 6px;"></div>
+                    <div class="pic-6"></div>
+                    <div class="pic-7"></div>
+                </div>
+            </div>
+            <img id="file-box" title="发送文件" class="fun-box" src="/img/file.svg">
+            <li id="connect" title="正在连接服务器">正在连接服务器</li>
+            <input id="send" class="theme" type="button" title="发送" value="发送">
+            <input id="clear" class="war-c" type="button" title="清除" value="清除" onclick="clearEdit();">
+        </div>
+        <div class="edit-box">
+            <textarea id="edit" placeholder="在这里输入消息"></textarea>
+        </div>
+        <div id="big-right">
+            <div>
+                <p class="left-title">设置</p>
+                <div class="right-m-head"></div>
+                <div class="right-m-n">匿名游客</div>
+                <div class="right-m-s">游客</div>
+                <div class="right-m-sub">这里可以设置昵称头像。</div>
+            </div><br>
+            <input class="ch-name" type="text" value="匿名游客" maxlength="10" placeholder="新的昵称">
+            <div class="ch-submit">确定</div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head" style="margin-right:0px"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head" style="margin-right:0px"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head" style="margin-right:0px"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <div class="ch-head"></div>
+            <input class="username" type="text" placeholder="用户名/USERNAME">
+            <input class="password" type="password" placeholder="密码/PASSWORD">
+            <div class="log-btn">登录</div>
+            <div class="reg-btn">注册</div>
+            <div class="clear-msg" style="position: absolute">清空聊天记录</div>
+        </div>
+        <div id="big-left">
+            <div class="big-l-item">
+                <div class="big-l-title">简介</div>
+                <p class="left-article" style="padding:10px">这里是简聊(SimpleChat)，一个简单的多人聊天网站。2019.6期末作品，UI采用极简扁平方正设计，<b
+                        style="color:rgba(94, 153, 255, 1.00);">多端适配</b>，后台使用Qt+Websocket实现。</p>
+            </div>
+            <div class="big-l-item">
+                <div class="big-l-title">功能</div>
+                <p class="left-article" style="padding:10px">支持常规文本发送以及<b
+                        style="color:rgba(94, 153, 255, 1.00);">富文本</b>发送(如&lt;h2&gt;这是一个标题&lt;/h2&gt;)，支持表情、图片、文件发送。如果手势与浏览器冲突可以选择点击logo和设置来打开菜单。更多设置可在右边栏查看。
+                </p>
+            </div>
+            <div class="big-l-item" style="height:180px">
+                <div class="big-l-title">开发者</div>
+                <div style="padding:10px">
+                    <a href="#">
+                        <div class="per-box">
+                            <div class="per-h"><img alt="#" src="/img/TwT.png" style="width:100%">
+                            </div>
+                            <div style="float:left">
+                                <div class="per-name">TwT</div>
+                                <div class="per-art">后台服务、网络通信、Web前端实现</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="http://me.liugl.cn">
+                        <div class="per-box">
+                            <div class="per-h"><img alt="#" src="/img/SILENCE.png" style="width:100%">
+                            </div>
+                            <div style="float:left">
+                                <div class="per-name">SILENCE</div>
+                                <div class="per-art">UI设计、交互设计、Web前端实现</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="big-l-item">
+                <div class="big-l-title">版权声明</div>
+                <p class="left-article" style="padding:10px">这里是简聊，一个<b>从零</b>开始搭建的简单多人聊天网站。<a
+                        href="https://github.com/xSILENCEx/web_chat">github</a>有完整的提交记录，外观设计版权归SILENCE个人所有，禁止抄袭、二改并作商业用途，盗用必究！<a
+                        href="https://github.com/o-TwT-o/SimpleChat">后台代码点击这里</a>。</p>
+            </div>
+        </div>
+        <p id="b-info" class="left-foot" style="background-color:rgba(94, 153, 255, 0.00);">Copyright © 2019 liu. All
+            rights reserved.蜀ICP备19010209号</p>
+    </section>
+    <section id="left-menu">
+        <div class="left-in">
+            <p class="left-title">简介</p>
+            <p class="left-article">这里是简聊(SimpleChat)，一个简单的多人聊天网站。2019.6期末作品，UI采用极简扁平方正设计，<b
+                    style="color:rgba(94, 153, 255, 1.00);">多端适配</b>，后台使用Qt+Websocket实现。</p>
+            <p class="left-title">功能</p>
+            <p class="left-article"> 支持常规文本发送以及<b
+                    style="color:rgba(94, 153, 255, 1.00);">富文本</b>发送(如&lt;h2&gt;这是一个标题&lt;/h2&gt;)，支持表情、图片、文件发送。如果手势与浏览器冲突可以选择点击logo和设置来打开菜单。更多设置可在右边栏查看。
+            </p>
+            <p class="left-title">开发者</p>
+            <a href="#">
+                <div class="per-box">
+                    <div class="per-h"><img alt="#" src="/img/TwT.png" style="width:100%">
+                    </div>
+                    <div style="float:left">
+                        <div class="per-name">TwT</div>
+                        <div class="per-art">后台服务、网络通信、Web前端实现</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://me.liugl.cn">
+                <div class="per-box">
+                    <div class="per-h"><img alt="#" src="/img/SILENCE.png" style="width:100%">
+                    </div>
+                    <div style="float:left">
+                        <div class="per-name">SILENCE</div>
+                        <div class="per-art">UI设计、交互设计、Web前端实现</div>
+                    </div>
+                </div>
+            </a>
+            <p class="left-title">版权声明</p>
+            <p class="left-article">这里是简聊，一个<b>从零</b>开始搭建的简单多人聊天网站。<a
+                    href="https://github.com/xSILENCEx/web_chat">github</a>有完整的提交记录，外观设计版权归SILENCE个人所有，禁止抄袭、二改并作商业用途，盗用必究！<a
+                    href="https://github.com/o-TwT-o/SimpleChat">后台代码点击这里</a>。</p>
+            <div style="height:100px"></div>
+        </div>
+        <p class="left-foot">Copyright © 2019 liu. All rights reserved.蜀ICP备19010209号</p>
+    </section>
+    <section id="right-menu">
+        <div class="left-in">
+            <div>
+                <p class="left-title">设置</p>
+                <div id="user-head"></div>
+                <div class="right-m-n">用户</div>
+                <div class="right-m-s">未登录</div>
+                <div class="right-m-sub">点击头像登录或注册</div>
+            </div>
+            <input class="username" type="text" placeholder="用户名/USERNAME">
+            <input class="password" type="password" placeholder="密码/PASSWORD">
+            <div class="log-btn">登录</div>
+            <div class="reg-btn">注册</div>
+        </div>
+        <div class="clear-msg">清空聊天记录</div>
+    </section>
+    <script type="text/javascript" src="/js/main_SILENCE.js"></script>
+    <script type="text/javascript" src="/js/pic_SILENCE.js"></script>
+    <script type="text/javascript" src="/js/file_SILENCE.js"></script>
+    <script type="text/javascript" src="/js/qwebchannel_TwT_lib.js"></script>
+    <script type="text/javascript" src="/js/reconnecting-websocket.min_TwT_lib.js"></script>
+    <script type="text/javascript" src="/js/reconnecting-websocket_TwT_lib.js"></script>
+    <script type="text/javascript" src="/js/DateStream_TwT.js"></script>
+    <script type="text/javascript" src="/js/change_SILENCE.js"></script>
+    <script type="text/javascript" src="/js/reg-login_SILENCE.js"></script>
+</body>
+
+</html>
