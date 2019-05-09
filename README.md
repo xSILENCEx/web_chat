@@ -1,5 +1,5 @@
 # SimpleChat
-<h1>简聊 Web通信套件</h1>
+<h1>简聊 WEB通信套件</h1>
 <h2>包含组件:</h2>
 <ol>
   <li>模块测试</li>
