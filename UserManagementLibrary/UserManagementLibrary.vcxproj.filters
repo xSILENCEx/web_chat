@@ -24,46 +24,31 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Library">
-      <UniqueIdentifier>{e9d420c7-787a-45bf-bdab-6965f9980c57}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WebSocketService.cpp">
+    <ClCompile Include="UserManagement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Library\websockettransport.cpp">
-      <Filter>Library</Filter>
-    </ClCompile>
-    <ClCompile Include="TestDataChannel.cpp">
+    <ClCompile Include="User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ChatServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ChatUser.cpp">
+    <ClCompile Include="Message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="websocketservicelibrary_global.h">
+    <ClInclude Include="usermanagementlibrary_global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="WebSocketService.h">
+    <QtMoc Include="User.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="Library\websockettransport.h">
-      <Filter>Library</Filter>
-    </QtMoc>
-    <QtMoc Include="TestDataChannel.h">
+    <QtMoc Include="Message.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="ChatServer.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ChatUser.h">
+    <QtMoc Include="UserManagement.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

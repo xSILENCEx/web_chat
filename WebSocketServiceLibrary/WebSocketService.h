@@ -6,10 +6,13 @@
 #include <QWebChannel>
 #include <QWebSocketServer>
 #include <QWebSocket>
+#include <QList>
 #include "Library/websockettransport.h"
 
 
 #include "TestDataChannel.h"
+#include "ChatServer.h"
+#include "ChatUser.h"
 class WEBSOCKETSERVICELIBRARY_EXPORT WebSocketService :public QObject
 {
 	Q_OBJECT
@@ -26,5 +29,8 @@ public slots:
 private:
 	QWebSocketServer* webSocketServer;
 	void ConnectSlots();
-	
+
+	ChatServer chatServer;
+	QList<ChatUser*> chatUserList;
+
 };
