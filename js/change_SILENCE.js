@@ -4,8 +4,20 @@ function setConnectError(error) {
     c.style.backgroundColor = "rgba(255, 120, 120, 1.00)";
 }
 
+var isToasted = false;
+
 function errorInfo(error) {
-    alert("无法连接到服务器,错误信息:" + error);
+    var c = document.getElementById("connect");
+    if (!isToasted) {
+        c.style.backgroundColor = "rgba(255, 0, 0, 1.00)";
+        c.style.transform = "scale(1.1)";
+        isToasted = true;
+    }
+    setTimeout(function () {
+        c.style.backgroundColor = "rgba(255, 120, 120, 1.00)";
+        c.style.transform = "scale(1.0)";
+        isToasted = false;
+    }, 100);
 }
 
 function connectSuccess() {
