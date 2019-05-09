@@ -45,7 +45,7 @@
     -o-transition: all 0.5s;
 }
 
-.log-btn:hover {
+#log-btn:hover {
     background-color: rgba(88, 60, 140, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -54,7 +54,7 @@
     -o-transition: all 0.5s;
 }
 
-.reg-btn:hover {
+#reg-btn:hover {
     background-color: rgba(54, 89, 160, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -156,4 +156,10 @@
         transform: scale(1.0);
         transform-origin: right top;
     }
+}
+
+#username:focus,
+#password:focus,
+#check-psw:focus {
+    background-color: rgba(200, 200, 200, 1.00);
 }

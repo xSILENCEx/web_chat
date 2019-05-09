@@ -91,6 +91,9 @@ function ReceiveByServer(head, name, message) {
         scrollToBottom(lM);
     }
 }
+
+var isLeftOpen = false; //左边栏是否打开
+var isRightOpen = false; //右边栏是否打开
 onload = function () {
 
     //连接到服务器
@@ -99,8 +102,6 @@ onload = function () {
     //屏幕大小是否合适
     if (isSmall()) {
         document.getElementById("reg-login").innerHTML = "<div id='settings'>设置</div>";
-        document.getElementById("big-left").style.display = "none";
-        document.getElementById("big-right").style.display = "none";
     } else {
         document.getElementById("reg-login").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
     }
@@ -108,8 +109,6 @@ onload = function () {
         document.getElementById("b-info").style.display = "none";
     }
 
-    var isLeftOpen = false; //左边栏是否打开
-    var isRightOpen = false; //右边栏是否打开
     document.getElementById("send").onmousedown = function () {
         meSend();
     } //发送函数
@@ -182,7 +181,7 @@ onload = function () {
         var y = endPoint.clientY - startPoint.clientY;
 
         var d = 80; //滑动距离的参考值
-        if (Math.abs(x) > d) {
+        if (Math.abs(x) > d && (!isLogBoxOpen)) {
             if (x > 0 && isSmall()) {
                 if (isRightOpen) {
                     closeRight();
@@ -206,22 +205,8 @@ onload = function () {
                 startPoint = e.touches[0];
             }
         }
-        if (Math.abs(y) > d) {
-            if (y > 0) {
-                console.log("向下滑动");
-            } else {
-                console.log("向上滑动");
-            }
-        }
     });
-    document.addEventListener("touchend", function (e) {});
 
-    document.getElementById("user-head").addEventListener("click", function () {
-        openRegLogBox();
-    });
-    document.getElementById("user-head-b").addEventListener("click", function () {
-        openRegLogBox();
-    });
 }
 
 function meSend() { //当前用户发送消息的动作

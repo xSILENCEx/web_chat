@@ -208,72 +208,6 @@ a:active {
     color: rgba(80, 80, 80, 1.00);
 }
 
-.log-btn {
-    float: left;
-    width: 130px;
-    height: 30px;
-    margin-top: 30px;
-    margin-bottom: 100px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 1.00);
-    line-height: 30px;
-    text-align: center;
-    background-color: rgba(130, 117, 216, 1.00);
-    user-select: none;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-}
-
-.reg-btn {
-    float: left;
-    width: 130px;
-    height: 30px;
-    margin-top: 30px;
-    margin-bottom: 100px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 1.00);
-    line-height: 30px;
-    text-align: center;
-    background-color: rgba(94, 153, 255, 1.00);
-    user-select: none;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-}
-
-.username {
-    width: 100%;
-    height: 30px;
-    outline: none;
-    border: none;
-    padding: 4px;
-    margin: 0;
-    margin-top: 30px;
-    background-color: rgba(230, 230, 230, 1.00);
-    font-size: 12px;
-    text-align: center;
-    color: rgba(80, 80, 80, 1.00);
-}
-
-.password {
-    width: 100%;
-    height: 30px;
-    outline: none;
-    border: none;
-    padding: 4px;
-    margin: 0;
-    margin-top: 10px;
-    background-color: rgba(230, 230, 230, 1.00);
-    font-size: 12px;
-    text-align: center;
-    color: rgba(80, 80, 80, 1.00);
-}
-
 .clear-msg {
     position: fixed;
     width: 100%;
@@ -347,12 +281,164 @@ a:active {
 }
 
 #log-reg-box {
-    display: none;
+    opacity: 0;
+    overflow: auto;
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.30);
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.00);
+    transform: scale(0);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#log-reg-box::-webkit-scrollbar {
+    display: none;
+}
+
+#lr-main {
+    position: relative;
+    max-width: 400px;
+    height: 450px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: -230px;
+    padding: 20px;
+    background-color: rgba(250, 250, 250, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#log-title {
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+    color: rgba(80, 80, 80, 1.00);
+}
+
+#log-head {
+    width: 60px;
+    height: 60px;
+    margin-top: 20px;
+    background-color: rgba(240, 240, 240, 1.00);
+}
+
+#username {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+    padding: 4px;
+    margin: 0;
+    margin-top: 40px;
+    background-color: rgba(230, 230, 230, 1.00);
+    font-size: 14px;
+    text-align: center;
+    color: rgba(80, 80, 80, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#password {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+    padding: 4px;
+    margin: 0;
+    margin-top: 20px;
+    background-color: rgba(230, 230, 230, 1.00);
+    font-size: 14px;
+    text-align: center;
+    color: rgba(80, 80, 80, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#check-psw {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+    padding: 4px;
+    margin: 0;
+    margin-top: 20px;
+    background-color: rgba(230, 230, 230, 1.00);
+    font-size: 14px;
+    text-align: center;
+    color: rgba(80, 80, 80, 1.00);
+    transform: scale(0);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+
+#log-btn {
+    float: left;
+    width: 50%;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    line-height: 40px;
+    text-align: center;
+    background-color: rgba(130, 117, 216, 1.00);
+    user-select: none;
+    transform: translateY(-50px);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#reg-btn {
+    float: left;
+    width: 50%;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    line-height: 40px;
+    text-align: center;
+    background-color: rgba(94, 153, 255, 1.00);
+    user-select: none;
+    transform: translateY(-50px);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#close-log-box {
+    position: absolute;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 120, 120, 1.00);
 }
 
 .a {
@@ -488,63 +574,4 @@ a:active {
 
 #edit::-webkit-scrollbar {
     display: none;
-}
-
-#big-left {
-    overflow: auto;
-    position: fixed;
-    top: 170px;
-    bottom: 0;
-    left: 50%;
-    margin-left: -1050px;
-}
-
-#big-left::-webkit-scrollbar {
-    display: none;
-}
-
-.big-l-item {
-    width: 300px;
-    height: auto;
-    margin-top: 40px;
-    background-color: rgba(255, 255, 255, 1.00);
-}
-
-.big-l-title {
-    width: 100%;
-    height: 30px;
-    font-size: 14px;
-    text-align: center;
-    line-height: 30px;
-    color: rgba(255, 255, 255, 1.00);
-    background-color: rgba(94, 153, 255, 1.00);
-}
-
-#big-right {
-    overflow: auto;
-    position: fixed;
-    width: 300px;
-    height: 800px;
-    top: 210px;
-    bottom: 0;
-    right: 50%;
-    padding: 20px;
-    margin-right: -1050px;
-    background-color: rgba(255, 255, 255, 1.00);
-}
-
-#big-right::-webkit-scrollbar {
-    display: none;
-}
-
-.toast {
-    position: fixed;
-    z-index: 10;
-    top: 60%;
-    opacity: 1.0;
-    width: 100px;
-    height: 40px;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 1.00);
-    line-height: 40px;
 }
