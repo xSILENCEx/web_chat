@@ -50,45 +50,45 @@ function leftSend(head, name, msg) {
 
 function rightSend(head, name) {
     var msg = document.getElementById("edit").value;
-	//向服务器发送消息
-	SendMessageToServer(msg)
-   /*if (msg.length != 0) {
-        var newMsg = document.createElement("div");
-        newMsg.setAttribute("class", "msg-item");
+    //向服务器发送消息
+    SendMessageToServer(msg)
+    /*if (msg.length != 0) {
+         var newMsg = document.createElement("div");
+         newMsg.setAttribute("class", "msg-item");
 
-        var h = document.createElement("img");
-        h.setAttribute("class", "head-img2");
-        h.setAttribute("src", head);
+         var h = document.createElement("img");
+         h.setAttribute("class", "head-img2");
+         h.setAttribute("src", head);
 
-        var hm = document.createElement("div");
-        hm.setAttribute("class", "h-m2");
+         var hm = document.createElement("div");
+         hm.setAttribute("class", "h-m2");
 
-        var lName = document.createElement("p");
-        lName.setAttribute("class", "user-name");
-        lName.appendChild(document.createTextNode(name));
+         var lName = document.createElement("p");
+         lName.setAttribute("class", "user-name");
+         lName.appendChild(document.createTextNode(name));
 
-        var lMsg = document.createElement("p");
-        lMsg.setAttribute("class", "msg-box2");
-        lMsg.innerHTML = msg;
+         var lMsg = document.createElement("p");
+         lMsg.setAttribute("class", "msg-box2");
+         lMsg.innerHTML = msg;
 
-        var lM = document.createElement("div");
-        lM.setAttribute("class", "msg-r");
+         var lM = document.createElement("div");
+         lM.setAttribute("class", "msg-r");
 
-        hm.appendChild(lName);
-        hm.appendChild(lM);
-        hm.appendChild(lMsg);
+         hm.appendChild(lName);
+         hm.appendChild(lM);
+         hm.appendChild(lMsg);
 
-        newMsg.appendChild(h);
-        newMsg.appendChild(hm);
+         newMsg.appendChild(h);
+         newMsg.appendChild(hm);
 
-        var chatBox = document.getElementById("chat-box");
-        chatBox.appendChild(newMsg);
-        scrollToBottom(lM);
-    }*/
+         var chatBox = document.getElementById("chat-box");
+         chatBox.appendChild(newMsg);
+         scrollToBottom(lM);
+     }*/
     clearEdit();
 }
 //接收来自服务器的消息，复制原rightSend(head, name)函数
-function ReceiveByServer(head, name,message) {
+function ReceiveByServer(head, name, message) {
     var msg = message
     if (msg.length != 0) {
         var newMsg = document.createElement("div");
@@ -125,10 +125,11 @@ function ReceiveByServer(head, name,message) {
     }
 }
 onload = function () {
-	
-	//连接到服务器
-	ConnectToServer();
-	
+
+    //连接到服务器
+    ConnectToServer();
+
+    //屏幕大小是否合适
     if (isSmall()) {
         document.getElementById("reg-login").innerHTML = "<div id='settings'>设置</div>";
         document.getElementById("big-left").style.display = "none";
@@ -179,6 +180,7 @@ onload = function () {
             event.stopPropagation();
         });
     }
+    //点击侧边栏之外的地方关闭侧边栏
     document.getElementById("whole").addEventListener("click", function () {
         if (isLeftOpen) {
             closeLeft();
@@ -190,7 +192,7 @@ onload = function () {
         }
     });
 
-    //Enter键发送
+    //Ctrl+Enter键发送
     document.onkeydown = function (e) {
         var isEditing = document.getElementById("edit");
         if ((13 == e.keyCode && e.ctrlKey) && isEditing == document.activeElement) {
@@ -246,6 +248,10 @@ onload = function () {
         }
     });
     document.addEventListener("touchend", function (e) {});
+
+    document.getElementById("user-head").addEventListener("click", function () {
+        openRegLogBox();
+    });
 }
 
 function meSend() { //当前用户发送消息的动作
