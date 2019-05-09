@@ -2,6 +2,7 @@
 var domain = document.domain;
 var wsUri = "ws://" + domain + ":12345";
 var socket;
+
 function ConnectToServer() {
     socket = new ReconnectingWebSocket(wsUri);
     socket.onclose = function () {
@@ -12,9 +13,11 @@ function ConnectToServer() {
     };
     socket.onerror = function (error) {
         console.error("web channel error: " + error);
+        setConnectError(error);
     };
     socket.onopen = function () {
-        console.log("web channel open")
+        console.log("web channel open");
+        connectSuccess();
         window.channel = new QWebChannel(socket, function (channel) {
             channel.objects.ChatServer.ForwardUserMessageToBrowser.connect(function (message) {
                 var json = JSON.parse(message);
@@ -24,8 +27,14 @@ function ConnectToServer() {
         });
     }
 }
+
 function SendMessageToServer(message) {
-    channel.objects.ChatUser.UserSendMessage(message);
+    try {
+
+        channel.objects.ChatUser.UserSendMessage(message, function (value) {});
+    } catch (e) {
+        errorInfo(e);
+    }
 }
 /*
 function UpladFile() {
