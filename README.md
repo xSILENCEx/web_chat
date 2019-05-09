@@ -11,4 +11,4 @@
   <li>服务器管理UI(预)</li>
 </ol>
 
-<h2>Develop代码编译:<a href="https://github.com/xSILENCEx/web_chat">SimpleChat_Test</a></h2>
+<h2>Develop代码编译:<a href="https://github.com/o-TwT-o/SimpleChat_Test">SimpleChat_Test</a></h2>
