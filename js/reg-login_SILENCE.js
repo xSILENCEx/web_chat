@@ -6,15 +6,15 @@ document.getElementById("user-head").addEventListener("click", function () {
 });
 
 document.getElementById("log-btn").addEventListener("click", function (e) {
-    if (this.innerHTML == "确认登录") {
-        alert("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
+    if (this.value == "确认登录") {
+        console.log("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
     } else {
         alert('直接注册');
     }
 });
 
 document.getElementById("reg-btn").addEventListener("click", function (e) {
-    if (this.innerHTML == "注册账号") {
+    if (this.value == "注册账号") {
         changeToReg();
     } else {
         changeToLog();
@@ -23,6 +23,13 @@ document.getElementById("reg-btn").addEventListener("click", function (e) {
 
 document.getElementById("close-log-box").addEventListener("click", function (e) {
     closeRegLogBox();
+});
+
+document.getElementById("check-psw").addEventListener("focus", function () {
+    this.style.transform = "scale(1.1)";
+});
+document.getElementById("check-psw").addEventListener("blur", function () {
+    this.style.transform = "scale(1.0)";
 });
 
 function openRegLogBox() {
@@ -44,8 +51,8 @@ function closeRegLogBox() {
     if (isLogBoxOpen) {
         var rBox = document.getElementById("log-reg-box");
         rBox.style.backgroundColor = "rgba(0,0,0,0.00)";
+        rBox.style.opacity = "0.0";
         setTimeout(function () {
-            rBox.style.opacity = "0.0";
             rBox.style.transform = "scale(0.0)";
         }, 500);
         isLogBoxOpen = false;
@@ -58,8 +65,8 @@ function changeToLog() {
     document.getElementById("log-btn").style.transform = "translateY(-50px)";
     document.getElementById("reg-btn").style.transform = "translateY(-50px)";
     document.getElementById("log-title").innerHTML = "登录";
-    document.getElementById("log-btn").innerHTML = "确认登录";
-    document.getElementById("reg-btn").innerHTML = "注册账号";
+    document.getElementById("log-btn").value = "确认登录";
+    document.getElementById("reg-btn").value = "注册账号";
 }
 
 function changeToReg() {
@@ -67,8 +74,8 @@ function changeToReg() {
     document.getElementById("log-btn").style.transform = "translateY(0px)";
     document.getElementById("reg-btn").style.transform = "translateY(0px)";
     document.getElementById("log-title").innerHTML = "注册";
-    document.getElementById("log-btn").innerHTML = "确认注册";
-    document.getElementById("reg-btn").innerHTML = "用户登录";
+    document.getElementById("log-btn").value = "确认注册";
+    document.getElementById("reg-btn").value = "用户登录";
 }
 
 function getUserName() {

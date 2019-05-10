@@ -236,13 +236,3 @@ function closeLeft() { //关闭左边栏
     document.getElementById("left-menu").style.transform = "translateX(-300px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
-
-function openRight() { //打开右边栏
-    document.getElementById("right-menu").style.transform = "translateX(0px)";
-    document.getElementById("whole").style.transform = "translateX(-200px)";
-}
-
-function closeRight() { //关闭右边栏
-    document.getElementById("right-menu").style.transform = "translateX(300px)";
-    document.getElementById("whole").style.transform = "translateX(0px)";
-}
