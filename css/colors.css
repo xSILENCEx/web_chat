@@ -1,14 +1,15 @@
 .theme {
-    background-color: rgba(40, 60, 100, 1.00);
-    color: rgba(56, 145, 255, 1.00);
+    background-color: rgba(85, 113, 168, 1.00);
 }
 
 .dot-c {
-    background-color: rgba(146, 79, 255, 1.00);
-    color: rgba(146, 79, 255, 1.00);
+    background-color: rgba(138, 99, 206, 1.00);
 }
 
 .war-c {
-    background-color: rgba(255, 120, 120, 1.00);
-    color: rgba(255, 120, 120, 1.00);
+    background-color: rgba(244, 88, 88, 1.00);
+}
+
+.ready-c {
+    background-color: rgba(96, 150, 78, 1.00);
 }

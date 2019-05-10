@@ -25,5 +25,5 @@ function connectSuccess() {
     var c = document.getElementById("connect");
     c.value = "服务器连接成功";
     c.title = "已连接到服务器";
-    c.style.backgroundColor = "rgba(115, 204, 102, 1.00)";
+    c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
 }

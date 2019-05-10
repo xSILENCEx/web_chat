@@ -22,30 +22,21 @@ function leftSend(head, name, msg) {
     h.setAttribute("class", "head-img");
     h.setAttribute("src", head);
 
-    var hm = document.createElement("div");
-    hm.setAttribute("class", "h-m");
-
-    var lName = document.createElement("p");
+    var lName = document.createElement("div");
     lName.setAttribute("class", "user-name");
-    lName.appendChild(document.createTextNode(name));
+    lName.innerHTML = name;
 
-    var lM = document.createElement("div");
-    lM.setAttribute("class", "msg-l");
-
-    var lMsg = document.createElement("p");
-    lMsg.setAttribute("class", "msg-box");
+    var lMsg = document.createElement("div");
+    lMsg.setAttribute("class", "msg-box dot-c");
     lMsg.innerHTML = msg;
 
-    hm.appendChild(lName);
-    hm.appendChild(lM);
-    hm.appendChild(lMsg);
-
     newMsg.appendChild(h);
-    newMsg.appendChild(hm);
+    newMsg.appendChild(lName);
+    newMsg.appendChild(lMsg);
 
     var chatBox = document.getElementById("chat-box");
     chatBox.appendChild(newMsg);
-    scrollToBottom(lM);
+    scrollToBottom(newMsg);
 }
 
 function rightSend(head, name) {
@@ -65,30 +56,21 @@ function ReceiveByServer(head, name, message) {
         h.setAttribute("class", "head-img2");
         h.setAttribute("src", head);
 
-        var hm = document.createElement("div");
-        hm.setAttribute("class", "h-m2");
+        var lName = document.createElement("div");
+        lName.setAttribute("class", "user-name2");
+        lName.innerHTML = name;
 
-        var lName = document.createElement("p");
-        lName.setAttribute("class", "user-name");
-        lName.appendChild(document.createTextNode(name));
-
-        var lMsg = document.createElement("p");
-        lMsg.setAttribute("class", "msg-box2");
+        var lMsg = document.createElement("div");
+        lMsg.setAttribute("class", "msg-box2 theme");
         lMsg.innerHTML = msg;
 
-        var lM = document.createElement("div");
-        lM.setAttribute("class", "msg-r");
-
-        hm.appendChild(lName);
-        hm.appendChild(lM);
-        hm.appendChild(lMsg);
-
         newMsg.appendChild(h);
-        newMsg.appendChild(hm);
+        newMsg.appendChild(lName);
+        newMsg.appendChild(lMsg);
 
         var chatBox = document.getElementById("chat-box");
         chatBox.appendChild(newMsg);
-        scrollToBottom(lM);
+        scrollToBottom(newMsg);
     }
 }
 
