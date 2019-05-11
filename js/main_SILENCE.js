@@ -28,7 +28,7 @@ function bigScreen() {
 }
 
 function smallScreen() {
-    document.getElementById("reg-login").innerHTML = "<div id='settings'>设置</div>";
+    document.getElementById("reg-login").innerHTML = "设置";
     closeRight();
     closeLeft();
     isRightOpen = false;
@@ -146,23 +146,21 @@ onload = function () {
         event.stopPropagation();
     });
 
-    if (isSmall()) {
-        //点击设置打开右侧栏
-        document.getElementById("settings").addEventListener("click", function (event) {
-            if (isRightOpen) {
-                closeRight();
-                isRightOpen = false;
-            } else {
-                if (isLeftOpen) {
-                    closeLeft();
-                    isLeftOpen = false;
-                }
-                openRight();
-                isRightOpen = true;
+    //点击设置打开右侧栏
+    document.getElementById("reg-login").addEventListener("click", function (event) {
+        if (isRightOpen && isSmall()) {
+            closeRight();
+            isRightOpen = false;
+        } else if (isSmall()) {
+            if (isLeftOpen) {
+                closeLeft();
+                isLeftOpen = false;
             }
-            event.stopPropagation();
-        });
-    }
+            openRight();
+            isRightOpen = true;
+        }
+        event.stopPropagation();
+    });
 
     //点击侧边栏之外的地方关闭侧边栏
     document.getElementById("whole").addEventListener("click", function () {
