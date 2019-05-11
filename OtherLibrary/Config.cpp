@@ -29,5 +29,8 @@ void Config::CreatDefaultConfig()
 	KeyCheck("WebSocketServer","Address", QHostAddress(QHostAddress::AnyIPv4).toString());
 	KeyCheck("WebSocketServer","Port", 12345);
 
-
+	KeyCheck("Log", "Stderr", true);
+	KeyCheck("Log", "File", false);
+	KeyCheck("Log", "FilePath", "../UserResource/ModuleTest.log");
+	KeyCheck("Log", "Level", 0);
 }

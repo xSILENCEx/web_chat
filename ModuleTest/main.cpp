@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
 {
 	QCoreApplication a(argc, argv);
 	logger = new Logger(&a);
-
 	qInstallMessageHandler(LogMessage);
+	
 	qDebug() << "Start Test\n\n\n";
 	WebSocketService webSocketService(&a);
 
