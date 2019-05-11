@@ -14,7 +14,6 @@ body {
 .head-img {
     overflow: hidden;
     float: left;
-    display: block;
     border: none;
     width: 36px;
     height: 36px;
@@ -24,91 +23,59 @@ body {
 .head-img2 {
     overflow: hidden;
     float: right;
-    display: block;
     border: none;
     width: 36px;
     height: 36px;
     background-color: rgba(240, 240, 240, 0.00);
 }
 
-.h-m {
-    float: left;
-    display: block;
-    margin-left: 20px;
-}
-
-.h-m2 {
-    float: right;
-    text-align: end;
-    display: block;
-    margin-right: 20px;
-}
-
 .user-name {
-    margin: 0;
     font-size: 12px;
     line-height: 12px;
+    color: rgba(55, 55, 55, 1.00);
+    transform: translateX(20px);
 }
 
-.msg-l {
-    float: left;
-    width: 0px;
-    height: 0px;
-    margin-top: 12px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.00) rgba(88, 60, 140, 1.00) rgba(88, 60, 140, 1.00) rgba(255, 255, 255, 0.00);
+.user-name2 {
+    text-align: end;
+    font-size: 12px;
+    line-height: 12px;
+    color: rgba(55, 55, 55, 1.00);
+    transform: translateX(-20px);
 }
 
-.msg-r {
-    float: right;
-    width: 0px;
-    height: 0px;
+.msg-box,
+.msg-box2 {
+    resize: none;
+    overflow: auto;
+    word-wrap: break-word;
+    min-width: 36px;
+    min-height: 36px;
+    max-width: 80%;
+    max-height: 400px;
     margin-top: 12px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00) rgba(54, 89, 160, 1.00) rgba(54, 89, 160, 1.00);
+    padding: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    background-color: rgba(130, 117, 216, 1.00);
 }
 
 .msg-box {
     float: left;
-    resize: none;
-    overflow: auto;
-    word-wrap: break-word;
-    min-width: 0px;
-    min-height: 0px;
-    max-width: 300px;
-    max-height: 300px;
-    margin-top: 12px;
-    padding: 8px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 1.00);
-    background-color: rgba(130, 117, 216, 1.00);
+    margin-left: 20px;
     animation: msg-box1 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.msg-box2 {
+    float: right;
+    margin-right: 20px;
+    animation: msg-box2 0.5s;
     animation-fill-mode: forwards;
 }
 
 .msg-box::-webkit-scrollbar {
     display: none;
-}
-
-.msg-box2 {
-    float: right;
-    text-align: left;
-    resize: none;
-    overflow: auto;
-    word-wrap: break-word;
-    min-width: 0px;
-    min-height: 36px;
-    max-width: 300px;
-    max-height: 300px;
-    margin-top: 12px;
-    padding: 8px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 1.00);
-    background-color: rgba(94, 153, 255, 1.00);
-    animation: msg-box2 0.5s;
-    animation-fill-mode: forwards;
 }
 
 .msg-box2::-webkit-scrollbar {
