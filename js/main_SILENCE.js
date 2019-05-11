@@ -1,12 +1,15 @@
+//清空输入框
 function clearEdit() {
     document.getElementById("edit").value = "";
     document.getElementById("edit").focus();
 }
 
+//获取输入框内容
 function getEdit() {
     return document.getElementById("edit").value;
 }
 
+//发送消息后滚动到底部
 function scrollToBottom(obj) {
     obj.scrollIntoView({
         block: "start",
@@ -14,6 +17,25 @@ function scrollToBottom(obj) {
     });
 }
 
+//屏幕足够宽时调用此方法
+function bigScreen() {
+    document.getElementById("reg-login").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
+    openRight();
+    openLeft();
+    isRightOpen = true;
+    isLeftOpen = true;
+    document.getElementById("whole").style.transform = "translateX(0px)";
+}
+
+function smallScreen() {
+    document.getElementById("reg-login").innerHTML = "<div id='settings'>设置</div>";
+    closeRight();
+    closeLeft();
+    isRightOpen = false;
+    isLeftOpen = false;
+}
+
+//显示接收的消息
 function leftSend(head, name, msg) {
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
@@ -38,16 +60,14 @@ function leftSend(head, name, msg) {
     chatBox.appendChild(newMsg);
     scrollToBottom(newMsg);
 }
-
+//当前用户发送消息
 function rightSend(head, name) {
-    var msg = document.getElementById("edit").value;
     //向服务器发送消息
-    SendMessageToServer(msg);
+    SendMessageToServer(getEdit());
     clearEdit();
 }
 //接收来自服务器的消息，复制原rightSend(head, name)函数
-function ReceiveByServer(head, name, message) {
-    var msg = message;
+function ReceiveByServer(head, name, msg) {
     if (msg.length != 0) {
         var newMsg = document.createElement("div");
         newMsg.setAttribute("class", "msg-item");
@@ -74,8 +94,16 @@ function ReceiveByServer(head, name, message) {
     }
 }
 
+onresize = function () {
+    //屏幕大小是否合适
+    if (isSmall()) {
+        smallScreen();
+    } else {
+        bigScreen();
+    }
+}
+
 var isLeftOpen = false; //左边栏是否打开
-var isRightOpen = false; //右边栏是否打开
 onload = function () {
 
     //连接到服务器
@@ -83,20 +111,25 @@ onload = function () {
 
     //屏幕大小是否合适
     if (isSmall()) {
-        document.getElementById("reg-login").innerHTML = "<div id='settings'>设置</div>";
+        smallScreen();
     } else {
-        document.getElementById("reg-login").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
+        bigScreen();
     }
+
+    //屏幕高度是否足以容纳备案信息
     if (!isHigher()) {
         document.getElementById("b-info").style.display = "none";
     }
 
+    //点击发送按钮
     document.getElementById("send").onmousedown = function () {
         meSend();
-    } //发送函数
-    leftSend("../img/system.svg", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。"); //发送一条提示信息
+    }
+    //自动发送系统提示信息
+    leftSend("../img/system.svg", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。");
 
-    document.getElementById("logo").addEventListener("click", function (event) { //点击logo打开左侧栏
+    //点击logo打开左侧栏
+    document.getElementById("logo").addEventListener("click", function (event) {
         if (isLeftOpen && isSmall()) {
             closeLeft();
             isLeftOpen = false;
@@ -112,12 +145,14 @@ onload = function () {
         }
         event.stopPropagation();
     });
+
     if (isSmall()) {
-        document.getElementById("settings").addEventListener("click", function (event) { //点击设置打开右侧栏
-            if (isRightOpen && isSmall()) {
+        //点击设置打开右侧栏
+        document.getElementById("settings").addEventListener("click", function (event) {
+            if (isRightOpen) {
                 closeRight();
                 isRightOpen = false;
-            } else if (isSmall()) {
+            } else {
                 if (isLeftOpen) {
                     closeLeft();
                     isLeftOpen = false;
@@ -128,15 +163,18 @@ onload = function () {
             event.stopPropagation();
         });
     }
+
     //点击侧边栏之外的地方关闭侧边栏
     document.getElementById("whole").addEventListener("click", function () {
-        if (isLeftOpen) {
-            closeLeft();
-            isLeftOpen = false;
-        }
-        if (isRightOpen) {
-            closeRight();
-            isRightOpen = false;
+        if (isSmall()) {
+            if (isLeftOpen) {
+                closeLeft();
+                isLeftOpen = false;
+            }
+            if (isRightOpen) {
+                closeRight();
+                isRightOpen = false;
+            }
         }
     });
 
@@ -191,7 +229,8 @@ onload = function () {
 
 }
 
-function meSend() { //当前用户发送消息的动作
+//当前用户发送消息的动作
+function meSend() {
     event.keyCode = 0;
     event.returnValue = false;
     rightSend('../img/def-boy.svg', '匿名游客');

@@ -31,6 +31,9 @@ document.getElementById("check-psw").addEventListener("focus", function () {
 document.getElementById("check-psw").addEventListener("blur", function () {
     this.style.transform = "scale(1.0)";
 });
+document.getElementById("log-head").addEventListener("click", function () {
+    console.log("选择头像");
+});
 
 function openRegLogBox() {
     if (!isLogBoxOpen) {

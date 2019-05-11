@@ -1,3 +1,5 @@
+var isRightOpen = false; //右边栏是否打开
+
 function openRight() { //打开右边栏
     document.getElementById("right-menu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(-200px)";

@@ -58,18 +58,20 @@ body {
     font-size: 14px;
     color: rgba(255, 255, 255, 1.00);
     background-color: rgba(130, 117, 216, 1.00);
-    animation: msg-box1 0.5s;
-    animation-fill-mode: forwards;
 }
 
 .msg-box {
     float: left;
     margin-left: 20px;
+    animation: msg-box1 0.5s;
+    animation-fill-mode: forwards;
 }
 
 .msg-box2 {
     float: right;
     margin-right: 20px;
+    animation: msg-box2 0.5s;
+    animation-fill-mode: forwards;
 }
 
 .msg-box::-webkit-scrollbar {
