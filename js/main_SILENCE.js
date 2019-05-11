@@ -9,32 +9,6 @@ function getEdit() {
     return document.getElementById("edit").value;
 }
 
-//发送消息后滚动到底部
-function scrollToBottom(obj) {
-    obj.scrollIntoView({
-        block: "start",
-        behavior: "smooth"
-    });
-}
-
-//屏幕足够宽时调用此方法
-function bigScreen() {
-    document.getElementById("reg-login").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
-    openRight();
-    openLeft();
-    isRightOpen = true;
-    isLeftOpen = true;
-    document.getElementById("whole").style.transform = "translateX(0px)";
-}
-
-function smallScreen() {
-    document.getElementById("reg-login").innerHTML = "设置";
-    closeRight();
-    closeLeft();
-    isRightOpen = false;
-    isLeftOpen = false;
-}
-
 //显示接收的消息
 function leftSend(head, name, msg) {
     var newMsg = document.createElement("div");
@@ -94,16 +68,7 @@ function ReceiveByServer(head, name, msg) {
     }
 }
 
-onresize = function () {
-    //屏幕大小是否合适
-    if (isSmall()) {
-        smallScreen();
-    } else {
-        bigScreen();
-    }
-}
-
-var isLeftOpen = false; //左边栏是否打开
+//加载完成后的动作
 onload = function () {
 
     //连接到服务器
@@ -232,26 +197,4 @@ function meSend() {
     event.keyCode = 0;
     event.returnValue = false;
     rightSend('../img/def-boy.svg', '匿名游客');
-}
-
-function isSmall() { //判断屏幕宽度是否大于2000
-    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (w < 2000) return true;
-    else return false;
-}
-
-function isHigher() { //判断屏幕高度是否大于1150
-    var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    if (h > 1150) return true;
-    else return false;
-}
-
-function openLeft() { //打开左边栏
-    document.getElementById("left-menu").style.transform = "translateX(0px)";
-    document.getElementById("whole").style.transform = "translateX(200px)";
-}
-
-function closeLeft() { //关闭左边栏
-    document.getElementById("left-menu").style.transform = "translateX(-300px)";
-    document.getElementById("whole").style.transform = "translateX(0px)";
 }

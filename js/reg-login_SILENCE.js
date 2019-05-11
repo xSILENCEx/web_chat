@@ -1,7 +1,7 @@
 var isLogBoxOpen = false;
 var regOrLog = false;
 
-document.getElementById("user-head").addEventListener("click", function () {
+document.getElementById("user-head").addEventListener("click", function (e) {
     openRegLogBox();
 });
 
@@ -23,16 +23,21 @@ document.getElementById("reg-btn").addEventListener("click", function (e) {
 
 document.getElementById("close-log-box").addEventListener("click", function (e) {
     closeRegLogBox();
+    e.stopPropagation();
 });
 
-document.getElementById("check-psw").addEventListener("focus", function () {
+document.getElementById("check-psw").addEventListener("focus", function (e) {
     this.style.transform = "scale(1.1)";
 });
-document.getElementById("check-psw").addEventListener("blur", function () {
+document.getElementById("check-psw").addEventListener("blur", function (e) {
     this.style.transform = "scale(1.0)";
 });
-document.getElementById("log-head").addEventListener("click", function () {
+document.getElementById("log-head").addEventListener("click", function (e) {
     console.log("选择头像");
+});
+
+document.getElementById("log-reg-box").addEventListener("click", function (e) {
+    closeRegLogBox();
 });
 
 function openRegLogBox() {
@@ -40,7 +45,7 @@ function openRegLogBox() {
         var rBox = document.getElementById("log-reg-box");
         rBox.style.transform = "scale(1.0)";
         rBox.style.opacity = "1.0";
-        setTimeout(function () {
+        setTimeout(function (e) {
             rBox.style.backgroundColor = "rgba(0,0,0,0.50)";
         }, 500);
         isLogBoxOpen = true;
