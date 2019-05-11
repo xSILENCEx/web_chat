@@ -9,10 +9,13 @@
 #include <QList>
 #include "Library/websockettransport.h"
 
+#include "../OtherLibrary/Config.h"
 
 #include "TestDataChannel.h"
 #include "ChatServer.h"
 #include "ChatUser.h"
+
+
 class WEBSOCKETSERVICELIBRARY_EXPORT WebSocketService :public QObject
 {
 	Q_OBJECT

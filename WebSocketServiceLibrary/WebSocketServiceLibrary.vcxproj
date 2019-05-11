@@ -121,6 +121,9 @@
     <ClInclude Include="websocketservicelibrary_global.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OtherLibrary\OtherLibrary.vcxproj">
+      <Project>{095aaec9-c1c2-4106-971e-09bb007826fa}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\UserManagementLibrary\UserManagementLibrary.vcxproj">
       <Project>{0fdf5136-531b-45e4-81b4-ab4b68476ff1}</Project>
     </ProjectReference>

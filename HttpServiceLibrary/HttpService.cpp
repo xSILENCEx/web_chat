@@ -11,14 +11,15 @@ HttpService::~HttpService()
 }
 bool HttpService::StartHttpServer()
 {
-	int port = httpServer.listen(QHostAddress::AnyIPv4, 80);
+	Config config;
+	int port = httpServer.listen(QHostAddress(config.Settings->value("HttpServer/Address").toString()), config.Settings->value("HttpServer/Port").toInt());
 	if (port == -1) {
 		qWarning() << tr("QHttpServer not run.");
 		return false;
 	}
 	else
 	{
-		qInfo() << tr("QHttpServer Running on http://%1:%2/").arg(QHostAddress(QHostAddress::AnyIPv4).toString()).arg(port);
+		qInfo() << tr("QHttpServer Running on http://%1:%2/").arg(config.Settings->value("HttpServer/Address").toString()).arg(port);
 		return true;
 	}
 }
@@ -55,6 +56,6 @@ void HttpService::SetHttpRoute()
 		FileResponse(QString("../web_chat/img/") + fileName, &responder);
 		});
 	httpServer.route("/UserFavicon/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
-		FileResponse(QString("../UserFavicon/") + fileName, &responder);
+		FileResponse(QString("../UserResource/UserFavicon/") + fileName, &responder);
 		});
 }

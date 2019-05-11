@@ -17,8 +17,8 @@ void WebSocketService::ConnectSlots()
 }
 bool WebSocketService::StartWebSocketServer()
 {
-	
-	if (!webSocketServer->listen(QHostAddress::AnyIPv4, 12345)) {
+	Config config;
+	if (!webSocketServer->listen(QHostAddress(config.Settings->value("WebSocketServer/Address").toString()), config.Settings->value("WebSocketServer/Port").toInt())) {
 		qWarning() << tr("QWebSocketServer not run.");
 		return false;
 	}
