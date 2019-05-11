@@ -6,6 +6,8 @@
 #include <QWebChannel>
 #include <QWebSocketServer>
 #include <QWebSocket>
+#include <QJsonObject>
+#include <QJsonArray>
 #include <QList>
 #include "Library/websockettransport.h"
 
@@ -24,16 +26,22 @@ public:
 	WebSocketService(QObject* parent = nullptr);
 	~WebSocketService();
 	bool StartWebSocketServer();
-
+	int ss = 0;
 	TestDataChannel testDataChannel;
+
+	QJsonArray UserListConversionJson();
 public slots:
 	void CreatChannel();
-
+	void AddUser(ChatUser*);
+	void DeleatUser(QObject*);
+signals:
+	void UserChange();
 private:
 	QWebSocketServer* webSocketServer;
-	void ConnectSlots();
-
 	ChatServer chatServer;
-	QList<ChatUser*> chatUserList;
+	QList<ChatUser*> loginUserList;
+	QList<ChatUser*> visitorUserList;
 
+	void ConnectSlots();
+	void ArrangeUserList(QList<ChatUser*>&);
 };

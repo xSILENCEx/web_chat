@@ -16,25 +16,25 @@ void Logger::MessageCreate(QtMsgType type, const QString& msg)
 	{
 	case QtDebugMsg:
 		level = 0;
-		message = tr("[%1]-[Debug]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd")).arg(msg);
+		message = tr("[%1]-[Debug]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(msg);
 		break;
 	case QtInfoMsg:
 		level = 1;
-		message = tr("[%1]-[Info]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd")).arg(msg);
+		message = tr("[%1]-[Info]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(msg);
 		break;
 	case QtWarningMsg:
 		level = 2;
-		message = tr("[%1]-[Warning]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd")).arg(msg);
+		message = tr("[%1]-[Warning]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(msg);
 		break;
 
 	case QtCriticalMsg:
 		level = 3;
-		message = tr("[%1]-[Critical]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd")).arg(msg);
+		message = tr("[%1]-[Critical]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(msg);
 		break;
 
 	case QtFatalMsg:
 		level = 4;
-		message = tr("[%1]-[Fatal:]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd")).arg(msg);
+		message = tr("[%1]-[Fatal:]:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(msg);
 		break;
 	}
 	MessageOutput(level, message);

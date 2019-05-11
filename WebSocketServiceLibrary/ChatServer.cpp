@@ -8,7 +8,11 @@ ChatServer::ChatServer(QObject *parent)
 ChatServer::~ChatServer()
 {
 }
-void ChatServer::ReceiveUserMessage(QJsonObject json)
+void ChatServer::ReceiveUserMessage(QJsonArray jsonArray)
 {
-	emit ForwardUserMessageToBrowser(QJsonDocument(json).toJson());
+	emit ForwardUserMessageToBrowser(QJsonDocument(jsonArray).toJson());
+}
+void ChatServer::UpdateUserlist(QJsonArray jsonArray)
+{
+	emit ForwardUserlistToBrowser(QJsonDocument(jsonArray).toJson());
 }

@@ -2,6 +2,7 @@
 #include "usermanagementlibrary_global.h"
 #include <QObject>
 #include <QString>
+#include <QJsonObject>
 class USERMANAGEMENTLIBRARY_EXPORT User : public QObject
 {
 	Q_OBJECT
@@ -13,6 +14,6 @@ public:
 	int ID = -1;
 	QString Name;
 	QString Password;
-	int FaviconID = -1;
+	QJsonObject ConversionJson();
 
 };

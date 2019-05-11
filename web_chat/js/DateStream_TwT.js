@@ -21,8 +21,12 @@ function ConnectToServer() {
         window.channel = new QWebChannel(socket, function (channel) {
             channel.objects.ChatServer.ForwardUserMessageToBrowser.connect(function (message) {
                 //console.log(message);
-                var json = JSON.parse(message);
-                AddUserMessageFromServer('../UserFavicon/' + json.UserFaviconID + '.svg', json.UserName, json.MessageContent);
+                var jsonArray = eval(message)
+                AddUserMessageFromServer('../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, jsonArray[1].MessageContent);
+            });
+            channel.objects.ChatServer.ForwardUserlistToBrowser.connect(function (UserList) {
+                console.log(UserList);
+                var jsonArray = eval(UserList)
             });
         });
     }

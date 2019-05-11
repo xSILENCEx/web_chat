@@ -3,9 +3,15 @@
 User::User(QObject* parent)
 	: QObject(parent)
 {
-	Name = QString::fromLocal8Bit("нч");
 }
 
 User::~User()
 {
+}
+QJsonObject User::ConversionJson()
+{
+	QJsonObject json;
+	json.insert("UserID", ID);
+	json.insert("UserName", Name);
+	return json;
 }
