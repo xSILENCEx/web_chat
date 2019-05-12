@@ -1,9 +1,10 @@
 #pragma once
 
 #include <QObject>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonDocument>
+#include <QString>
+
+
+#include "ChatUser.h"
 class ChatServer : public QObject
 {
 	Q_OBJECT
@@ -12,9 +13,8 @@ public:
 	ChatServer(QObject* parent = nullptr);
 	~ChatServer();
 public slots:
-	void ReceiveUserMessage(QJsonArray);
-	void UpdateUserlist(QJsonArray);
+	void ReceiveUserMessage(const ChatUser*, const int&, const QString&);
 signals:
-	void ForwardUserMessageToBrowser(QString);
-	void ForwardUserlistToBrowser(QString);
+	void ForwardUserMessage(const ChatUser*, const int&, const QString&);
+	void ForwardUserlist(const QString&);
 };

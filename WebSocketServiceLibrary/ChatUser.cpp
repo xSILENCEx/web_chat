@@ -9,15 +9,24 @@ ChatUser::ChatUser(QObject* parent)
 ChatUser::~ChatUser()
 {
 }
-bool ChatUser::UserSendMessage(QString s)
+bool ChatUser::SendUserMessage(int type, QString s)
 {
 	Message message;
 	message.Content = s;
 	QJsonArray jsonArray;
 	jsonArray.insert(0, user.ConversionJson());
 	jsonArray.insert(1, message.ConversionJson());
-	emit UserMessageToServer(jsonArray);
+	emit UserMessageToServer(this, type, QJsonDocument(jsonArray).toJson());
 	return true;
+}
+
+void ChatUser::ReceiveUserMessage(const ChatUser* chatUser, const int& type, const QString& message)
+{
+	emit ShowUserMessage(this == chatUser, type, message);
+}
+void ChatUser::ReceiveUserlist(const QString& userlist)
+{
+	emit ShowUserList(userlist);
 }
 bool ChatUser::UserLogin(QString name, QString password)
 {

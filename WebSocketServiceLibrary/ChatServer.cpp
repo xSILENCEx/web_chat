@@ -1,6 +1,6 @@
 #include "ChatServer.h"
 
-ChatServer::ChatServer(QObject *parent)
+ChatServer::ChatServer(QObject* parent)
 	: QObject(parent)
 {
 }
@@ -8,11 +8,7 @@ ChatServer::ChatServer(QObject *parent)
 ChatServer::~ChatServer()
 {
 }
-void ChatServer::ReceiveUserMessage(QJsonArray jsonArray)
+void ChatServer::ReceiveUserMessage(const ChatUser* chatUser, const int& type, const QString& message)
 {
-	emit ForwardUserMessageToBrowser(QJsonDocument(jsonArray).toJson());
-}
-void ChatServer::UpdateUserlist(QJsonArray jsonArray)
-{
-	emit ForwardUserlistToBrowser(QJsonDocument(jsonArray).toJson());
+	emit ForwardUserMessage(chatUser, type, message);
 }

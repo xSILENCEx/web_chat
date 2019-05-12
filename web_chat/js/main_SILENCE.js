@@ -68,7 +68,7 @@ function meSend(msg) {
     event.returnValue = false;
     if (msg != "") {
         ////////////////////////////////////////////////////////向服务器发送消息
-        SendMessageToServer(getEdit());
+        SendMessageToServer(1,getEdit());
         clearEdit();
     } else {
         console.log("内容为空");
@@ -76,12 +76,15 @@ function meSend(msg) {
 }
 
 ////////////////////////////////////接收来自服务器的消息，复制原rightSend(head, name)函数
-function ReceiveByServer(head, name, msg) {
-    if (msg != "") {
-        rightSend(head, name, msg);
-    } else {
-        leftSend(head, name, msg);
+function ReceiveByServer(self, type, head, name, msg) {
+    if (type == 1)    {
+        if (self) {
+            rightSend(head, name, msg);
+        } else {
+            leftSend(head, name, msg);
+        }
     }
+
 }
 
 //加载完成后的动作

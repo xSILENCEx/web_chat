@@ -13,9 +13,6 @@ WebSocketService::~WebSocketService()
 void WebSocketService::ConnectSlots()
 {
 	QObject::connect(webSocketServer, &QWebSocketServer::newConnection, this, &WebSocketService::CreatChannel);
-	QObject::connect(this, &WebSocketService::UserChange, [=] {
-		chatServer.UpdateUserlist(UserListConversionJson());
-		});
 }
 bool WebSocketService::StartWebSocketServer()
 {
@@ -40,18 +37,20 @@ void WebSocketService::CreatChannel()
 	visitorUserList.append(chatUser);
 
 	QObject::connect(chatUser, &ChatUser::UserMessageToServer, &chatServer, &ChatServer::ReceiveUserMessage);
+	QObject::connect(&chatServer, &ChatServer::ForwardUserMessage, chatUser, &ChatUser::ReceiveUserMessage);
+
+	QObject::connect(&chatServer, &ChatServer::ForwardUserlist, chatUser, &ChatUser::ReceiveUserlist);
 	QObject::connect(chatUser, &ChatUser::VisitorConversionUser, this, &WebSocketService::AddUser);
 	QObject::connect(chatUser, &ChatUser::destroyed, this, &WebSocketService::DeleatUser);
 
 
 	webChannel->connectTo(webSocketTransport);
-	webChannel->registerObject(QStringLiteral("testDataChannel"), &testDataChannel);
-	webChannel->registerObject(QStringLiteral("ChatServer"), &chatServer);
 	webChannel->registerObject(QStringLiteral("ChatUser"), chatUser);
-	QTimer::singleShot(500, [=] {
-		emit UserChange();
-		});
 	
+	QTimer::singleShot(500, [=] {
+		emit chatServer.ForwardUserlist(UserListConversionJson());
+		});
+
 }
 void WebSocketService::ArrangeUserList(QList<ChatUser*>& UserList)
 {
@@ -65,7 +64,7 @@ void WebSocketService::AddUser(ChatUser* chatUser)
 	visitorUserList.removeAt(visitorUserList.indexOf(chatUser));
 	loginUserList.append(chatUser);
 	ArrangeUserList(loginUserList);
-	emit UserChange();
+	emit chatServer.ForwardUserlist(UserListConversionJson());
 }
 void WebSocketService::DeleatUser(QObject* obj)
 {
@@ -73,9 +72,9 @@ void WebSocketService::DeleatUser(QObject* obj)
 	loginUserList.removeAt(loginUserList.indexOf(chatUser));
 	visitorUserList.removeAt(visitorUserList.indexOf(chatUser));
 	ArrangeUserList(loginUserList);
-	emit UserChange();
+	emit chatServer.ForwardUserlist(UserListConversionJson());
 }
-QJsonArray WebSocketService::UserListConversionJson()
+QString WebSocketService::UserListConversionJson()
 {
 	ChatUser chatUser;
 	QJsonObject json;
@@ -89,5 +88,5 @@ QJsonArray WebSocketService::UserListConversionJson()
 	{
 		jsonArray.insert(i + 1, loginUserList[i]->user.ConversionJson());
 	}
-	return jsonArray;
+	return QJsonDocument(jsonArray).toJson();
 }

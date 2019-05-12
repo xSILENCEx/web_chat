@@ -25,6 +25,6 @@ int main(int argc, char *argv[])
 
 	HttpService httpService(&a);
 	httpService.StartHttpServer();
-	DataBase db;
+
 	return a.exec();
 }

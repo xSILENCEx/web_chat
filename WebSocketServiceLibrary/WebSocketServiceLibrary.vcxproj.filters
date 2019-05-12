@@ -35,9 +35,6 @@
     <ClCompile Include="Library\websockettransport.cpp">
       <Filter>Library</Filter>
     </ClCompile>
-    <ClCompile Include="TestDataChannel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ChatServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,9 +53,6 @@
     </QtMoc>
     <QtMoc Include="Library\websockettransport.h">
       <Filter>Library</Filter>
-    </QtMoc>
-    <QtMoc Include="TestDataChannel.h">
-      <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="ChatServer.h">
       <Filter>Header Files</Filter>

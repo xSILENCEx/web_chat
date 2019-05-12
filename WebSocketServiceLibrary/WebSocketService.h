@@ -8,14 +8,12 @@
 #include <QWebSocket>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QList>
-#include <QEventLoop>
+#include <QJsonDocument>
 #include <QTimer>
 #include "Library/websockettransport.h"
 
 #include "../OtherLibrary/Config.h"
 
-#include "TestDataChannel.h"
 #include "ChatServer.h"
 #include "ChatUser.h"
 
@@ -29,15 +27,14 @@ public:
 	~WebSocketService();
 	bool StartWebSocketServer();
 	int ss = 0;
-	TestDataChannel testDataChannel;
 
-	QJsonArray UserListConversionJson();
+	QString UserListConversionJson();
 public slots:
 	void CreatChannel();
 	void AddUser(ChatUser*);
 	void DeleatUser(QObject*);
 signals:
-	void UserChange();
+
 private:
 	QWebSocketServer* webSocketServer;
 	ChatServer chatServer;

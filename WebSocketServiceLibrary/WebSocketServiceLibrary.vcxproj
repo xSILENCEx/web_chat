@@ -100,16 +100,11 @@
     <ClCompile Include="ChatServer.cpp" />
     <ClCompile Include="ChatUser.cpp" />
     <ClCompile Include="Library\websockettransport.cpp" />
-    <ClCompile Include="TestDataChannel.cpp" />
     <ClCompile Include="WebSocketService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="WebSocketService.h" />
     <QtMoc Include="Library\websockettransport.h" />
-    <QtMoc Include="TestDataChannel.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel</IncludePath>
-    </QtMoc>
     <QtMoc Include="ChatServer.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork</IncludePath>
