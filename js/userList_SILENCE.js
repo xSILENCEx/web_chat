@@ -16,13 +16,13 @@ function refreshUserList() {
 
 }
 
-function addUserItem(name, info, picUrl) {
+function addUserItem(name, info, lastMsg) {
     var userItem = document.createElement("div");
     userItem.setAttribute("class", "user-list-item");
 
     var userHead = document.createElement("img");
     userHea.setAttribute("alt", "#");
-    userHead.setAttribute("src", picUrl);
+    userHead.setAttribute("src", lastMsg);
     userHead.setAttribute("class", "user-list-head");
 
     var userName = document.createElement("div");
