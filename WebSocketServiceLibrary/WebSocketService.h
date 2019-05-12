@@ -26,9 +26,9 @@ public:
 	WebSocketService(QObject* parent = nullptr);
 	~WebSocketService();
 	bool StartWebSocketServer();
-	int ss = 0;
 
-	QString UserListConversionJson();
+
+	
 public slots:
 	void CreatChannel();
 	void AddUser(ChatUser*);
@@ -43,4 +43,5 @@ private:
 
 	void ConnectSlots();
 	void ArrangeUserList(QList<ChatUser*>&);
+	QString UserListConversionJson();
 };

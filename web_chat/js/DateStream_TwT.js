@@ -34,6 +34,14 @@ function ConnectToServer() {
 function SendMessageToServer(type, message) {
     try {
         channel.objects.ChatUser.SendUserMessage(type, message, function (value) { });
+        UserLogin(message, message);
+    } catch (e) {
+        errorInfo(e);
+    }
+}
+function UserLogin(name,password) {
+    try {
+        channel.objects.ChatUser.UserLogin(name, password, function (value) { });
     } catch (e) {
         errorInfo(e);
     }

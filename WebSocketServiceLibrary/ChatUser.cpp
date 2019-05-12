@@ -30,7 +30,7 @@ void ChatUser::ReceiveUserlist(const QString& userlist)
 }
 bool ChatUser::UserLogin(QString name, QString password)
 {
-	qInfo() << tr("User Login:%1").arg(name);
+	qInfo() << tr("User Login:%1 .IP:%2").arg(name).arg(((QWebSocket*)this->parent()->parent()->parent())->peerAddress().toString());
 	user.Name = name;
 	user.Password = password;
 	emit VisitorConversionUser(this);
