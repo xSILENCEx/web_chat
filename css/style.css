@@ -51,10 +51,16 @@ a:active {
     margin: 0 auto;
 }
 
+.center-body {
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 #chat-box {
     overflow: auto;
     max-width: 1400px;
-    height: 66%;
+    height: 75%;
     margin: 0 auto;
     margin-top: -100px;
     padding: 20px;
@@ -166,6 +172,7 @@ a:active {
 }
 
 #right-menu {
+    overflow: hidden;
     position: fixed;
     z-index: 2;
     width: 300px;
@@ -214,7 +221,7 @@ a:active {
 .right-m-sub {
     font-size: 10px;
     line-height: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 40px;
     color: rgba(80, 80, 80, 1.00);
 }
@@ -240,7 +247,7 @@ a:active {
 }
 
 .right-style {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: -300px;
     padding: 20px;
@@ -489,6 +496,12 @@ a:active {
     -o-transition: all 0.5s;
 }
 
+#resize-bar {
+    cursor: row-resize;
+    max-width: 1400px;
+    height: 2px;
+    background-color: brown;
+}
 
 .tool-bar {
     max-width: 1400px;
@@ -591,7 +604,7 @@ a:active {
 
 .edit-box {
     max-width: 1400px;
-    height: 22%;
+    height: 25%;
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 1.00);
 }
@@ -614,7 +627,7 @@ a:active {
 
 #user-list {
     height: 100%;
-    padding-bottom: 40px;
+    padding-bottom: 300px;
     overflow: auto;
 }
 

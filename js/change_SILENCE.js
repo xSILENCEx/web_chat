@@ -3,7 +3,8 @@ onresize = function () {
     if (isSmall()) {
         smallScreen();
     } else {
-        bigScreen();
+        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        bigScreen(w);
     }
 }
 
@@ -18,7 +19,7 @@ function scrollToBottom(obj) {
 //判断屏幕宽度是否大于2000
 function isSmall() {
     var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (w < 1900) return true;
+    if (w < 2000) return true;
     else return false;
 }
 
@@ -30,15 +31,16 @@ function isHigher() {
 }
 
 //屏幕足够宽时调用此方法
-function bigScreen() {
+function bigScreen(width) {
     var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     document.getElementById("reg-login").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
     openRight();
     openLeft();
     isRightOpen = true;
     isLeftOpen = true;
-    document.getElementById("right-menu").style.transform = "translateX(0px) translateY(160px)";
-    document.getElementById("left-menu").style.transform = "translateX(0px) translateY(160px)";
+    var d = (width - 2000) / 2;
+    document.getElementById("right-menu").style.transform = "translateX(-" + d + "px) translateY(160px)";
+    document.getElementById("left-menu").style.transform = "translateX(" + d + "px) translateY(160px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
