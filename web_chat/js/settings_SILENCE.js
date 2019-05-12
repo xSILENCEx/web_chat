@@ -1,11 +1,13 @@
 var isRightOpen = false; //右边栏是否打开
 
-function openRight() { //打开右边栏
+//打开右边栏
+function openRight() {
     document.getElementById("right-menu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(-200px)";
 }
 
-function closeRight() { //关闭右边栏
+//关闭右边栏
+function closeRight() {
     document.getElementById("right-menu").style.transform = "translateX(300px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
     closeNetSet();
