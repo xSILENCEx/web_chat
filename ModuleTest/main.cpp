@@ -4,9 +4,10 @@
 #include "../OtherLibrary/Logger.h"
 #include "../HttpServiceLibrary/HttpService.h"
 #include "../WebSocketServiceLibrary/WebSocketService.h"
-
+#include "../UserManagementLibrary/DataBase.h"
 
 #include <QDebug>
+
 
 Logger* logger;
 void LogMessage(QtMsgType type, const QMessageLogContext& context, const QString& msg)
@@ -24,6 +25,6 @@ int main(int argc, char *argv[])
 
 	HttpService httpService(&a);
 	httpService.StartHttpServer();
-
+	DataBase db;
 	return a.exec();
 }

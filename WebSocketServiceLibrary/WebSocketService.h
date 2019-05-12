@@ -9,6 +9,8 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QList>
+#include <QEventLoop>
+#include <QTimer>
 #include "Library/websockettransport.h"
 
 #include "../OtherLibrary/Config.h"

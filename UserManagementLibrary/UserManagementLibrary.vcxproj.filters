@@ -35,6 +35,9 @@
     <ClCompile Include="Message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DataBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="usermanagementlibrary_global.h">
@@ -49,6 +52,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="UserManagement.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="DataBase.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -48,8 +48,10 @@ void WebSocketService::CreatChannel()
 	webChannel->registerObject(QStringLiteral("testDataChannel"), &testDataChannel);
 	webChannel->registerObject(QStringLiteral("ChatServer"), &chatServer);
 	webChannel->registerObject(QStringLiteral("ChatUser"), chatUser);
-
-	emit UserChange();
+	QTimer::singleShot(500, [=] {
+		emit UserChange();
+		});
+	
 }
 void WebSocketService::ArrangeUserList(QList<ChatUser*>& UserList)
 {
@@ -59,8 +61,9 @@ void WebSocketService::ArrangeUserList(QList<ChatUser*>& UserList)
 }
 void WebSocketService::AddUser(ChatUser* chatUser)
 {
-	loginUserList.append(chatUser);
+	loginUserList.removeAt(loginUserList.indexOf(chatUser));
 	visitorUserList.removeAt(visitorUserList.indexOf(chatUser));
+	loginUserList.append(chatUser);
 	ArrangeUserList(loginUserList);
 	emit UserChange();
 }
