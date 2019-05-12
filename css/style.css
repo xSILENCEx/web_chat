@@ -68,6 +68,7 @@ a:active {
 
 #left-menu {
     position: fixed;
+    bottom: 0;
     display: blocks;
     width: 300px;
     height: 100%;
@@ -171,6 +172,7 @@ a:active {
     height: 100%;
     padding: 20px;
     right: 0;
+    bottom: 0;
     border-left: 1px solid rgba(230, 230, 230, 1.00);
     background-color: rgba(250, 250, 250, 1.00);
     transform: translateX(300px);
@@ -608,4 +610,50 @@ a:active {
 
 #edit::-webkit-scrollbar {
     display: none;
+}
+
+#user-list {
+    height: 100%;
+    padding-bottom: 40px;
+    overflow: auto;
+}
+
+#user-list::-webkit-scrollbar {
+    display: none;
+}
+
+.user-list-item {
+    float: left;
+    padding: 6px;
+    margin-top: 10px;
+    width: 100%;
+    background-color: rgba(230, 230, 230, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.user-list-head {
+    float: left;
+    width: 36px;
+    height: 36px;
+}
+
+.user-list-name {
+    width: 50%;
+    float: left;
+    margin-left: 10px;
+    font-size: 70%;
+    font-weight: bold;
+    color: rgba(55, 55, 55, 1.00);
+}
+
+.user-list-info {
+    width: 60%;
+    float: left;
+    margin-left: 10px;
+    font-size: 30%;
+    color: rgba(55, 55, 55, 1.00);
 }
