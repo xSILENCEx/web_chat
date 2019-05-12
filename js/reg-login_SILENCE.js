@@ -11,6 +11,7 @@ document.getElementById("log-btn").addEventListener("click", function (e) {
     } else {
         alert('直接注册');
     }
+    e.stopPropagation();
 });
 
 document.getElementById("reg-btn").addEventListener("click", function (e) {
@@ -19,6 +20,7 @@ document.getElementById("reg-btn").addEventListener("click", function (e) {
     } else {
         changeToLog();
     }
+    e.stopPropagation();
 });
 
 document.getElementById("close-log-box").addEventListener("click", function (e) {
@@ -28,16 +30,24 @@ document.getElementById("close-log-box").addEventListener("click", function (e) 
 
 document.getElementById("check-psw").addEventListener("focus", function (e) {
     this.style.transform = "scale(1.1)";
+    e.stopPropagation();
 });
 document.getElementById("check-psw").addEventListener("blur", function (e) {
     this.style.transform = "scale(1.0)";
+    e.stopPropagation();
 });
 document.getElementById("log-head").addEventListener("click", function (e) {
     console.log("选择头像");
+    e.stopPropagation();
+});
+
+document.getElementById("lr-main").addEventListener("click", function (e) {
+    e.stopPropagation();
 });
 
 document.getElementById("log-reg-box").addEventListener("click", function (e) {
     closeRegLogBox();
+    e.stopPropagation();
 });
 
 function openRegLogBox() {
@@ -49,8 +59,10 @@ function openRegLogBox() {
             rBox.style.backgroundColor = "rgba(0,0,0,0.50)";
         }, 500);
         isLogBoxOpen = true;
-        closeRight();
-        isRightOpen = false;
+        if (isSmall()) {
+            closeRight();
+            isRightOpen = false;
+        }
     }
 
 }
