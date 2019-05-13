@@ -499,7 +499,7 @@ a:active {
     -o-transition: all 0.5s;
 }
 
-.tool-bar {
+#tool-bar {
     cursor: move;
     max-width: 1400px;
     margin: 0 auto;
@@ -600,7 +600,7 @@ a:active {
     -o-transition: all 0.5s;
 }
 
-.edit-box {
+#edit-box {
     position: absolute;
     bottom: 0;
     left: 0;
