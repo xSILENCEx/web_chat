@@ -36,7 +36,7 @@ bool ChatUser::UserRegister(QString name, QString password)
 	{
 		if (db->UserRegister(name, password))
 		{
-			if (QFile("../UserResource/UserFavicon/-1.svg").copy("../UserResource/UserFavicon/"+QString::number(db->UserSelectID(name, password))+".svg"))
+			if (QFile("../UserResource/UserFavicon/-1.svg").copy("../UserResource/UserFavicon/" + QString::number(db->UserSelectID(name, password)) + ".svg"))
 			{
 				qInfo() << tr("User Register:%1.IP:%2").arg(name).arg(((QWebSocket*)this->parent()->parent()->parent())->peerAddress().toString());
 				return true;
@@ -50,6 +50,8 @@ bool ChatUser::UserLogin(QString name, QString password)
 	int id = db->UserSelectID(name, password);
 	if (id != -1)
 	{
+		if(user.ID==id)
+			return true;
 		User u = db->UserSelectAll(id);
 		user.ID = u.ID;
 		user.Name = u.Name;
@@ -59,6 +61,18 @@ bool ChatUser::UserLogin(QString name, QString password)
 		emit VisitorConversionUser(this);
 		qInfo() << tr("User Login:%1.IP:%2").arg(name).arg(((QWebSocket*)this->parent()->parent()->parent())->peerAddress().toString());
 		return true;
+	}
+	else
+	{
+		if (user.ID != -1)
+		{
+			user.ID = -1;
+			user.Name = QString::fromLocal8Bit("сн©м");
+			user.Password = "";
+			user.Profile = "";
+			user.Permission = -1;
+			emit UserConversionVisitor(this);
+		}
 	}
 	return false;
 }

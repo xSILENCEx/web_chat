@@ -43,12 +43,13 @@ void WebSocketService::CreatChannel()
 
 	QObject::connect(&chatServer, &ChatServer::ForwardUserlist, chatUser, &ChatUser::ReceiveUserlist);
 	QObject::connect(chatUser, &ChatUser::VisitorConversionUser, this, &WebSocketService::AddUser);
+	QObject::connect(chatUser, &ChatUser::UserConversionVisitor, this, &WebSocketService::LessUser);
 	QObject::connect(chatUser, &ChatUser::destroyed, this, &WebSocketService::DeleatUser);
 
 
 	webChannel->connectTo(webSocketTransport);
 	webChannel->registerObject(QStringLiteral("ChatUser"), chatUser);
-	
+
 	QTimer::singleShot(500, [=] {
 		emit chatServer.ForwardUserlist(UserListConversionJson());
 		});
@@ -65,6 +66,14 @@ void WebSocketService::AddUser(ChatUser* chatUser)
 	loginUserList.removeAt(loginUserList.indexOf(chatUser));
 	visitorUserList.removeAt(visitorUserList.indexOf(chatUser));
 	loginUserList.append(chatUser);
+	ArrangeUserList(loginUserList);
+	emit chatServer.ForwardUserlist(UserListConversionJson());
+}
+void WebSocketService::LessUser(ChatUser* chatUser)
+{
+	loginUserList.removeAt(loginUserList.indexOf(chatUser));
+	visitorUserList.removeAt(visitorUserList.indexOf(chatUser));
+	visitorUserList.append(chatUser);
 	ArrangeUserList(loginUserList);
 	emit chatServer.ForwardUserlist(UserListConversionJson());
 }

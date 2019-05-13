@@ -32,6 +32,7 @@ public:
 public slots:
 	void CreatChannel();
 	void AddUser(ChatUser*);
+	void LessUser(ChatUser*);
 	void DeleatUser(QObject*);
 signals:
 

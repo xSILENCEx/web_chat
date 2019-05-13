@@ -16,7 +16,7 @@ public:
 	QString Name;
 	QString Password;
 	QString Profile;
-	int Permission;
+	int Permission=-1;
 	QJsonObject ConversionJson();
 
 };

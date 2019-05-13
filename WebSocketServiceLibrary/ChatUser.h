@@ -28,6 +28,7 @@ public slots:
 	void ReceiveUserlist(const QString&);
 signals:
 	void VisitorConversionUser(ChatUser*);
+	void UserConversionVisitor(ChatUser*);
 	void UserMessageToServer(const ChatUser*, const int&, const QString&);
 	void ShowUserMessage(bool, const int&, const QString&);
 	void ShowUserList(const QString&);
