@@ -3,6 +3,7 @@
 WebSocketService::WebSocketService(QObject* parent)
 	: QObject(parent)
 {
+	db.CreatBaseDDataBase();
 	webSocketServer = new QWebSocketServer("", QWebSocketServer::NonSecureMode, this);
 	ConnectSlots();
 	StartWebSocketServer();
@@ -34,6 +35,7 @@ void WebSocketService::CreatChannel()
 	WebSocketTransport* webSocketTransport = new WebSocketTransport(webSocket);
 	QWebChannel* webChannel = new QWebChannel(webSocketTransport);
 	ChatUser* chatUser = new ChatUser(webChannel);
+	chatUser->db = &db;
 	visitorUserList.append(chatUser);
 
 	QObject::connect(chatUser, &ChatUser::UserMessageToServer, &chatServer, &ChatServer::ReceiveUserMessage);

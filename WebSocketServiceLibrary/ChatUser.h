@@ -6,9 +6,11 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QWebSocket>
+#include <QFile>
 #include <QDebug>
 #include "../UserManagementLibrary/User.h"
 #include "../UserManagementLibrary/Message.h"
+#include "../UserManagementLibrary/DataBase.h"
 class ChatUser : public QObject
 {
 	Q_OBJECT
@@ -16,10 +18,10 @@ class ChatUser : public QObject
 public:
 	ChatUser(QObject* parent = nullptr);
 	~ChatUser();
-
+	DataBase* db;
 	User user;
-	QJsonObject ConversionJson();
 public slots:
+	bool UserRegister(QString, QString);
 	bool UserLogin(QString, QString);
 	bool SendUserMessage(int, QString);
 	void ReceiveUserMessage(const ChatUser*, const int&, const QString&);

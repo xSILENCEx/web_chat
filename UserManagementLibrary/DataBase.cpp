@@ -32,7 +32,7 @@ void DataBase::CreatBaseDDataBase()
 			sqlQuery.prepare("INSERT INTO user (id,name, password, profile, permission) VALUES(:id,:name,:password,:profile,:permission)");
 			sqlQuery.bindValue(":id", 0);
 			sqlQuery.bindValue(":name", "admin");
-			sqlQuery.bindValue(":password", "admin");
+			sqlQuery.bindValue(":password", "mainadmin");
 			sqlQuery.bindValue(":profile", QString::fromLocal8Bit("œµÕ≥ƒ¨»œ’À∫≈"));
 			sqlQuery.bindValue(":permission", 2);
 			sqlQuery.exec();

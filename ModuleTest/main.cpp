@@ -6,6 +6,7 @@
 #include "../WebSocketServiceLibrary/WebSocketService.h"
 
 #include <QDebug>
+#include "../UserManagementLibrary/DataBase.h"
 
 
 Logger* logger;

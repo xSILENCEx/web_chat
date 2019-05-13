@@ -13,7 +13,7 @@
 #include "Library/websockettransport.h"
 
 #include "../OtherLibrary/Config.h"
-
+#include "../UserManagementLibrary/DataBase.h"
 #include "ChatServer.h"
 #include "ChatUser.h"
 
@@ -28,7 +28,7 @@ public:
 	bool StartWebSocketServer();
 
 
-	
+	DataBase db;
 public slots:
 	void CreatChannel();
 	void AddUser(ChatUser*);

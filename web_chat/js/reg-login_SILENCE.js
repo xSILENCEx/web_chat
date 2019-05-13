@@ -8,8 +8,10 @@ document.getElementById("user-head").addEventListener("click", function (e) {
 document.getElementById("log-btn").addEventListener("click", function (e) {
     if (this.value == "确认登录") {
         console.log("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
+        UserLogin(getUserName(), getPsw());
     } else {
-        alert('直接注册');
+        console.log("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
+        UserRegister(getUserName(), getPsw());
     }
     e.stopPropagation();
 });
