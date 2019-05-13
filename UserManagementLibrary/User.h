@@ -9,11 +9,14 @@ class USERMANAGEMENTLIBRARY_EXPORT User : public QObject
 
 public:
 	User(QObject* parent = nullptr);
+	User(const User&);
 	~User();
 
 	int ID = -1;
 	QString Name;
 	QString Password;
+	QString Profile;
+	int Permission;
 	QJsonObject ConversionJson();
 
 };

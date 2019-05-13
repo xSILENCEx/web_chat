@@ -4,7 +4,6 @@
 #include "../OtherLibrary/Logger.h"
 #include "../HttpServiceLibrary/HttpService.h"
 #include "../WebSocketServiceLibrary/WebSocketService.h"
-#include "../UserManagementLibrary/DataBase.h"
 
 #include <QDebug>
 
@@ -25,6 +24,5 @@ int main(int argc, char *argv[])
 
 	HttpService httpService(&a);
 	httpService.StartHttpServer();
-
-	return a.exec();
+	a.exec();
 }

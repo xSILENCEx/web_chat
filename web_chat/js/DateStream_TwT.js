@@ -33,8 +33,8 @@ function ConnectToServer() {
 //发送消息:type表示消息类型,1为文本消息.
 function SendMessageToServer(type, message) {
     try {
-        channel.objects.ChatUser.SendUserMessage(type, message, function (value) { });
         UserLogin(message, message);
+        channel.objects.ChatUser.SendUserMessage(type, message, function (value) { });        
     } catch (e) {
         errorInfo(e);
     }
