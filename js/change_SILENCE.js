@@ -86,44 +86,62 @@ function connectSuccess() {
     c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
 }
 
-var moveBar = document.getElementById("tool-bar");
 var chatBox = document.getElementById("chat-box");
 var isPress = false;
 var barStartY = null;
 var oldY = null;
 
-moveBar.addEventListener("mousedown", function (e) {
-    if (!isPress) {
-        barStartY = e.clientY;
-        oldY = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
-        console.log("在工具栏按下鼠标\n纵坐标:" + barStartY);
-        isPress = true;
-    }
+document.getElementById("tool-bar").addEventListener("mousedown", function (e) {
+    startResize(e);
+});
+
+document.getElementById("tool-bar").addEventListener("touchstart", function (e) {
+    startResize(e);
 });
 
 document.addEventListener("mousemove", function (e) {
+    reSizeEdit(e);
+});
 
+document.addEventListener("touchmove", function (e) {
+    reSizeEdit(e);
+});
+
+document.addEventListener("mouseup", function (e) {
+    isPress = false;
+});
+
+document.addEventListener("touchend", function (e) {
+    isPress = false;
+});
+
+function startResize(e) {
+    if (!isPress) {
+        var e = e || window.event;
+        barStartY = e.clientY || e.touches[0].clientY;
+        oldY = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
+        isPress = true;
+    }
+}
+
+function reSizeEdit(e) {
     if (isPress) {
-        var max = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
+        var e = e || window.event;
+        var limit = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
         var editBox = document.getElementById("edit-box");
+        var distance = oldY - ((e.clientY || e.changedTouches[0].clientY) - barStartY) + "px";
 
-        chatBox.style.bottom = oldY - (e.clientY - barStartY) + "px";
-        editBox.style.height = oldY - (e.clientY - barStartY) + "px";
-        if (max > 610) {
+        chatBox.style.bottom = distance;
+        editBox.style.height = distance;
+
+        if (limit > 610) {
             chatBox.style.bottom = "600px";
             editBox.style.height = "600px";
             isPress = false;
-        } else if (max < 90) {
+        } else if (limit < 90) {
             chatBox.style.bottom = "100px";
             editBox.style.height = "100px";
             isPress = false;
         }
     }
-});
-
-document.addEventListener("mouseup", function (e) {
-    if (isPress) {
-        console.log("抬起鼠标\n变化纵坐标:" + (e.clientY - barStartY));
-        isPress = false;
-    }
-});
+}
