@@ -8,6 +8,7 @@ document.getElementById("user-head").addEventListener("click", function (e) {
 document.getElementById("log-btn").addEventListener("click", function (e) {
     if (this.value == "确认登录") {
         console.log("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
+        logSuccess();
     } else {
         alert('直接注册');
     }
@@ -50,6 +51,17 @@ document.getElementById("log-reg-box").addEventListener("click", function (e) {
     e.stopPropagation();
 });
 
+///////////////////////////////////////////////////////////////////////登录成功后调用此方法
+function logSuccess(userInfo) { /////////////////传入一个json字符串，包含用户的所有信息
+    console.log("登录成功" + userInfo);
+}
+
+/////////////////////////////////////////////////////////////注销时调用次方法
+function signOut() {
+    console.log("注销成功");
+}
+
+//////////////////////////////////////////////////////////////////////打开登陆注册框
 function openRegLogBox() {
     if (!isLogBoxOpen) {
         var rBox = document.getElementById("log-reg-box");
@@ -67,6 +79,7 @@ function openRegLogBox() {
 
 }
 
+/////////////////////////////////////////////////////////////////////////关闭登录注册框
 function closeRegLogBox() {
     if (isLogBoxOpen) {
         var rBox = document.getElementById("log-reg-box");
@@ -80,6 +93,8 @@ function closeRegLogBox() {
 
 }
 
+
+/////////////////////////////////////////////////////////////////////////切换到登录模式
 function changeToLog() {
     document.getElementById("check-psw").style.transform = "scale(0)";
     document.getElementById("log-btn").style.transform = "translateY(-50px)";
@@ -89,6 +104,8 @@ function changeToLog() {
     document.getElementById("reg-btn").value = "注册账号";
 }
 
+
+//////////////////////////////////////////////////////////////////////////////切换到注册模式
 function changeToReg() {
     document.getElementById("check-psw").style.transform = "scale(1)";
     document.getElementById("log-btn").style.transform = "translateY(0px)";
@@ -98,6 +115,7 @@ function changeToReg() {
     document.getElementById("reg-btn").value = "用户登录";
 }
 
+//////////////////////////////////////////////////////////////////////////获取框中用户名
 function getUserName() {
     var userName = document.getElementById("username").value;
     if (userName.replace(/\s+/g, "").length != 0) {
@@ -107,6 +125,7 @@ function getUserName() {
     }
 }
 
+//////////////////////////////////////////////////////////////////////////获取框中密码
 function getPsw() {
     var uPattern = /^[\w]{6,16}$/i;
     var passWd = document.getElementById("password").value;
@@ -117,6 +136,7 @@ function getPsw() {
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////判断两次密码是否相同
 function checkPsw() {
     var p1 = document.getElementById("password").value;
     var p2 = document.getElementById("check-psw").value;
