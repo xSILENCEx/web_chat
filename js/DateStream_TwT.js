@@ -19,19 +19,37 @@ function ConnectToServer() {
         console.log("web channel open");
         connectSuccess();
         window.channel = new QWebChannel(socket, function (channel) {
-            channel.objects.ChatServer.ForwardUserMessageToBrowser.connect(function (message) {
-                var json = JSON.parse(message);
-                console.log(message);
-                ReceiveByServer('../UserFavicon/' + json.UserFaviconID + '.svg', json.UserName, json.MessageContent);
+            channel.objects.ChatUser.ShowUserMessage.connect(function (self, type, message) {
+                //console.log(message);
+                var jsonArray = eval(message)
+                ReceiveByServer(self, type, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, jsonArray[1].MessageContent);
+            });
+            channel.objects.ChatUser.ShowUserList.connect(function (userList) {
+                console.log(userList);               
             });
         });
     }
 }
-
-function SendMessageToServer(message) {
+//发送消息:type表示消息类型,1为文本消息.
+function SendMessageToServer(type, message) {
     try {
-
-        channel.objects.ChatUser.UserSendMessage(message, function (value) {});
+        
+       
+        channel.objects.ChatUser.SendUserMessage(type, message, function (value) { });        
+    } catch (e) {
+        errorInfo(e);
+    }
+}
+function UserRegister(name, password) {
+    try {
+        channel.objects.ChatUser.UserRegister(name, password, function (value) { });
+    } catch (e) {
+        errorInfo(e);
+    }
+}
+function UserLogin(name,password) {
+    try {
+        channel.objects.ChatUser.UserLogin(name, password, function (value) { });
     } catch (e) {
         errorInfo(e);
     }
