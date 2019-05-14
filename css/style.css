@@ -672,3 +672,52 @@ a:active {
     font-size: 70%;
     color: rgba(55, 55, 55, 1.00);
 }
+
+#tips {
+    text-align: center;
+    position: fixed;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+#tips-body {
+    position: relative;
+    width: 300px;
+    max-height: 600px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    padding: 20px;
+    background-color: rgba(250, 250, 250, 1.00);
+}
+
+.tips-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 100%;
+    font-weight: bold;
+    color: rgba(55, 55, 55, 1.00);
+}
+
+.tips-content {
+    text-align: center;
+    font-size: 80%;
+    color: rgba(55, 55, 55, 1.00);
+}
+
+#tips-btn {
+    width: 100%;
+    height: 40px;
+    position: relative;
+    left: 0;
+    right: 0;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    background-color: rgba(130, 117, 216, 1.00);
+    color: rgba(255, 255, 255, 1.00);
+    font-size: 80%;
+}

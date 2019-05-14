@@ -60,3 +60,8 @@ function openAbout() {
 function closeAbout() {
     document.getElementById("about-menu").style.transform = "translateX(0px)";
 }
+
+function openTips(type, content) {
+    var tips = document.getElementById("tips");
+    var tipsBody = document.getElementById("tips-body");
+}
