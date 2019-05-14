@@ -229,7 +229,25 @@ a:active {
     color: rgba(90, 90, 90, 1.00);
 }
 
+#setting-item-box {
+    width: 260px;
+    position: absolute;
+    z-index: 0;
+    top: 25px;
+    right: 25px;
+    transform: scale(0.1);
+    transform-origin: right top;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
 .setting-item {
+    z-index: 2;
+    right: 20px;
+    top: 0;
     border: none;
     outline: none;
     text-align: left;
@@ -241,7 +259,7 @@ a:active {
     font-size: 14px;
     line-height: 40px;
     padding: 0px 20px 0px 20px;
-    color: rgba(50, 50, 50, 1.00);
+    color: rgba(55, 55, 55, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;
@@ -249,8 +267,10 @@ a:active {
     -o-transition: all 0.5s;
 }
 
+
 .right-style {
     position: absolute;
+    z-index: 2;
     top: 0;
     right: -300px;
     padding: 20px;
@@ -627,10 +647,23 @@ a:active {
     display: none;
 }
 
-#user-list {
+#chat-list {
     height: 100%;
     padding-bottom: 300px;
     overflow: auto;
+}
+
+#user-list {
+    overflow: scroll;
+    position: relative;
+    height: 90%;
+    bottom: 0;
+    padding-bottom: 600px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
 }
 
 #user-list::-webkit-scrollbar {
@@ -638,11 +671,12 @@ a:active {
 }
 
 .user-list-item {
+    cursor: pointer;
     float: left;
     padding: 6px;
-    margin-top: 10px;
+    margin-top: 16px;
     width: 100%;
-    background-color: rgba(230, 230, 230, 1.00);
+    background-color: rgba(240, 240, 240, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;
@@ -732,6 +766,29 @@ a:active {
     background-color: rgba(130, 117, 216, 1.00);
     color: rgba(255, 255, 255, 1.00);
     font-size: 80%;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#setting-btn {
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(100, 100, 100, 1.00);
+    background-color: rgba(55, 55, 55, 0.00);
+    color: rgba(100, 100, 100, 0.00);
+    font-size: 70%;
+    line-height: 32px;
+    font-weight: bold;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;

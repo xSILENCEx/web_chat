@@ -102,3 +102,26 @@ function closeTips() {
         tips.style.transform = "scale(0)";
     }, 500);
 }
+
+document.getElementById("setting-btn").addEventListener("click", function () {
+    openCloseSetting();
+});
+
+var isSetItemOpen = false;
+
+function openCloseSetting() {
+    var setItemBox = document.getElementById("setting-item-box");
+
+    if (isSetItemOpen) {
+        document.getElementById("setting-btn").style.color = "rgba(100, 100, 100, 0.00)";
+        document.getElementById("user-list").style.transform = "translateY(0px)";
+        setItemBox.style.transform = "scale(0.1) translateY(0px)";
+        setItemBox.style.right = "25px";
+    } else {
+        document.getElementById("setting-btn").style.color = "rgba(100, 100, 100, 1.00)";
+        document.getElementById("user-list").style.transform = "translateY(280px)";
+        setItemBox.style.transform = "scale(1.0) translateY(80px)";
+        setItemBox.style.right = "20px";
+    }
+    isSetItemOpen = !isSetItemOpen;
+}
