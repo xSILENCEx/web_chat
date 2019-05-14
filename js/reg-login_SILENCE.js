@@ -53,8 +53,8 @@ document.getElementById("log-reg-box").addEventListener("click", function (e) {
 });
 
 ///////////////////////////////////////////////////////////////////////登录成功后调用此方法
-function logSuccess(userInfo) { /////////////////传入一个json字符串，包含用户的所有信息
-    console.log("登录成功" + userInfo);
+function logInfo(info) { /////////////////传入一个json字符串，包含用户的所有信息
+    console.log("返回信息:" + info);
 }
 
 /////////////////////////////////////////////////////////////注销时调用次方法

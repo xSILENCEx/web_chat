@@ -20,36 +20,39 @@ function ConnectToServer() {
         connectSuccess();
         window.channel = new QWebChannel(socket, function (channel) {
             channel.objects.ChatUser.ShowUserMessage.connect(function (self, type, message) {
-                //console.log(message);
+                console.log(message);
                 var jsonArray = eval(message)
                 ReceiveByServer(self, type, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, jsonArray[1].MessageContent);
             });
             channel.objects.ChatUser.ShowUserList.connect(function (userList) {
-                console.log(userList);               
+                console.log(userList);
+                logInfo(userList);
             });
         });
     }
 }
-//发送消息:type表示消息类型,1为文本消息.
+//锟斤拷锟斤拷锟斤拷息:type锟斤拷示锟斤拷息锟斤拷锟斤拷,1为锟侥憋拷锟斤拷息.
 function SendMessageToServer(type, message) {
     try {
-        
-       
-        channel.objects.ChatUser.SendUserMessage(type, message, function (value) { });        
+
+
+        channel.objects.ChatUser.SendUserMessage(type, message, function (value) {});
     } catch (e) {
         errorInfo(e);
     }
 }
+
 function UserRegister(name, password) {
     try {
-        channel.objects.ChatUser.UserRegister(name, password, function (value) { });
+        channel.objects.ChatUser.UserRegister(name, password, function (value) {});
     } catch (e) {
         errorInfo(e);
     }
 }
-function UserLogin(name,password) {
+
+function UserLogin(name, password) {
     try {
-        channel.objects.ChatUser.UserLogin(name, password, function (value) { });
+        channel.objects.ChatUser.UserLogin(name, password, function (value) {});
     } catch (e) {
         errorInfo(e);
     }
