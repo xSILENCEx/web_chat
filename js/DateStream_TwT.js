@@ -20,11 +20,11 @@ function ConnectToServer() {
         connectSuccess();
         window.channel = new QWebChannel(socket, function (channel) {
             channel.objects.ChatUser.ShowUserMessage.connect(function (self, type, message) {
+                console.log(message);
                 var jsonArray = eval(message)
                 ReceiveByServer(self, type, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, jsonArray[1].MessageContent);
             });
             channel.objects.ChatUser.ShowUserList.connect(function (userList) {
-                console.log(userList);
                 logInfo(userList);
             });
         });
