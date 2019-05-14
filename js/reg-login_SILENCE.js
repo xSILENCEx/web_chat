@@ -53,7 +53,7 @@ document.getElementById("log-reg-box").addEventListener("click", function (e) {
 });
 
 ///////////////////////////////////////////////////////////////////////登录成功后调用此方法
-function logInfo(info) { /////////////////传入一个json字符串，包含用户的所有信息
+function logInfo(info) { /////////////////传入一个json字符串，包含所有用户的所有信息
     console.log("返回信息:" + info);
 }
 
