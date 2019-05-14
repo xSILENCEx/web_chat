@@ -12,6 +12,24 @@ function closeRight() {
     document.getElementById("whole").style.transform = "translateX(0px)";
     closeNetSet();
     closeAbout();
+    closeUser();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////用户设置
+document.getElementById("usr-settings").addEventListener("click", function () {
+    openUser();
+});
+
+document.getElementById("close-u-m").addEventListener("click", function () {
+    closeUser();
+});
+
+function openUser() {
+    document.getElementById("user-setting-menu").style.transform = "translateX(-300px)";
+}
+
+function closeUser() {
+    document.getElementById("user-setting-menu").style.transform = "translateX(0px)";
 }
 
 //////////////////////////////////////////网络设置/////////////////////////////////////////////////////
