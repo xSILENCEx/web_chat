@@ -193,3 +193,7 @@
 
     100% {}
 }
+
+#tips-btn:hover {
+    background-color: rgba(54, 89, 160, 1.00);
+}

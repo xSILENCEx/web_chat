@@ -61,7 +61,44 @@ function closeAbout() {
     document.getElementById("about-menu").style.transform = "translateX(0px)";
 }
 
+////////////////////////////////////////弹出提示信息，支持富文本
 function openTips(type, content) {
     var tips = document.getElementById("tips");
     var tipsBody = document.getElementById("tips-body");
+    var tipsTitle = document.getElementById("tips-title");
+    var tipsContent = document.getElementById("tips-content");
+
+    switch (type) {
+        case 1:
+            tipsTitle.innerHTML = "提示";
+            break;
+        case 2:
+            tipsTitle.innerHTML = "警告";
+            break;
+        case 3:
+            tipsTitle.innerHTML = "错误";
+            break;
+    }
+
+    tipsContent.innerHTML = content;
+    var tipsHeight = tipsBody.clientHeight || tipsBody.offsetHeight;
+    tipsBody.style.marginTop = "-" + tipsHeight / 2 + "px";
+    tips.style.transform = "scale(1.0)";
+    tips.opacity = "1.0";
+    setTimeout(function () {
+        tips.style.backgroundColor = "rgba(0,0,0,0.5)";
+    }, 500);
+}
+
+document.getElementById("tips-btn").addEventListener("click", function () {
+    closeTips();
+});
+
+function closeTips() {
+    var tips = document.getElementById("tips");
+    tips.style.opacity = "0.00";
+    tips.style.transform = "scale(1.2)";
+    setTimeout(function () {
+        tips.style.transform = "scale(0)";
+    }, 500);
 }
