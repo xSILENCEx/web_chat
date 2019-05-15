@@ -2,13 +2,13 @@ var isRightOpen = false; //右边栏是否打开
 
 ///////////////////////////////////////////////////////////////////////////////////打开右边栏
 function openRight() {
-    document.getElementById("right-menu").style.transform = "translateX(0px)";
+    document.getElementById("rightMenu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(-200px)";
 }
 
 /////////////////////////////////////////////////////////////////////////////////关闭右边栏
 function closeRight() {
-    document.getElementById("right-menu").style.transform = "translateX(300px)";
+    document.getElementById("rightMenu").style.transform = "translateX(300px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
     closeNetSet();
     closeAbout();
@@ -20,7 +20,7 @@ document.getElementById("usr-settings").addEventListener("click", function () {
     openUser();
 });
 
-document.getElementById("close-u-m").addEventListener("click", function () {
+document.getElementById("closeUserMenu").addEventListener("click", function () {
     closeUser();
 });
 
@@ -37,7 +37,7 @@ document.getElementById("net-settings").addEventListener("click", function (e) {
     openNetSet();
 });
 
-document.getElementById("close-net").addEventListener("click", function (e) {
+document.getElementById("closeNet").addEventListener("click", function (e) {
     closeNetSet();
 });
 
@@ -67,7 +67,7 @@ document.getElementById("about").addEventListener("click", function (e) {
     openAbout();
 });
 
-document.getElementById("close-about").addEventListener("click", function (e) {
+document.getElementById("closeAbout").addEventListener("click", function (e) {
     closeAbout();
 });
 
@@ -82,9 +82,9 @@ function closeAbout() {
 ////////////////////////////////////////弹出提示信息，支持富文本
 function openTips(type, content) {
     var tips = document.getElementById("tips");
-    var tipsBody = document.getElementById("tips-body");
-    var tipsTitle = document.getElementById("tips-title");
-    var tipsContent = document.getElementById("tips-content");
+    var tipsBody = document.getElementById("tipsBody");
+    var tipsTitle = document.getElementById("tipsTitle");
+    var tipsContent = document.getElementById("tipsContent");
 
     switch (type) {
         case 1:
@@ -108,7 +108,7 @@ function openTips(type, content) {
     }, 500);
 }
 
-document.getElementById("tips-btn").addEventListener("click", function () {
+document.getElementById("tipsBtn").addEventListener("click", function () {
     closeTips();
 });
 
@@ -121,23 +121,23 @@ function closeTips() {
     }, 500);
 }
 
-document.getElementById("setting-btn").addEventListener("click", function () {
+document.getElementById("settingBtn").addEventListener("click", function () {
     openCloseSetting();
 });
 
 var isSetItemOpen = false;
 
 function openCloseSetting() {
-    var setItemBox = document.getElementById("setting-item-box");
+    var setItemBox = document.getElementById("setItemBox");
 
     if (isSetItemOpen) {
-        document.getElementById("setting-btn").style.color = "rgba(100, 100, 100, 0.00)";
-        document.getElementById("user-list").style.transform = "translateY(0px)";
+        document.getElementById("settingBtn").style.color = "rgba(100, 100, 100, 0.00)";
+        document.getElementById("userList").style.transform = "translateY(0px)";
         setItemBox.style.transform = "scale(0.1) translateY(0px)";
         setItemBox.style.right = "25px";
     } else {
-        document.getElementById("setting-btn").style.color = "rgba(100, 100, 100, 1.00)";
-        document.getElementById("user-list").style.transform = "translateY(280px)";
+        document.getElementById("settingBtn").style.color = "rgba(100, 100, 100, 1.00)";
+        document.getElementById("userList").style.transform = "translateY(280px)";
         setItemBox.style.transform = "scale(1.0) translateY(80px)";
         setItemBox.style.right = "20px";
     }

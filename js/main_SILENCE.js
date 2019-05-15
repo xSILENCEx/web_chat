@@ -30,7 +30,7 @@ function leftSend(head, name, msg) {
     newMsg.appendChild(lName);
     newMsg.appendChild(lMsg);
 
-    var chatBox = document.getElementById("chat-box");
+    var chatBox = document.getElementById("chatBox");
     chatBox.appendChild(newMsg);
     scrollToBottom(newMsg);
 }
@@ -56,7 +56,7 @@ function rightSend(head, name, msg) {
     newMsg.appendChild(lName);
     newMsg.appendChild(lMsg);
 
-    var chatBox = document.getElementById("chat-box");
+    var chatBox = document.getElementById("chatBox");
     chatBox.appendChild(newMsg);
     scrollToBottom(newMsg);
 }
@@ -126,7 +126,7 @@ onload = function () {
     });
 
     ////////////////////////////////////////////////////////////////////////////////////////////////点击设置打开右侧栏
-    document.getElementById("reg-login").addEventListener("click", function (event) {
+    document.getElementById("regLogin").addEventListener("click", function (event) {
         if (isRightOpen && isSmall()) {
             closeRight();
             isRightOpen = false;

@@ -29,12 +29,12 @@
                     </div>
                     <p class="logo-text">简聊</p>
                 </div>
-                <p id="reg-login"></p>
+                <p id="regLogin"></p>
             </div>
         </nav>
-        <div id="chat-box"></div>
-        <div id="edit-box">
-            <div id="tool-bar">
+        <div id="chatBox"></div>
+        <div id="editBox">
+            <div id="toolBar">
                 <div id="pic-box" title="发送图片">
                     <div class="pic-1">
                         <div class="pic-2"></div>
@@ -55,9 +55,9 @@
             <textarea id="edit" placeholder="在这里输入消息"></textarea>
         </div>
     </section>
-    <section id="left-menu">
+    <section id="leftMenu">
         <p class="menu-title" style="margin-bottom:30px">消息列表</p>
-        <div id="chat-list">
+        <div id="chatList">
             <div class="user-list-item">
                 <img title="头像" alt="#" src="img/def-boy.svg" class="user-list-head">
                 <div class="user-list-name">用户昵称</div>
@@ -65,13 +65,13 @@
             </div>
         </div>
     </section>
-    <section id="right-menu">
-        <div id="user-head"><img src="img/def-boy.svg"></div>
+    <section id="rightMenu">
+        <div id="myHead"><img src="img/def-boy.svg"></div>
         <div class="right-m-n">匿名游客</div>
         <div class="right-m-s">未登录</div>
         <div class="right-m-sub">点击头像登录或注册</div>
-        <div id="setting-btn">收起</div>
-        <div id="setting-item-box">
+        <div id="settingBtn">收起</div>
+        <div id="setItemBox">
             <input title="设置用户基本信息，清除数据" type="button" id="usr-settings" class="setting-item"
                 value="用户设置                                      〉">
             <input title="修改服务器IP和端口" type="button" id="net-settings" class="setting-item"
@@ -85,19 +85,20 @@
             <div class="user-bg">
                 <div class="user-bg-in"></div>
             </div>
-            <p id="close-u-m" class="menu-title">〈&nbsp;&nbsp;用户设置</p>
-            <img id="user-setting-head" src="img/def-boy.svg">
-            <input id="new-name-edit" type="text" placeholder="新的昵称" value="匿名用户">
+            <p id="closeUserMenu" class="menu-title">〈&nbsp;&nbsp;用户设置</p>
+            <img id="uSetHead" src="img/def-boy.svg">
+            <input id="newNameEdit" type="text" placeholder="新的昵称" value="匿名用户">
+            <input id="newSignEdit" type="text" placeholder="新的签名" value="不想写签名就用默认的吧">
         </div>
         <div id="net-menu" class="right-style">
-            <p id="close-net" class="menu-title">〈&nbsp;&nbsp;网络设置</p>
+            <p id="closeNet" class="menu-title">〈&nbsp;&nbsp;网络设置</p>
             <input id="server-ip" class="input-box" type="text" placeholder="服务器IP/SERVER">
             <input id="server-port" class="input-box" type="text" placeholder="端口1/PORT1">
             <input id="server-port2" class="input-box" type="text" placeholder="端口2/PORT2">
             <input id="net-submit" class="submit dot-c" type="button" value="保存设置">
         </div>
         <div id="about-menu" class="right-style">
-            <p id="close-about" class="menu-title">〈&nbsp;&nbsp;关于简聊</p>
+            <p id="closeAbout" class="menu-title">〈&nbsp;&nbsp;关于简聊</p>
             <p class="menu-title2" style="margin-top:30px">简介</p>
             <p class="left-article">这里是简聊(SimpleChat)，一个简单的多人聊天网站。2019.6期末作品，UI采用极简扁平方正设计，<b
                     style="color:rgba(94, 153, 255, 1.00);">多端适配</b>，后台使用Qt+Websocket实现。</p>
@@ -133,7 +134,7 @@
             <div style="height:100px"></div>
             <p class="left-foot">Copyright © 2019 liu. All rights reserved.蜀ICP备19010209号</p>
         </div>
-        <div id="user-list">
+        <div id="userList">
             <div class="user-list-item">
                 <img title="头像" alt="#" src="img/def-boy.svg" class="user-list-head">
                 <div class="user-list-name">用户昵称</div>
@@ -191,25 +192,25 @@
             </div>
         </div>
     </section>
-    <section id="log-reg-box">
-        <div id="lr-main">
-            <div id="close-log-box"></div>
-            <p id="log-title">登录</p>
-            <img title="点击选择头像" alt="" id="log-head">
+    <section id="logRegBox">
+        <div id="lrMain">
+            <div id="closeLogBox"></div>
+            <p id="logTitle">登录</p>
+            <img title="点击选择头像" alt="" id="logHead">
             <form>
                 <input id="username" class="input-box" type="text" placeholder="用户名/USERNAME">
                 <input id="password" class="input-box" type="password" placeholder="密码/PASSWORD">
-                <input id="check-psw" class="input-box" type="password" placeholder="确认密码/CHECK">
-                <input id="reg-btn" type="button" value="注册账号">
-                <input id="log-btn" type="button" value="确认登录">
+                <input id="checkPsw" class="input-box" type="password" placeholder="确认密码/CHECK">
+                <input id="regBtn" type="button" value="注册账号">
+                <input id="logBtn" type="button" value="确认登录">
             </form>
         </div>
     </section>
     <section id="tips">
-        <div id="tips-body">
-            <p id="tips-title">提示</p>
-            <p id="tips-content">这是一条提示信息,啊哈哈哈哈哈哈哈哈哈</p>
-            <input id="tips-btn" type="button" value="确定">
+        <div id="tipsBody">
+            <p id="tipsTitle">提示</p>
+            <p id="tipsContent">这是一条提示信息,啊哈哈哈哈哈哈哈哈哈</p>
+            <input id="tipsBtn" type="button" value="确定">
         </div>
     </section>
     <script type="text/javascript" src="js/main_SILENCE.js"></script>

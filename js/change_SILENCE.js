@@ -33,20 +33,20 @@ function isHigher() {
 ///////////////////////////////////////////////////////////////////////////////////////屏幕足够宽时调用此方法
 function bigScreen(width) {
     var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    document.getElementById("reg-login").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
+    document.getElementById("regLogin").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
     openRight();
     openLeft();
     isRightOpen = true;
     isLeftOpen = true;
     var d = (width - 2000) / 2;
-    document.getElementById("right-menu").style.transform = "translateX(-" + d + "px) translateY(160px)";
-    document.getElementById("left-menu").style.transform = "translateX(" + d + "px) translateY(160px)";
+    document.getElementById("rightMenu").style.transform = "translateX(-" + d + "px) translateY(160px)";
+    document.getElementById("leftMenu").style.transform = "translateX(" + d + "px) translateY(160px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////小屏幕调用此方法
 function smallScreen() {
-    document.getElementById("reg-login").innerHTML = "设置";
+    document.getElementById("regLogin").innerHTML = "设置";
     closeRight();
     closeLeft();
     isRightOpen = false;
@@ -86,16 +86,16 @@ function connectSuccess() {
     c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
 }
 
-var chatBox = document.getElementById("chat-box");
+var chatBox = document.getElementById("chatBox");
 var isPress = false;
 var barStartY = null;
 var oldY = null;
 
-document.getElementById("tool-bar").addEventListener("mousedown", function (e) {
+document.getElementById("toolBar").addEventListener("mousedown", function (e) {
     startResize(e);
 });
 
-document.getElementById("tool-bar").addEventListener("touchstart", function (e) {
+document.getElementById("toolBar").addEventListener("touchstart", function (e) {
     startResize(e);
 });
 
@@ -128,7 +128,7 @@ function reSizeEdit(e) {
     if (isPress) {
         var e = e || window.event;
         var limit = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
-        var editBox = document.getElementById("edit-box");
+        var editBox = document.getElementById("editBox");
         var distance = oldY - ((e.clientY || e.changedTouches[0].clientY) - barStartY) + "px";
 
         chatBox.style.bottom = distance;
