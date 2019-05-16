@@ -134,9 +134,9 @@ function reSizeEdit(e) {
         chatBox.style.bottom = distance;
         editBox.style.height = distance;
 
-        if (limit > 610) {
-            chatBox.style.bottom = "600px";
-            editBox.style.height = "600px";
+        if (limit > 510) {
+            chatBox.style.bottom = "500px";
+            editBox.style.height = "500px";
             isPress = false;
         } else if (limit < 90) {
             chatBox.style.bottom = "100px";

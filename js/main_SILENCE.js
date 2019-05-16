@@ -1,7 +1,8 @@
 ///////////////////////////////////////////////////////////////清空输入框
 function clearEdit() {
-    document.getElementById("edit").value = "";
-    document.getElementById("edit").focus();
+    var edit = document.getElementById("edit");
+    edit.value = "";
+    edit.focus();
 }
 
 ////////////////////////////////////////////////////////////获取输入框内容
@@ -66,7 +67,7 @@ function meSend(msg) {
     //////////////////////////////////////////////////////////////清空键值
     event.keyCode = 0;
     event.returnValue = false;
-    if (msg != "") {
+    if (msg.length != 0) {
         ////////////////////////////////////////////////////////向服务器发送消息
         SendMessageToServer(1, getEdit());
         clearEdit();
@@ -159,7 +160,7 @@ onload = function () {
     document.onkeydown = function (e) {
         var isEditing = document.getElementById("edit");
         if ((13 == e.keyCode && e.ctrlKey) && isEditing == document.activeElement) {
-            meSend();
+            meSend(getEdit());
         }
     }
 
