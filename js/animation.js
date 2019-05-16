@@ -33,7 +33,7 @@ function isHigher() {
 ///////////////////////////////////////////////////////////////////////////////////////屏幕足够宽时调用此方法
 function bigScreen(width) {
     var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    document.getElementById("regLogin").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
+    document.getElementById("setBtn").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
     openRight();
     openLeft();
     isRightOpen = true;
@@ -46,7 +46,7 @@ function bigScreen(width) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////小屏幕调用此方法
 function smallScreen() {
-    document.getElementById("regLogin").innerHTML = "设置";
+    document.getElementById("setBtn").innerHTML = "设置";
     closeRight();
     closeLeft();
     isRightOpen = false;
