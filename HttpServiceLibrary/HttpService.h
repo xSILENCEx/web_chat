@@ -8,6 +8,8 @@
 #include <QFile>
 #include <QBitArray>
 #include <QString>
+
+#include "../OtherLibrary/Config.h"
 class HTTPSERVICELIBRARY_EXPORT HttpService : public QObject
 {
 	Q_OBJECT

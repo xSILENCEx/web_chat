@@ -29,6 +29,9 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="otherlibrary_global.h">
@@ -37,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Logger.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Config.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

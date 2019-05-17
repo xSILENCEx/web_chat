@@ -1,8 +1,10 @@
 #pragma once
 
 #include <QObject>
-#include <QJsonObject>
-#include <QJsonDocument>
+#include <QString>
+
+
+#include "ChatUser.h"
 class ChatServer : public QObject
 {
 	Q_OBJECT
@@ -11,7 +13,8 @@ public:
 	ChatServer(QObject* parent = nullptr);
 	~ChatServer();
 public slots:
-	void ReceiveUserMessage(QJsonObject);
+	void ReceiveUserMessage(ChatUser*, QString);
 signals:
-	void ForwardUserMessageToBrowser(QString);
+	void ForwardUserMessage(ChatUser*, QString);
+	void ForwardUserlist(QString);
 };

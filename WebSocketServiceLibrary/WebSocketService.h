@@ -6,13 +6,18 @@
 #include <QWebChannel>
 #include <QWebSocketServer>
 #include <QWebSocket>
-#include <QList>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QTimer>
 #include "Library/websockettransport.h"
 
-
-#include "TestDataChannel.h"
+#include "../OtherLibrary/Config.h"
+#include "../UserManagementLibrary/DataBase.h"
 #include "ChatServer.h"
 #include "ChatUser.h"
+
+
 class WEBSOCKETSERVICELIBRARY_EXPORT WebSocketService :public QObject
 {
 	Q_OBJECT
@@ -22,15 +27,22 @@ public:
 	~WebSocketService();
 	bool StartWebSocketServer();
 
-	TestDataChannel testDataChannel;
+
+	DataBase db;
 public slots:
 	void CreatChannel();
+	void AddUser(ChatUser*);
+	void LessUser(ChatUser*);
+	void DeleatUser(QObject*);
+signals:
 
 private:
 	QWebSocketServer* webSocketServer;
-	void ConnectSlots();
-
 	ChatServer chatServer;
-	QList<ChatUser*> chatUserList;
+	QList<ChatUser*> loginUserList;
+	QList<ChatUser*> visitorUserList;
 
+	void ConnectSlots();
+	void ArrangeUserList(QList<ChatUser*>&);
+	QString UserListConversionJson();
 };
