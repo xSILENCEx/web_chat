@@ -440,10 +440,12 @@ document.getElementById("checkPsw").addEventListener("focus", function (e) {
     this.style.transform = "scale(1.1)";
     e.stopPropagation();
 });
+
 document.getElementById("checkPsw").addEventListener("blur", function (e) {
     this.style.transform = "scale(1.0)";
     e.stopPropagation();
 });
+
 document.getElementById("logHead").addEventListener("click", function (e) {
     console.log("选择头像");
     e.stopPropagation();
@@ -458,7 +460,7 @@ document.getElementById("logRegBox").addEventListener("click", function (e) {
     e.stopPropagation();
 });
 
-/////////注销时调用次方法
+/////////注销时调用此方法
 function signOut() {
     console.log("注销成功");
 }

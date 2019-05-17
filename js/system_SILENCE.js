@@ -44,7 +44,6 @@ function logInfo(info) { ///////传入一个json字符串数组，包含所有�
     console.log("返回信息:" + info);
     closeRegLogBox();
     isLogBoxOpen = false;
-
 }
 
 ////文件发送
