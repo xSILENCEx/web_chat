@@ -45,7 +45,7 @@
     -o-transition: all 0.5s;
 }
 
-#log-btn:hover {
+#logBtn:hover {
     background-color: rgba(88, 60, 140, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -54,7 +54,7 @@
     -o-transition: all 0.5s;
 }
 
-#reg-btn:hover,
+#regBtn:hover,
 .submit:hover {
     background-color: rgba(54, 89, 160, 1.00);
     transition: all 0.5s;
@@ -192,4 +192,13 @@
     0% {}
 
     100% {}
+}
+
+#tips-btn:hover {
+    background-color: rgba(54, 89, 160, 1.00);
+}
+
+#newNameEdit:focus,
+#newSignEdit:focus {
+    background-color: rgba(255, 255, 255, 0.50);
 }
