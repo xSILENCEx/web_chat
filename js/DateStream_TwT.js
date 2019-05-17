@@ -72,6 +72,3 @@ function UserLogin(name, password) {
         errorInfo(e);
     }
 }
-function ServerTips(type) {
-  
-}
