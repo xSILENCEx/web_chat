@@ -96,6 +96,15 @@ function meSend(msg) {
     }
 }
 
+/////////接收来自服务器的消息，复制原rightSend(head, name)函数
+function ReceiveByServer(self,head, name, msg) {
+        if (self) {
+            rightSend(head, name, msg);
+        } else {
+            leftSend(head, name, msg);
+        }
+}
+
 ///////点击发送按钮
 document.getElementById("send").onmousedown = function () {
     meSend(getEdit());
@@ -561,7 +570,6 @@ function bigScreen(width) {
     document.getElementById("leftMenu").style.transform = "translateX(" + d + "px) translateY(160px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
-
 /////小屏幕调用此方法
 function smallScreen() {
     document.getElementById("setBtn").innerHTML = "设置";
@@ -571,6 +579,41 @@ function smallScreen() {
     isLeftOpen = false;
 }
 
+/////图片选择与发送/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+document.getElementById("pic-box").onclick = function () {
+    document.getElementById("files1").click();
+}
+document.getElementById("files1").onchange = function () {
+    var file = document.getElementById("files1").files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (evt) {
+        setTimeout(function () {
+            var jsonObject = {}
+            jsonObject.filename = file.name;
+            jsonObject.file = evt.target.result;
+            SendMessageToServer(2, JSON.stringify(jsonObject))
+        }, 1000);
+    document.getElementById("files1").value = "";
+}
+////文件发送///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+document.getElementById("file-box").onclick = function () {
+    document.getElementById("files2").click();
+}
+document.getElementById("files2").onchange = function () {
+    var file = document.getElementById("files2").files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (evt) {
+        setTimeout(function () {
+            var jsonObject = {}
+            jsonObject.filename = file.name;
+            jsonObject.file = evt.target.result;
+            SendMessageToServer(3, JSON.stringify(jsonObject))
+        }, 1000);
+    }
+    document.getElementById("files2").value = "";
+}
 //////////服务器连接失败的提示信息
 function setConnectError(error) {
     var c = document.getElementById("connect");
@@ -662,4 +705,7 @@ function reSizeEdit(e) {
             isPress = false;
         }
     }
+}
+function choosePic() {
+    console.log("选择头像");
 }
