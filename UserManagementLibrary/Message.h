@@ -12,6 +12,7 @@ public:
 	~Message();
 
 	int ID;
+	int Type;
 	QString Content;
 	QDateTime Time;
 	QJsonObject ConversionJson();

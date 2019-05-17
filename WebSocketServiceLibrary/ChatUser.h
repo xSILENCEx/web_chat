@@ -24,12 +24,17 @@ public slots:
 	bool UserRegister(QString, QString);
 	bool UserLogin(QString, QString);
 	bool SendUserMessage(int, QString);
-	void ReceiveUserMessage(const ChatUser*, const int&, const QString&);
-	void ReceiveUserlist(const QString&);
+	void ReceiveUserMessage(ChatUser*, QString);
+	void ReceiveUserlist(QString);
 signals:
 	void VisitorConversionUser(ChatUser*);
 	void UserConversionVisitor(ChatUser*);
-	void UserMessageToServer(const ChatUser*, const int&, const QString&);
-	void ShowUserMessage(bool, const int&, const QString&);
-	void ShowUserList(const QString&);
+	void UserMessageToServer(ChatUser*, QString);
+	void ShowUserMessage(bool, QString);
+	void ShowUserList(QString);
+	void ShowUserInfo(QString);
+
+	void ShowServerTips(int, QString);
+private:
+	QString ReceiveUserFile(QString);
 };

@@ -58,4 +58,7 @@ void HttpService::SetHttpRoute()
 	httpServer.route("/UserFavicon/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
 		FileResponse(QString("../UserResource/UserFavicon/") + fileName, &responder);
 		});
+	httpServer.route("/File/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
+		FileResponse(QString("../UserResource/File/") + fileName, &responder);
+		});
 }
