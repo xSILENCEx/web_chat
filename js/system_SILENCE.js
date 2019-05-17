@@ -13,13 +13,11 @@ onload = function () {
 }
 
 /////////接收来自服务器的消息
-function ReceiveByServer(self, type, head, name, msg) {
-    if (type == 1) {
-        if (self) {
-            rightSend(head, name, msg);
-        } else {
-            leftSend(head, name, msg);
-        }
+function ReceiveByServer(self, head, name, msg) {
+    if (self) {
+        rightSend(head, name, msg);
+    } else {
+        leftSend(head, name, msg);
     }
 }
 
@@ -49,14 +47,42 @@ function logInfo(info) { ///////传入一个json字符串数组，包含所有�
 
 ////文件发送
 document.getElementById("file-box").onclick = function () {
-    console.log("文件发送暂未开放");
-    openTips(1, "文件发送暂未开放");
+    document.getElementById("files2").click();
+}
+document.getElementById("files2").onchange = function () {
+
+    var file = document.getElementById("files2").files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (evt) {
+        setTimeout(function () {
+            var jsonObject = {}
+            jsonObject.filename = file.name;
+            jsonObject.file = evt.target.result;
+            SendMessageToServer(3, JSON.stringify(jsonObject))
+        }, 1000);
+    }
+    document.getElementById("files2").value = "";
 }
 
 /////图片选择与发送
 document.getElementById("pic-box").onclick = function () {
-    console.log("图片发送暂未开放");
-    openTips(1, "图片发送暂未开放");
+    document.getElementById("files1").click();
+}
+document.getElementById("files1").onchange = function () {
+    var file = document.getElementById("files1").files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (evt) {
+        setTimeout(function () {
+            var jsonObject = {}
+            jsonObject.filename = file.name;
+            jsonObject.file = evt.target.result;
+            SendMessageToServer(2, JSON.stringify(jsonObject))
+        }, 1000);
+
+    }
+    document.getElementById("files1").value = "";
 }
 
 /////选择头像时调用此方法

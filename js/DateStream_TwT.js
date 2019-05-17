@@ -21,7 +21,7 @@ function ConnectToServer() {
         window.channel = new QWebChannel(socket, function (channel) {
             channel.objects.ChatUser.ShowUserMessage.connect(function (self,message) {
                 //console.log(self);
-                //console.log(message);
+                console.log(message);
                 var jsonArray = JSON.parse(message);
                 switch (jsonArray[1].MessageType) {
                     case 1:
@@ -50,6 +50,7 @@ function ConnectToServer() {
 
 function SendMessageToServer(type, message) {
     try {
+        //console.log(message)
         channel.objects.ChatUser.SendUserMessage(type, message, function (value) { });
     } catch (e) {
         errorInfo(e);
