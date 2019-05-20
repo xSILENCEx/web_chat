@@ -38,10 +38,20 @@ function refreshUserList() {
 }
 
 /////////登录成功后调用此方法
-function logInfo(info) { ///////传入一个json字符串数组，包含所有用户的所有信息
+function logInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
     console.log("返回信息:" + info);
     closeRegLogBox();
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("checkPsw").value = "";
     isLogBoxOpen = false;
+}
+
+/////////注册成功后调用此方法
+function regInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
+    console.log("返回信息:" + info);
+    document.getElementById("checkPsw").value = "";
+    changeToLog();
 }
 
 ////文件发送
@@ -99,7 +109,7 @@ document.getElementById("logBtn").addEventListener("click", function (e) {
         if (checkPsw()) {
             UserRegister(getUserName(), getPsw());
         } else {
-            console.log("密码不一致");
+            openTips(3, "密码不一致");
         }
     }
     e.stopPropagation();

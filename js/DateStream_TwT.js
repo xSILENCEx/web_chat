@@ -33,11 +33,14 @@ function ConnectToServer() {
                         break;
                 }
             });
-            channel.objects.ChatUser.ShowServerTips.connect(function (type, tipscontent) {
-                openTips(type, tipscontent);
+            channel.objects.ChatUser.ShowServerTips.connect(function (type, tipsContent) {
+                if (tipsContent == "注册成功!") {
+                    regInfo(tipsContent);
+                }
+                openTips(type, tipsContent);
             });
-            channel.objects.ChatUser.ShowUserInfo.connect(function (userinfo) {
-                console.log(userinfo);
+            channel.objects.ChatUser.ShowUserInfo.connect(function (userInfo) {
+                console.log(userInfo);
             });
             channel.objects.ChatUser.ShowUserList.connect(function (userList) {
                 logInfo(userList);
