@@ -312,35 +312,21 @@ document.getElementById("userSettings").addEventListener("click", function () {
     }
 });
 
-document.getElementById("closeUserMenu").addEventListener("click", function () {
-    closeUser();
-});
+document.getElementById("closeUserMenu").addEventListener("click", closeUser);
 
 ////网络设置
-document.getElementById("netSettings").addEventListener("click", function (e) {
-    openNetSet();
-});
+document.getElementById("netSettings").addEventListener("click", openNetSet);
 
-document.getElementById("closeNet").addEventListener("click", function (e) {
-    closeNetSet();
-});
+document.getElementById("closeNet").addEventListener("click", closeNetSet);
 
 //////关于
-document.getElementById("about").addEventListener("click", function (e) {
-    openAbout();
-});
+document.getElementById("about").addEventListener("click", openAbout);
 
-document.getElementById("closeAbout").addEventListener("click", function (e) {
-    closeAbout();
-});
+document.getElementById("closeAbout").addEventListener("click", closeAbout);
 
-document.getElementById("tipsBtn").addEventListener("click", function () {
-    closeTips();
-});
+document.getElementById("tipsBtn").addEventListener("click", closeTips);
 
-document.getElementById("settingBtn").addEventListener("click", function () {
-    openCloseSetting();
-});
+document.getElementById("settingBtn").addEventListener("click", openCloseSetting);
 
 ///////聊天列表//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var isLeftOpen = false; //左边栏是否打开
