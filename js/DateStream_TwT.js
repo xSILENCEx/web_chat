@@ -19,7 +19,7 @@ function ConnectToServer() {
         console.log("web channel open");
         connectSuccess();
         window.channel = new QWebChannel(socket, function (channel) {
-            channel.objects.ChatUser.ShowUserMessage.connect(function (self,message) {
+            channel.objects.ChatUser.ShowUserMessage.connect(function (self, message) {
                 var jsonArray = JSON.parse(message);
                 switch (jsonArray[1].MessageType) {
                     case 1:
@@ -48,7 +48,7 @@ function ConnectToServer() {
 
 function SendMessageToServer(type, message) {
     try {
-        channel.objects.ChatUser.SendUserMessage(type, message, function (value) { });
+        channel.objects.ChatUser.SendUserMessage(type, message, function (value) {});
     } catch (e) {
         errorInfo(e);
     }
@@ -56,7 +56,7 @@ function SendMessageToServer(type, message) {
 
 function UserRegister(name, password) {
     try {
-        channel.objects.ChatUser.UserRegister(name, password, function (value) { });
+        channel.objects.ChatUser.UserRegister(name, password, function (value) {});
     } catch (e) {
         errorInfo(e);
     }
@@ -64,7 +64,7 @@ function UserRegister(name, password) {
 
 function UserLogin(name, password) {
     try {
-        channel.objects.ChatUser.UserLogin(name, password, function (value) { });
+        channel.objects.ChatUser.UserLogin(name, password, function (value) {});
     } catch (e) {
         errorInfo(e);
     }

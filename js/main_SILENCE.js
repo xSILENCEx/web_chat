@@ -32,6 +32,13 @@ function getEdit() {
 
 //////显示左边的消息
 function leftSend(head, name, msg) {
+
+    if (msg.indexOf("<img") != -1) {
+        var s1 = msg.substr(0, 4);
+        var s2 = msg.substr(5, msg.length - 1);
+        msg = s1 + " style = \"width:100%\"" + s2;
+    }
+
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
 
@@ -58,6 +65,13 @@ function leftSend(head, name, msg) {
 
 ////////显示右边的消息
 function rightSend(head, name, msg) {
+
+    if (msg.indexOf("<img") != -1) {
+        var s1 = msg.substr(0, 4);
+        var s2 = msg.substr(5, msg.length - 1);
+        msg = s1 + " style = \"width:100%\"" + s2;
+    }
+
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
 
