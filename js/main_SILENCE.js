@@ -302,8 +302,14 @@ document.getElementById("setBtn").addEventListener("click", function (event) {
 });
 
 //////用户设置
-document.getElementById("usr-settings").addEventListener("click", function () {
-    openUser();
+var isLogin = false;
+document.getElementById("userSettings").addEventListener("click", function () {
+    if (isLogin) {
+        openUser();
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
 });
 
 document.getElementById("closeUserMenu").addEventListener("click", function () {
@@ -311,7 +317,7 @@ document.getElementById("closeUserMenu").addEventListener("click", function () {
 });
 
 ////网络设置
-document.getElementById("net-settings").addEventListener("click", function (e) {
+document.getElementById("netSettings").addEventListener("click", function (e) {
     openNetSet();
 });
 
@@ -375,8 +381,6 @@ function addUserItem(obj, name, subTitle, headUrl) {
     obj.appendChild(userItem);
 }
 
-addUserItem(document.getElementById("userList"), "USER DEF", "Nothing to talk!", "https://www.baidu.com/img/baidu_resultlogo@2.png");
-
 //////点击logo打开左侧栏
 document.getElementById("logo").addEventListener("click", function (event) {
     if (isLeftOpen && isSmall()) {
@@ -401,14 +405,15 @@ var regOrLog = false;
 
 //改变用户信息
 function changeMyInfo(info) {
+    console.log(info);
     document.getElementById("myName").innerHTML = info.UserName;
-    if (info.VisitorID = -1) {
+    if (info.UserID == -1) {
         document.getElementById("myState").innerHTML = "未登录";
     } else {
         document.getElementById("myState").innerHTML = "在线";
     }
     if (info.UserProfile == "") {
-        document.getElementById("mySign").innerHTML = 这里是你的默认签名;
+        document.getElementById("mySign").innerHTML = "这个人什么都没留下";
     } else {
         document.getElementById("mySign").innerHTML = info.UserProfile;
     }
@@ -434,9 +439,7 @@ function getPsw() {
     }
 }
 
-document.getElementById("myHead").addEventListener("click", function (e) {
-    openRegLogBox();
-});
+document.getElementById("myHead").addEventListener("click", openRegLogBox);
 
 document.getElementById("regBtn").addEventListener("click", function (e) {
     if (this.value == "注册账号") {

@@ -40,10 +40,10 @@ function ConnectToServer() {
                 openTips(type, tipsContent);
             });
             channel.objects.ChatUser.ShowUserInfo.connect(function (userInfo) {
-                console.log(userInfo);
+                logInfo(userInfo);
             });
             channel.objects.ChatUser.ShowUserList.connect(function (userList) {
-                logInfo(userList);
+                refreshUserList(userList);
             });
         });
     }

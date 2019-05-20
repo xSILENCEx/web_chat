@@ -46,12 +46,18 @@ function refreshUserList(info) {
 
 /////////登录成功后调用此方法
 function logInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
-    console.log("返回信息:" + info);
-    refreshUserList(info);
+    changeMyInfo(JSON.parse(info));
+    isLogin = true;
     closeRegLogBox();
+    var h = document.getElementById("myHead");
+    h.removeEventListener("click", openRegLogBox);
+    h.addEventListener("click", function (e) {
+        openUser();
+    });
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
     document.getElementById("checkPsw").value = "";
+
     isLogBoxOpen = false;
 }
 
