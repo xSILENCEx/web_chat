@@ -351,13 +351,13 @@ function closeLeft() {
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
-function addUserItem(name, info, lastMsg) {
+function addUserItem(obj, name, subTitle, headUrl) {
     var userItem = document.createElement("div");
     userItem.setAttribute("class", "user-list-item");
 
     var userHead = document.createElement("img");
-    userHea.setAttribute("alt", "#");
-    userHead.setAttribute("src", lastMsg);
+    userHead.setAttribute("alt", "#");
+    userHead.setAttribute("src", headUrl);
     userHead.setAttribute("class", "user-list-head");
 
     var userName = document.createElement("div");
@@ -366,14 +366,16 @@ function addUserItem(name, info, lastMsg) {
 
     var userInfo = document.createElement("div");
     userInfo.setAttribute("class", "user-list-info");
-    userInfo.innerHTML = info;
+    userInfo.innerHTML = subTitle;
 
     userItem.appendChild(userHead);
     userItem.appendChild(userName);
     userItem.appendChild(userInfo);
 
-    document.getElementById("userList").appendChild(userItem);
+    obj.appendChild(userItem);
 }
+
+addUserItem(document.getElementById("userList"), "USER DEF", "Nothing to talk!", "https://www.baidu.com/img/baidu_resultlogo@2.png");
 
 //////点击logo打开左侧栏
 document.getElementById("logo").addEventListener("click", function (event) {
