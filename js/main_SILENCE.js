@@ -392,6 +392,7 @@ var regOrLog = false;
 //改变用户信息
 function changeMyInfo(info) {
     document.getElementById("myName").innerHTML = info.UserName;
+    document.getElementById("newNameEdit").value = info.UserName;
     var h = document.getElementById("myHead");
     if (info.UserID == -1) {
         h.removeEventListener("click", openUser);
@@ -404,7 +405,9 @@ function changeMyInfo(info) {
     }
     if (info.UserProfile == "") {
         document.getElementById("mySign").innerHTML = "这个人什么都没留下";
+        document.getElementById("newSignEdit").value = "这个人什么都没留下";
     } else {
+        document.getElementById("newSignEdit").value = info.UserProfile;
         document.getElementById("mySign").innerHTML = info.UserProfile;
     }
 }
