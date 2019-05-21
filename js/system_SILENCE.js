@@ -85,8 +85,8 @@ function logInfo(info) { ///////传入一个json字符串数组，包含用户�
     });
 
     if (getUserName() || getPsw()) {
-        setCookie("username", getUserName(), 100);
-        setCookie("password", getPsw(), 100);
+        setCookie("username", getUserName(), 1 / 24 / 60);
+        setCookie("password", getPsw(), 1 / 24 / 60);
     }
 
 
