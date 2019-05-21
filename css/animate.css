@@ -10,7 +10,7 @@
 }
 
 .per-box:hover {
-    transform: scale(0.9);
+    transform: scale(1.1);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;
@@ -45,7 +45,7 @@
     -o-transition: all 0.5s;
 }
 
-.log-btn:hover {
+#logBtn:hover {
     background-color: rgba(88, 60, 140, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -54,7 +54,8 @@
     -o-transition: all 0.5s;
 }
 
-.reg-btn:hover {
+#regBtn:hover,
+.submit:hover {
     background-color: rgba(54, 89, 160, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -156,4 +157,48 @@
         transform: scale(1.0);
         transform-origin: right top;
     }
+}
+
+.input-box:focus {
+    background-color: rgba(200, 200, 200, 1.00);
+    transform: scale(1.1);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.setting-item:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.user-list-item:hover {
+    transform: scale(0.9);
+    background-color: rgba(200, 200, 200, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+@keyframes list-animate {
+    0% {}
+
+    100% {}
+}
+
+#tips-btn:hover {
+    background-color: rgba(54, 89, 160, 1.00);
+}
+
+#newNameEdit:focus,
+#newSignEdit:focus {
+    background-color: rgba(255, 255, 255, 0.50);
 }
