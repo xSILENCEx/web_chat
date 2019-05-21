@@ -12,6 +12,32 @@ onload = function () {
 
 }
 
+function setCookie(cname, cValue, exDays) { //设置cookie
+    var d = new Date();
+    d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cValue + "; " + expires;
+}
+
+function getCookie(cname) { //获取cookie
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+function checkCookie(value) { //检查cookie
+    var v = getCookie(value);
+    if (v != "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /////////接收来自服务器的消息
 function ReceiveByServer(self, head, name, msg) {
     if (self) {
@@ -22,7 +48,7 @@ function ReceiveByServer(self, head, name, msg) {
 }
 
 /////弹出提示信息，支持富文本
-function openTips(type, content) {
+function openTips(type, content) { //type:1提示，2警告，3错误
     var tips = document.getElementById("tips");
     tips.style.transform = "scale(1.0)";
     tips.style.opacity = "1.0";
@@ -48,17 +74,25 @@ function refreshUserList(info) {
 function logInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
     changeMyInfo(JSON.parse(info));
     isLogin = true;
+
     closeRegLogBox();
+    isLogBoxOpen = false;
+
     var h = document.getElementById("myHead");
     h.removeEventListener("click", openRegLogBox);
     h.addEventListener("click", function (e) {
         openUser();
     });
+
+    if (getUserName() || getPsw()) {
+        setCookie("username", getUserName(), 100);
+        setCookie("password", getPsw(), 100);
+    }
+
+
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
     document.getElementById("checkPsw").value = "";
-
-    isLogBoxOpen = false;
 }
 
 /////////注册成功后调用此方法
@@ -66,6 +100,13 @@ function regInfo(info) { ///////传入一个json字符串数组，包含用户�
     console.log("返回信息:" + info);
     document.getElementById("checkPsw").value = "";
     changeToLog();
+}
+
+/////////注销后调用此方法
+function unSign() {
+    isLogin = false;
+    setCookie("username", "", 100);
+    setCookie("password", "", 100);
 }
 
 ////文件发送

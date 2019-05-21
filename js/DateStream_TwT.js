@@ -45,6 +45,11 @@ function ConnectToServer() {
             channel.objects.ChatUser.ShowUserList.connect(function (userList) {
                 refreshUserList(userList);
             });
+
+            if (checkCookie("username") != "" && checkCookie("password") != "") {
+                UserLogin(getCookie("username"), getCookie("password"));
+                isLogin = true;
+            }
         });
     }
 }

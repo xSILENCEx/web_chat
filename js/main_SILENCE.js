@@ -391,7 +391,6 @@ var regOrLog = false;
 
 //改变用户信息
 function changeMyInfo(info) {
-    console.log(info);
     document.getElementById("myName").innerHTML = info.UserName;
     if (info.UserID == -1) {
         document.getElementById("myState").innerHTML = "未登录";
