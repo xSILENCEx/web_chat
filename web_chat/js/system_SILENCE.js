@@ -33,16 +33,39 @@ function openTips(type, content) {
 }
 
 /////刷新用户列表
-function refreshUserList() {
-    console.log("刷新用户列表");
+function refreshUserList(info) {
+    var user = JSON.parse(info);
+    var userCount = user[0].loginUserSize;
+    var list = document.getElementById("userList");
+    list.innerHTML = "<p class=\"menu-title\" style=\"margin-bottom: 0px;font-size: 90%\">在线用户列表</p>";
+    for (var i = 1; i <= userCount; i++) {
+        var sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
+        addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg");
+    }
 }
 
 /////////登录成功后调用此方法
-function logInfo(info) { ///////传入一个json字符串数组，包含所有用户的所有信息
-    console.log("返回信息:" + info);
+function logInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
+    changeMyInfo(JSON.parse(info));
+    isLogin = true;
     closeRegLogBox();
-    isLogBoxOpen = false;
+    var h = document.getElementById("myHead");
+    h.removeEventListener("click", openRegLogBox);
+    h.addEventListener("click", function (e) {
+        openUser();
+    });
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("checkPsw").value = "";
 
+    isLogBoxOpen = false;
+}
+
+/////////注册成功后调用此方法
+function regInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
+    console.log("返回信息:" + info);
+    document.getElementById("checkPsw").value = "";
+    changeToLog();
 }
 
 ////文件发送
@@ -100,7 +123,7 @@ document.getElementById("logBtn").addEventListener("click", function (e) {
         if (checkPsw()) {
             UserRegister(getUserName(), getPsw());
         } else {
-            console.log("密码不一致");
+            openTips(3, "密码不一致");
         }
     }
     e.stopPropagation();

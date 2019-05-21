@@ -32,6 +32,13 @@ function getEdit() {
 
 //////显示左边的消息
 function leftSend(head, name, msg) {
+
+    if (msg.indexOf("<img") != -1) {
+        var s1 = msg.substr(0, 4);
+        var s2 = msg.substr(5, msg.length - 1);
+        msg = s1 + " style = \"width:100%\"" + s2;
+    }
+
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
 
@@ -58,6 +65,13 @@ function leftSend(head, name, msg) {
 
 ////////显示右边的消息
 function rightSend(head, name, msg) {
+
+    if (msg.indexOf("<img") != -1) {
+        var s1 = msg.substr(0, 4);
+        var s2 = msg.substr(5, msg.length - 1);
+        msg = s1 + " style = \"width:100%\"" + s2;
+    }
+
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
 
@@ -288,8 +302,14 @@ document.getElementById("setBtn").addEventListener("click", function (event) {
 });
 
 //////用户设置
-document.getElementById("usr-settings").addEventListener("click", function () {
-    openUser();
+var isLogin = false;
+document.getElementById("userSettings").addEventListener("click", function () {
+    if (isLogin) {
+        openUser();
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
 });
 
 document.getElementById("closeUserMenu").addEventListener("click", function () {
@@ -297,7 +317,7 @@ document.getElementById("closeUserMenu").addEventListener("click", function () {
 });
 
 ////网络设置
-document.getElementById("net-settings").addEventListener("click", function (e) {
+document.getElementById("netSettings").addEventListener("click", function (e) {
     openNetSet();
 });
 
@@ -337,13 +357,13 @@ function closeLeft() {
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
-function addUserItem(name, info, lastMsg) {
+function addUserItem(obj, name, subTitle, headUrl) {
     var userItem = document.createElement("div");
     userItem.setAttribute("class", "user-list-item");
 
     var userHead = document.createElement("img");
-    userHea.setAttribute("alt", "#");
-    userHead.setAttribute("src", lastMsg);
+    userHead.setAttribute("alt", "#");
+    userHead.setAttribute("src", headUrl);
     userHead.setAttribute("class", "user-list-head");
 
     var userName = document.createElement("div");
@@ -352,13 +372,13 @@ function addUserItem(name, info, lastMsg) {
 
     var userInfo = document.createElement("div");
     userInfo.setAttribute("class", "user-list-info");
-    userInfo.innerHTML = info;
+    userInfo.innerHTML = subTitle;
 
     userItem.appendChild(userHead);
     userItem.appendChild(userName);
     userItem.appendChild(userInfo);
 
-    document.getElementById("userList").appendChild(userItem);
+    obj.appendChild(userItem);
 }
 
 //////点击logo打开左侧栏
@@ -385,14 +405,15 @@ var regOrLog = false;
 
 //改变用户信息
 function changeMyInfo(info) {
+    console.log(info);
     document.getElementById("myName").innerHTML = info.UserName;
-    if (info.VisitorID = -1) {
+    if (info.UserID == -1) {
         document.getElementById("myState").innerHTML = "未登录";
     } else {
         document.getElementById("myState").innerHTML = "在线";
     }
     if (info.UserProfile == "") {
-        document.getElementById("mySign").innerHTML = 这里是你的默认签名;
+        document.getElementById("mySign").innerHTML = "这个人什么都没留下";
     } else {
         document.getElementById("mySign").innerHTML = info.UserProfile;
     }
@@ -418,9 +439,7 @@ function getPsw() {
     }
 }
 
-document.getElementById("myHead").addEventListener("click", function (e) {
-    openRegLogBox();
-});
+document.getElementById("myHead").addEventListener("click", openRegLogBox);
 
 document.getElementById("regBtn").addEventListener("click", function (e) {
     if (this.value == "注册账号") {
@@ -440,10 +459,12 @@ document.getElementById("checkPsw").addEventListener("focus", function (e) {
     this.style.transform = "scale(1.1)";
     e.stopPropagation();
 });
+
 document.getElementById("checkPsw").addEventListener("blur", function (e) {
     this.style.transform = "scale(1.0)";
     e.stopPropagation();
 });
+
 document.getElementById("logHead").addEventListener("click", function (e) {
     console.log("选择头像");
     e.stopPropagation();
@@ -458,7 +479,7 @@ document.getElementById("logRegBox").addEventListener("click", function (e) {
     e.stopPropagation();
 });
 
-/////////注销时调用次方法
+/////////注销时调用此方法
 function signOut() {
     console.log("注销成功");
 }
