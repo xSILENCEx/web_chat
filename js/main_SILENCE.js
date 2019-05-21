@@ -392,9 +392,14 @@ var regOrLog = false;
 //改变用户信息
 function changeMyInfo(info) {
     document.getElementById("myName").innerHTML = info.UserName;
+    var h = document.getElementById("myHead");
     if (info.UserID == -1) {
+        h.removeEventListener("click", openUser);
+        h.addEventListener("click", openRegLogBox);
         document.getElementById("myState").innerHTML = "未登录";
     } else {
+        h.removeEventListener("click", openRegLogBox);
+        h.addEventListener("click", openUser);
         document.getElementById("myState").innerHTML = "在线";
     }
     if (info.UserProfile == "") {
@@ -410,7 +415,8 @@ function getUserName() {
     if (userName.replace(/\s+/g, "").length != 0) {
         return userName;
     } else {
-        console.error("用户名不规范");
+        console.log("用户名不规范");
+        return false;
     }
 }
 
@@ -420,7 +426,8 @@ function getPsw() {
     if (passWd.replace(/\s+/g, "").length != 0) {
         return passWd;
     } else {
-        console.error("密码不规范");
+        console.log("密码不规范");
+        return false;
     }
 }
 
@@ -464,10 +471,9 @@ document.getElementById("logRegBox").addEventListener("click", function (e) {
     e.stopPropagation();
 });
 
-/////////注销时调用此方法
-function signOut() {
-    console.log("注销成功");
-}
+document.getElementById("signOut").addEventListener("click", function (e) {
+    signOut();
+});
 
 /////////打开登陆注册框
 function openRegLogBox() {

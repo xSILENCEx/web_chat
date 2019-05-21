@@ -78,13 +78,7 @@ function logInfo(info) { ///////传入一个json字符串数组，包含用户�
     closeRegLogBox();
     isLogBoxOpen = false;
 
-    var h = document.getElementById("myHead");
-    h.removeEventListener("click", openRegLogBox);
-    h.addEventListener("click", function (e) {
-        openUser();
-    });
-
-    if (getUserName() || getPsw()) {
+    if (getUserName() && getPsw()) {
         setCookie("username", getUserName(), 1 / 24 / 60);
         setCookie("password", getPsw(), 1 / 24 / 60);
     }
@@ -103,10 +97,19 @@ function regInfo(info) { ///////传入一个json字符串数组，包含用户�
 }
 
 /////////注销后调用此方法
-function unSign() {
-    isLogin = false;
+function signOut() {
+    var info = "{\"UserID\": -1,\"UserName\": \"游客\",\"UserProfile\": \"\"}"
+    changeMyInfo(JSON.parse(info));
+
     setCookie("username", "", 100);
     setCookie("password", "", 100);
+
+    closeRight();
+    isRightOpen = false;
+
+    openTips(1, "注销成功");
+
+    isLogin = false;
 }
 
 ////文件发送
