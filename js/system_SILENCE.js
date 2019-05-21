@@ -63,7 +63,8 @@ function refreshUserList(info) {
     var user = JSON.parse(info);
     var userCount = user[0].loginUserSize;
     var list = document.getElementById("userList");
-    list.innerHTML = "<p class=\"menu-title\" style=\"margin-bottom: 0px;font-size: 90%\">在线用户列表</p>";
+    list.innerHTML = "<p class=\"menu-title\" style=\"margin-bottom: 0px;font-size: 90%\">在线用户</p>";
+    addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def-boy.svg");
     for (var i = 1; i <= userCount; i++) {
         var sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
         addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg");

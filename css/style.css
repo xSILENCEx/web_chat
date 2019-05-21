@@ -349,10 +349,13 @@ a:active {
 }
 
 .right-m-sub {
+    overflow: hidden;
+    float: left;
+    width: 150px;
     font-size: 80%;
-    line-height: 10px;
-    margin-top: 24px;
-    margin-bottom: 40px;
+    line-height: 14px;
+    height: 14px;
+    margin-top: 8px;
     color: rgba(90, 90, 90, 1.00);
 }
 
@@ -653,6 +656,7 @@ a:active {
 }
 
 #userList {
+    margin-top: 20px;
     overflow: scroll;
     position: relative;
     height: 90%;

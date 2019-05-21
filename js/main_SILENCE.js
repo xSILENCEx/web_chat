@@ -404,8 +404,8 @@ function changeMyInfo(info) {
         document.getElementById("myState").innerHTML = "在线";
     }
     if (info.UserProfile == "") {
-        document.getElementById("mySign").innerHTML = "这个人什么都没留下";
-        document.getElementById("newSignEdit").value = "这个人什么都没留下";
+        document.getElementById("mySign").innerHTML = " ";
+        document.getElementById("newSignEdit").value = "";
     } else {
         document.getElementById("newSignEdit").value = info.UserProfile;
         document.getElementById("mySign").innerHTML = info.UserProfile;
