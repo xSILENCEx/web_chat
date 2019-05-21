@@ -404,11 +404,15 @@ function changeMyInfo(info) {
         document.getElementById("myState").innerHTML = "在线";
     }
     if (info.UserProfile == "") {
-        document.getElementById("mySign").innerHTML = " ";
-        document.getElementById("newSignEdit").value = "";
+        var s = document.getElementById("mySign");
+        s.innerHTML = "这个人什么都没有留下";
+        s.title = "这个人什么都没有留下";
+        document.getElementById("newSignEdit").placeholder = "这个人什么都没有留下";
     } else {
+        var s = document.getElementById("mySign");
         document.getElementById("newSignEdit").value = info.UserProfile;
-        document.getElementById("mySign").innerHTML = info.UserProfile;
+        s.innerHTML = info.UserProfile;
+        s.title = info.UserProfile;
     }
 }
 
