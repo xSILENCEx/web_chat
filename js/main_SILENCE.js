@@ -343,22 +343,32 @@ function closeLeft() {
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
-function addUserItem(obj, name, subTitle, headUrl) {
+function addUserItem(obj, name, subTitle, headUrl, info) {
+
+
     var userItem = document.createElement("div");
     userItem.setAttribute("class", "user-list-item");
 
     var userHead = document.createElement("img");
     userHead.setAttribute("alt", "#");
-    userHead.setAttribute("src", headUrl);
+
     userHead.setAttribute("class", "user-list-head");
 
     var userName = document.createElement("div");
     userName.setAttribute("class", "user-list-name");
-    userName.innerHTML = name;
 
     var userInfo = document.createElement("div");
     userInfo.setAttribute("class", "user-list-info");
-    userInfo.innerHTML = subTitle;
+
+    if (info.VisitorID) {
+        userHead.setAttribute("src", headUrl);
+        userName.innerHTML = name;
+        userInfo.innerHTML = subTitle;
+    } else {
+        userHead.setAttribute("src", headUrl);
+        userName.innerHTML = name;
+        userInfo.innerHTML = subTitle;
+    }
 
     userItem.appendChild(userHead);
     userItem.appendChild(userName);

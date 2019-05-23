@@ -60,10 +60,10 @@
     <section id="leftMenu">
         <p class="menu-title" style="margin-bottom:30px">消息列表</p>
         <div id="chatList">
-            <div class="user-list-item">
-                <img title="头像" alt="#" src="img/def-boy.svg" class="user-list-head">
-                <div class="user-list-name">用户昵称</div>
-                <div class="user-list-info">聊天中的最后一条信息</div>
+            <div class="chat-list-item">
+                <img title="头像" alt="#" src="img/def-boy.svg" class="chat-list-head">
+                <div class="chat-list-name">用户昵称</div>
+                <div class="chat-list-info">聊天中的最后一条信息</div>
             </div>
         </div>
     </section>
@@ -85,6 +85,9 @@
             <input title="简介，功能，开发者以及版权声明" type="button" id="about" class="setting-item"
                 value="关于简聊                                      〉">
         </div>
+        <div id="userInfoBox" class="right-style">
+            <p id="closeInfo" class="menu-title">〈&nbsp;&nbsp;用户详情</p>
+        </div>
         <div id="user-setting-menu" class="right-style">
             <div class="user-bg">
                 <div class="user-bg-in"></div>
@@ -94,8 +97,7 @@
             <input id="newNameEdit" type="text" placeholder="新的昵称" value="游客">
             <input id="newSignEdit" type="text" placeholder="新的签名">
             <input id="changeInfo" type="button" value="确认修改" class="submit theme">
-            <input type="button" value="修改密码" class="submit dot-c">
-            <input id="signOut" type="button" value="注销" class="submit war-c">
+            <input id="signOut" type="button" value="注销" class="submit war-c" style="margin-top: 10px">
         </div>
         <div id="net-menu" class="right-style">
             <p id="closeNet" class="menu-title">〈&nbsp;&nbsp;网络设置</p>

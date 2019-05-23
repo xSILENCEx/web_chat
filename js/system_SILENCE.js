@@ -12,15 +12,15 @@ onload = function () {
 
 }
 
-function setCookie(cname, cValue, exDays) { //设置cookie
+function setCookie(cName, cValue, exDays) { //设置cookie
     var d = new Date();
     d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toGMTString();
-    document.cookie = cname + "=" + cValue + "; " + expires;
+    document.cookie = cName + "=" + cValue + "; " + expires;
 }
 
-function getCookie(cname) { //获取cookie
-    var name = cname + "=";
+function getCookie(cName) { //获取cookie
+    var name = cName + "=";
     var ca = document.cookie.split(';');
     for (var i = 0; i < ca.length; i++) {
         var c = ca[i].trim();
@@ -64,10 +64,10 @@ function refreshUserList(info) {
     var userCount = user[0].loginUserSize;
     var list = document.getElementById("userList");
     list.innerHTML = "<p class=\"menu-title\" style=\"margin-bottom: 0px;font-size: 90%\">在线用户</p>";
-    addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def-boy.svg");
+    addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def-boy.svg", user[0]);
     for (var i = 1; i <= userCount; i++) {
         var sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
-        addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg");
+        addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg", user[i]);
     }
 }
 
