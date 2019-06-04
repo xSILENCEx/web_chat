@@ -107,11 +107,13 @@ a:active {
     outline: none;
     position: relative;
     height: 24px;
+    width: 24px;
     cursor: pointer;
     float: left;
     margin-left: 20px;
     margin-top: 8px;
-    font-size: 10px;
+    font-size: 80%;
+    font-weight: bold;
     color: rgba(255, 255, 255, 1.00);
     padding: 0px 8px 0px 8px;
     line-height: 24px;

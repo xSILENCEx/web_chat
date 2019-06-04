@@ -615,8 +615,8 @@ function smallScreen() {
 //////////服务器连接失败的提示信息
 function setConnectError(error) {
     var c = document.getElementById("connect");
-    c.value = "无法连接到服务器";
     c.title = "无法连接到服务器";
+    c.innerHTML = "E";
     c.style.backgroundColor = "rgba(255, 120, 120, 1.00)";
 }
 
@@ -640,8 +640,8 @@ function errorInfo(error) {
 ////////服务器连接成功的提示信息
 function connectSuccess() {
     var c = document.getElementById("connect");
-    c.value = "服务器连接成功";
     c.title = "已连接到服务器";
+    c.innerHTML = "S";
     c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
 }
 ////////输入框缩放
