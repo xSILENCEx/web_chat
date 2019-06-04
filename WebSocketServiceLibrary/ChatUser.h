@@ -23,6 +23,9 @@ public:
 public slots:
 	bool UserRegister(QString, QString);
 	bool UserLogin(QString, QString);
+	bool UserLogout();
+	bool UserChangeInfo(QString, QString);
+	bool UserChangePassword(QString, QString);
 	bool SendUserMessage(int, QString);
 	void ReceiveUserMessage(ChatUser*, QString);
 	void ReceiveUserlist(QString);
@@ -37,4 +40,5 @@ signals:
 	void ShowServerTips(int, QString);
 private:
 	QString ReceiveUserFile(QString);
+	void UserChangePermission(int);
 };

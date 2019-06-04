@@ -10,6 +10,21 @@ ChatUser::ChatUser(QObject* parent)
 ChatUser::~ChatUser()
 {
 }
+QString ChatUser::ReceiveUserFile(QString filestring)
+{
+	QJsonObject jsonObject = QJsonDocument::fromJson(filestring.toUtf8()).object();
+	QByteArray byteArray1 = jsonObject.value("file").toString().split(',').at(1).toUtf8();
+	QByteArray byteArray2 = QByteArray::fromBase64(byteArray1);
+	QString filename = QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + jsonObject.value("filename").toString();
+	QFile file("../UserResource/File/" + filename);
+	if (file.open(QIODevice::WriteOnly))
+	{
+		file.write(byteArray2);
+		file.close();
+		return filename;
+	}
+	return "";
+}
 bool ChatUser::SendUserMessage(int type, QString content)
 {
 	Message message;
@@ -83,12 +98,7 @@ bool ChatUser::UserLogin(QString name, QString password)
 			emit ShowServerTips(2, QString::fromLocal8Bit("已登录!<br/>请勿重复登录"));
 			return true;
 		}
-		User u = db->UserSelectAll(id);
-		user.ID = u.ID;
-		user.Name = u.Name;
-		user.Password = u.Password;
-		user.Profile = u.Profile;
-		user.Permission = u.Permission;
+		user = db->UserSelectAll(id);
 		emit ShowUserInfo(QJsonDocument(user.ConversionJson()).toJson());
 		emit VisitorConversionUser(this);
 		emit ShowServerTips(1, QString::fromLocal8Bit("登录成功!"));
@@ -99,11 +109,7 @@ bool ChatUser::UserLogin(QString name, QString password)
 	{
 		if (user.ID != -1)
 		{
-			user.ID = -1;
-			user.Name = QString::fromLocal8Bit("游客");
-			user.Password = "";
-			user.Profile = "";
-			user.Permission = -1;
+			user = User();
 			emit ShowUserInfo(QJsonDocument(user.ConversionJson()).toJson());
 			emit UserConversionVisitor(this);
 			emit ShowServerTips(2, QString::fromLocal8Bit("账号密码错误!<br/>请检查"));
@@ -116,18 +122,74 @@ bool ChatUser::UserLogin(QString name, QString password)
 		}
 	}
 }
-QString ChatUser::ReceiveUserFile(QString filestring)
+bool ChatUser::UserLogout()
 {
-	QJsonObject jsonObject = QJsonDocument::fromJson(filestring.toUtf8()).object();
-	QByteArray byteArray1 = jsonObject.value("file").toString().split(',').at(1).toUtf8();
-	QByteArray byteArray2 = QByteArray::fromBase64(byteArray1);
-	QString filename = QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + jsonObject.value("filename").toString();
-	QFile file("../UserResource/File/" + filename);
-	if (file.open(QIODevice::WriteOnly))
+	if (user.ID != -1)
 	{
-		file.write(byteArray2);
-		file.close();
-		return filename;
+		user = User();
+		emit ShowUserInfo(QJsonDocument(user.ConversionJson()).toJson());
+		emit UserConversionVisitor(this);
+		emit ShowServerTips(1, QString::fromLocal8Bit("成功注销!"));
+		return false;
 	}
-	return "";
+	else
+	{
+		emit ShowServerTips(2, QString::fromLocal8Bit("未登录!"));
+		return false;
+	}
+}
+bool ChatUser::UserChangeInfo(QString name, QString profile)
+{
+	if (user.ID!=-1)
+	{
+		User u = user;
+		u.Name = name;
+		u.Profile = profile;
+		if (db->UserChangeAll(u))
+		{
+			user = db->UserSelectAll(u.ID);
+			emit ShowUserInfo(QJsonDocument(user.ConversionJson()).toJson());
+			emit VisitorConversionUser(this);
+			emit ShowServerTips(1, QString::fromLocal8Bit("用户信息更改成功!"));
+		}
+	}
+	emit ShowServerTips(2, QString::fromLocal8Bit("未登录!"));
+	return false;
+}
+bool ChatUser::UserChangePassword(QString oldpassword, QString newpassword)
+{
+	if (user.ID != -1)
+	{
+		if (oldpassword==newpassword)
+		{
+			User u = user;
+			u.Password = newpassword;
+			if (db->UserChangeAll(u))
+			{
+				user = db->UserSelectAll(u.ID);
+				emit ShowServerTips(1, QString::fromLocal8Bit("用户密码更改成功!"));
+			}
+		}
+		emit ShowServerTips(2, QString::fromLocal8Bit("密码错误!<br/>用户密码更改失败!"));
+		return false;
+	}
+	emit ShowServerTips(2, QString::fromLocal8Bit("未登录!"));
+	return false;
+}
+void ChatUser::UserChangePermission(int permission)
+{
+
+	if (user.Permission==-1)
+	{
+		user.Permission = permission;
+	}
+	else
+	{
+		User u = user;
+		u.Permission = permission;
+		if (db->UserChangeAll(u))
+		{
+			user = db->UserSelectAll(u.ID);
+		}
+	}
 }

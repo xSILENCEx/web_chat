@@ -12,6 +12,15 @@ User::User(const User& user)
 	Profile = user.Profile;
 	Permission = user.Permission;
 }
+User& User::operator =(const User& user)
+{
+	ID = user.ID;
+	Name = user.Name;
+	Password = user.Password;
+	Profile = user.Profile;
+	Permission = user.Permission;
+	return *this;
+}
 User::~User()
 {
 }

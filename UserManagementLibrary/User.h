@@ -10,13 +10,14 @@ class USERMANAGEMENTLIBRARY_EXPORT User : public QObject
 public:
 	User(QObject* parent = nullptr);
 	User(const User&);
+	User& operator =(const User&);
 	~User();
 
 	int ID = -1;
-	QString Name;
+	QString Name=QString::fromLocal8Bit("сн©м");
 	QString Password;
 	QString Profile;
-	int Permission=-1;
+	int Permission = -1;
 	QJsonObject ConversionJson();
 
 };
