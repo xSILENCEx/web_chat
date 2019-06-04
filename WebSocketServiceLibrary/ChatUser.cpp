@@ -3,8 +3,6 @@
 ChatUser::ChatUser(QObject* parent)
 	: QObject(parent)
 {
-	user.Name = QString::fromLocal8Bit("сн©м");
-
 }
 
 ChatUser::~ChatUser()

@@ -27,6 +27,18 @@
     <Filter Include="Library">
       <UniqueIdentifier>{e9d420c7-787a-45bf-bdab-6965f9980c57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Chat">
+      <UniqueIdentifier>{0c1df266-70ff-492a-8182-4511aa4b02e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TankGame">
+      <UniqueIdentifier>{72facb33-0139-4cb2-b550-42b20e11537b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TankGame">
+      <UniqueIdentifier>{d0887146-0ec2-453f-a56b-99742b324cbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chat">
+      <UniqueIdentifier>{f7304d2d-8a9a-46e5-ba4d-70c121197108}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WebSocketService.cpp">
@@ -36,10 +48,22 @@
       <Filter>Library</Filter>
     </ClCompile>
     <ClCompile Include="ChatServer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Chat</Filter>
     </ClCompile>
     <ClCompile Include="ChatUser.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Chat</Filter>
+    </ClCompile>
+    <ClCompile Include="TankGameServer.cpp">
+      <Filter>Source Files\TankGame</Filter>
+    </ClCompile>
+    <ClCompile Include="TankGameUser.cpp">
+      <Filter>Source Files\TankGame</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatWebSocketService.cpp">
+      <Filter>Source Files\Chat</Filter>
+    </ClCompile>
+    <ClCompile Include="TankGameWebSocketService.cpp">
+      <Filter>Source Files\TankGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,10 +79,22 @@
       <Filter>Library</Filter>
     </QtMoc>
     <QtMoc Include="ChatServer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Chat</Filter>
     </QtMoc>
     <QtMoc Include="ChatUser.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Chat</Filter>
+    </QtMoc>
+    <QtMoc Include="TankGameServer.h">
+      <Filter>Header Files\TankGame</Filter>
+    </QtMoc>
+    <QtMoc Include="TankGameUser.h">
+      <Filter>Header Files\TankGame</Filter>
+    </QtMoc>
+    <QtMoc Include="ChatWebSocketService.h">
+      <Filter>Header Files\Chat</Filter>
+    </QtMoc>
+    <QtMoc Include="TankGameWebSocketService.h">
+      <Filter>Header Files\TankGame</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

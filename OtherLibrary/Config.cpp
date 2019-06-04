@@ -26,8 +26,11 @@ void Config::CreatDefaultConfig()
 	KeyCheck("HttpServer","Address", QHostAddress(QHostAddress::AnyIPv4).toString());
 	KeyCheck("HttpServer","Port", 80);
 
-	KeyCheck("WebSocketServer","Address", QHostAddress(QHostAddress::AnyIPv4).toString());
-	KeyCheck("WebSocketServer","Port", 12345);
+	KeyCheck("ChatWebSocketServer","Address", QHostAddress(QHostAddress::AnyIPv4).toString());
+	KeyCheck("ChatWebSocketServer","Port", 12345);
+
+	KeyCheck("TankGameWebSocketServer", "Address", QHostAddress(QHostAddress::AnyIPv4).toString());
+	KeyCheck("TankGameWebSocketServer", "Port", 12346);
 
 	KeyCheck("Log", "Stderr", true);
 	KeyCheck("Log", "File", false);

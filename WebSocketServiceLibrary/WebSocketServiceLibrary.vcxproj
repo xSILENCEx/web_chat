@@ -99,7 +99,11 @@
   <ItemGroup>
     <ClCompile Include="ChatServer.cpp" />
     <ClCompile Include="ChatUser.cpp" />
+    <ClCompile Include="ChatWebSocketService.cpp" />
     <ClCompile Include="Library\websockettransport.cpp" />
+    <ClCompile Include="TankGameServer.cpp" />
+    <ClCompile Include="TankGameUser.cpp" />
+    <ClCompile Include="TankGameWebSocketService.cpp" />
     <ClCompile Include="WebSocketService.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +116,22 @@
     <QtMoc Include="ChatUser.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork</IncludePath>
+    </QtMoc>
+    <QtMoc Include="TankGameUser.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql</IncludePath>
+    </QtMoc>
+    <QtMoc Include="TankGameServer.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql</IncludePath>
+    </QtMoc>
+    <QtMoc Include="ChatWebSocketService.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql</IncludePath>
+    </QtMoc>
+    <QtMoc Include="TankGameWebSocketService.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWebSockets;$(QTDIR)\include\QtWebChannel;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql</IncludePath>
     </QtMoc>
     <ClInclude Include="websocketservicelibrary_global.h" />
   </ItemGroup>
