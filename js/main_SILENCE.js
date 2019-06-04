@@ -345,7 +345,6 @@ function closeLeft() {
 
 function addUserItem(obj, name, subTitle, headUrl, info) {
 
-
     var userItem = document.createElement("div");
     userItem.setAttribute("class", "user-list-item");
 
@@ -375,7 +374,20 @@ function addUserItem(obj, name, subTitle, headUrl, info) {
     userItem.appendChild(userInfo);
 
     obj.appendChild(userItem);
+
+    if (info.VisitorID) {} else {
+        userItem.addEventListener("click", function () {
+            openUserDetail(JSON.stringify(info));
+        });
+    }
+
 }
+
+function openUserDetail(info) {
+    console.log("打开了用户详情页面:" + info);
+}
+
+function closeUserDetail() {}
 
 //////点击logo打开左侧栏
 document.getElementById("logo").addEventListener("click", function (event) {

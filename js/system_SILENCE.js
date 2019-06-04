@@ -39,12 +39,36 @@ function checkCookie(value) { //检查cookie
 }
 
 /////////接收来自服务器的消息
+var tanks = [];
+
+tanks[id].move(dir);
+
 function ReceiveByServer(self, head, name, msg) {
+    // var m = JSON.parse(msg);
+    // var tankObj;
+    // if (m.obj == "tank") {
+    //     switch (m.cmd) {
+    //         case "create":
+    //             tankObj = createNewTank(m);
+    //             tankObj.create();
+    //             tanks[tanks.length] = tankObj;
+    //             console.log("创建坦克:" + m.id);
+    //             break;
+    //         case "destroy":
+    //             console.log("销毁坦克:" + m.id);
+    //             break;
+    //         case "move":
+    //             tanks[0].move(m.dir);
+    //             console.log("移动坦克:" + m.id);
+    //             break;
+    //     }
+    // }
     if (self) {
         rightSend(head, name, msg);
     } else {
         leftSend(head, name, msg);
     }
+
 }
 
 /////弹出提示信息，支持富文本
