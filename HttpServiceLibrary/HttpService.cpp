@@ -23,9 +23,25 @@ bool HttpService::StartHttpServer()
 		return true;
 	}
 }
-void HttpService::FileResponse(QString fileName, QHttpServerResponder* responder)
+void HttpService::FileResponse(QString fileName, QHttpServerResponder* responder,int type)
 {
-	QFile file(fileName);
+	QFile file;
+	if (type != 0)
+	{
+		if (QFile::exists(QString("../web_chat/") + fileName))
+			file.setFileName(QString("../web_chat/") + fileName);
+		else if (QFile::exists(QString("../web_game/") + fileName))
+			file.setFileName(QString("../web_game/") + fileName);
+		else
+		{
+			qWarning() << tr("QQHttpServer Response Failure: File not exist - %1").arg(file.fileName());
+			responder->write(QHttpServerResponder::StatusCode::NotFound);
+		}
+	}
+	else
+	{
+		file.setFileName(fileName);
+	}
 	if (file.open(QIODevice::ReadOnly))
 	{
 		QMimeDatabase mimeDatabase;
@@ -41,19 +57,22 @@ void HttpService::FileResponse(QString fileName, QHttpServerResponder* responder
 void HttpService::SetHttpRoute()
 {
 	httpServer.route("/", [=](QHttpServerResponder && responder) {
-		FileResponse(QString("../web_chat/") + "index.html", &responder);
+		FileResponse("index.html", &responder,1);
+		});
+	httpServer.route("/game", [=](QHttpServerResponder&& responder) {
+		FileResponse("game.html", &responder, 1);
 		});
 	httpServer.route("/favicon.ico", [=](QHttpServerResponder && responder) {
-		FileResponse(QString("../web_chat/") + "favicon.ico", &responder);
+		FileResponse("favicon.ico", &responder,1);
 		});
 	httpServer.route("/js/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
-		FileResponse(QString("../web_chat/js/") + fileName, &responder);
+		FileResponse(QString("js/") + fileName, &responder,1);
 		});
 	httpServer.route("/css/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
-		FileResponse(QString("../web_chat/css/") + fileName, &responder);
+		FileResponse(QString("css/") + fileName, &responder,1);
 		});
 	httpServer.route("/img/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
-		FileResponse(QString("../web_chat/img/") + fileName, &responder);
+		FileResponse(QString("img/") + fileName, &responder,1);
 		});
 	httpServer.route("/UserFavicon/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
 		FileResponse(QString("../UserResource/UserFavicon/") + fileName, &responder);

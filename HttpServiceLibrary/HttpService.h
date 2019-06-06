@@ -24,6 +24,6 @@ public:
 
 private:
 	QHttpServer httpServer;
-	void FileResponse(QString fileName, QHttpServerResponder* responder);
+	void FileResponse(QString fileName, QHttpServerResponder* responder, int type=0);
 };
 
