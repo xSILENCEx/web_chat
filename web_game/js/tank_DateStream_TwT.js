@@ -27,7 +27,7 @@ function ConnectToServer() {
 
 function SendMessageToServer(message) {
     try {
-        channel.objects.ChatUser.SendUserMessage(message);
+        channel.objects.TankGameServer.SendUserMessage(message);
     } catch (e) {
         // errorInfo(e);
     }

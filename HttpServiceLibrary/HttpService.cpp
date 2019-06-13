@@ -60,7 +60,7 @@ void HttpService::SetHttpRoute()
 		FileResponse("index.html", &responder,1);
 		});
 	httpServer.route("/game", [=](QHttpServerResponder&& responder) {
-		FileResponse("game.html", &responder, 1);
+		FileResponse("tank_index.html", &responder, 1);
 		});
 	httpServer.route("/favicon.ico", [=](QHttpServerResponder && responder) {
 		FileResponse("favicon.ico", &responder,1);
