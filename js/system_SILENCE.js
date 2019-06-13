@@ -12,6 +12,17 @@ onload = function () {
 
 }
 
+function setEditState(state) {
+    var editBox = document.getElementById("edit");
+    if (state) {
+        editBox.removeAttribute("disabled");
+        editBox.setAttribute("placeholder", "在这里输入消息");
+    } else {
+        editBox.setAttribute("disabled", "disabled");
+        editBox.setAttribute("placeholder", "登陆后才能发送消息");
+    }
+}
+
 function setCookie(cName, cValue, exDays) { //设置cookie
     var d = new Date();
     d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
@@ -39,30 +50,7 @@ function checkCookie(value) { //检查cookie
 }
 
 /////////接收来自服务器的消息
-var tanks = [];
-
-tanks[id].move(dir);
-
 function ReceiveByServer(self, head, name, msg) {
-    // var m = JSON.parse(msg);
-    // var tankObj;
-    // if (m.obj == "tank") {
-    //     switch (m.cmd) {
-    //         case "create":
-    //             tankObj = createNewTank(m);
-    //             tankObj.create();
-    //             tanks[tanks.length] = tankObj;
-    //             console.log("创建坦克:" + m.id);
-    //             break;
-    //         case "destroy":
-    //             console.log("销毁坦克:" + m.id);
-    //             break;
-    //         case "move":
-    //             tanks[0].move(m.dir);
-    //             console.log("移动坦克:" + m.id);
-    //             break;
-    //     }
-    // }
     if (self) {
         rightSend(head, name, msg);
     } else {
@@ -97,16 +85,21 @@ function refreshUserList(info) {
 
 /////////登录成功后调用此方法
 function logInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
-    changeMyInfo(JSON.parse(info));
+    var json = JSON.parse(info);
+    changeMyInfo(json);
     isLogin = true;
-
+    setEditState(true);
     closeRegLogBox();
     isLogBoxOpen = false;
 
     if (getUserName() && getPsw()) {
-        setCookie("username", getUserName(), 5 / 24 / 60);
-        setCookie("password", getPsw(), 5 / 24 / 60);
+        setCookie("username", getUserName(), 10 / 24 / 60);
+        setCookie("password", getPsw(), 10 / 24 / 60);
+        setCookie("userID", json.UserID, 10 / 24 / 60);
+        setCookie("userHeadUrl", '../UserFavicon/' + json.UserFavicon, 10 / 24 / 60);
     }
+
+    console.log("用户id: " + getCookie("userID"));
 
 
     document.getElementById("username").value = "";
@@ -128,11 +121,11 @@ function signOut() {
 
     setCookie("username", "", 100);
     setCookie("password", "", 100);
+    setCookie("userID", "", 100);
+    setCookie("userHeadUrl", "", 100);
 
     closeRight();
     isRightOpen = false;
-
-    openTips(1, "注销成功");
 
     isLogin = false;
 }

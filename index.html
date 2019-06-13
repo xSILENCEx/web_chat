@@ -50,11 +50,10 @@
                 <img id="file-box" title="发送文件" class="fun-box" src="img/file.svg">
                 <input type="file" id="files1" style="display: none;" />
                 <input type="file" id="files2" style="display: none;" />
-                <div id="connect" title="正在连接服务器">C</div>
+                <div id="connect" title="正在连接服务器">⊙</div>
                 <input id="send" class="theme" type="button" title="发送" value="发送">
-                <input id="clear" class="war-c" type="button" title="清除" value="清除" onclick="clearEdit();">
             </div>
-            <textarea id="edit" placeholder="在这里输入消息"></textarea>
+            <textarea id="edit" placeholder="登陆后才能发送消息" disabled="disabled"></textarea>
         </div>
     </section>
     <section id="leftMenu">
@@ -62,7 +61,7 @@
         <div id="chatList">
             <div class="chat-list-item">
                 <img title="头像" alt="#" src="img/def-boy.svg" class="chat-list-head">
-                <div class="chat-list-name">用户昵称</div>
+                <div class="chat-list-name">群聊</div>
                 <div class="chat-list-info">聊天中的最后一条信息</div>
             </div>
         </div>
@@ -111,10 +110,6 @@
             <p class="menu-title2" style="margin-top:30px">简介</p>
             <p class="left-article">这里是简聊(SimpleChat)，一个简单的多人聊天网站。2019.6期末作品，UI采用极简扁平方正设计，<b
                     style="color:rgba(94, 153, 255, 1.00);">多端适配</b>，后台使用Qt+Websocket实现。</p>
-            <p class="menu-title2">功能</p>
-            <p class="left-article"> 支持常规文本发送以及<b
-                    style="color:rgba(94, 153, 255, 1.00);">富文本</b>发送(如&lt;h2&gt;这是一个标题&lt;/h2&gt;)，支持表情、图片、文件发送。如果手势与浏览器冲突可以选择点击logo和设置来打开菜单。更多设置可在右边栏查看。
-            </p>
             <p class="menu-title2">开发者</p>
             <a href="https://github.com/o-TwT-o/SimpleChat">
                 <div class="per-box">
@@ -136,8 +131,24 @@
                     </div>
                 </div>
             </a>
+            <div class="per-box">
+                <div class="per-h"><img alt="#" src="img/zyb.jpg" style="width:100%">
+                </div>
+                <div style="float:left">
+                    <div class="per-name">Origin</div>
+                    <div class="per-art">编写完善需求文档，提供项目思路</div>
+                </div>
+            </div>
+            <div class="per-box">
+                <div class="per-h"><img alt="#" src="img/yq.jpg" style="width:100%">
+                </div>
+                <div style="float:left">
+                    <div class="per-name">云淡ツ枫钦</div>
+                    <div class="per-art">编写完善需求文档，测试BUG</div>
+                </div>
+            </div>
             <p class="menu-title2">版权声明</p>
-            <p class="left-article">这里是简聊，一个<b>从零</b>开始搭建的简单多人聊天网站。<a
+            <p class="left-article"><a
                     href="https://github.com/xSILENCEx/web_chat">github</a>有完整的提交记录，外观设计版权归SILENCE个人所有，禁止抄袭、二改并作商业用途，盗用必究！<a
                     href="https://github.com/o-TwT-o/SimpleChat">后台代码点击这里</a>。</p>
             <div style="height:100px"></div>

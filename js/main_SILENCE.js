@@ -33,12 +33,6 @@ function getEdit() {
 //////显示左边的消息
 function leftSend(head, name, msg) {
 
-    // if (msg.indexOf("<img") != -1) {
-    //     var s1 = msg.substr(0, 4);
-    //     var s2 = msg.substr(5, msg.length - 1);
-    //     msg = s1 + " style = \"width:100%\"" + s2;
-    // }
-
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
 
@@ -65,12 +59,6 @@ function leftSend(head, name, msg) {
 
 ////////显示右边的消息
 function rightSend(head, name, msg) {
-
-    // if (msg.indexOf("<img") != -1) {
-    //     var s1 = msg.substr(0, 4);
-    //     var s2 = msg.substr(5, msg.length - 1);
-    //     msg = s1 + " style = \"width:100%\"" + s2;
-    // }
 
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
@@ -318,6 +306,16 @@ document.getElementById("closeUserMenu").addEventListener("click", closeUser);
 document.getElementById("netSettings").addEventListener("click", openNetSet);
 
 document.getElementById("closeNet").addEventListener("click", closeNetSet);
+
+/////坦克大战
+document.getElementById("addTank").addEventListener("click", function () {
+    if (isLogin) {
+        window.location.href = "game";
+    } else {
+        openRegLogBox();
+    }
+});
+
 
 //////关于
 document.getElementById("about").addEventListener("click", openAbout);
@@ -616,8 +614,16 @@ function smallScreen() {
 function setConnectError(error) {
     var c = document.getElementById("connect");
     c.title = "无法连接到服务器";
-    c.innerHTML = "E";
+    c.innerHTML = "×";
     c.style.backgroundColor = "rgba(255, 120, 120, 1.00)";
+}
+
+////////服务器连接成功的提示信息
+function connectSuccess() {
+    var c = document.getElementById("connect");
+    c.title = "已连接到服务器";
+    c.innerHTML = "√";
+    c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
 }
 
 ////////服务器断开后点击发送给予反馈
@@ -637,13 +643,6 @@ function errorInfo(error) {
     }, 100);
 }
 
-////////服务器连接成功的提示信息
-function connectSuccess() {
-    var c = document.getElementById("connect");
-    c.title = "已连接到服务器";
-    c.innerHTML = "S";
-    c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
-}
 ////////输入框缩放
 var chatBox = document.getElementById("chatBox");
 var isPress = false;
