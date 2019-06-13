@@ -12,17 +12,67 @@ onload = function () {
 
 }
 
+function setCookie(cName, cValue, exDays) { //设置cookie
+    var d = new Date();
+    d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cName + "=" + cValue + "; " + expires;
+}
+
+function getCookie(cName) { //获取cookie
+    var name = cName + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+function checkCookie(value) { //检查cookie
+    var v = getCookie(value);
+    if (v != "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /////////接收来自服务器的消息
+var tanks = [];
+
+tanks[id].move(dir);
+
 function ReceiveByServer(self, head, name, msg) {
+    // var m = JSON.parse(msg);
+    // var tankObj;
+    // if (m.obj == "tank") {
+    //     switch (m.cmd) {
+    //         case "create":
+    //             tankObj = createNewTank(m);
+    //             tankObj.create();
+    //             tanks[tanks.length] = tankObj;
+    //             console.log("创建坦克:" + m.id);
+    //             break;
+    //         case "destroy":
+    //             console.log("销毁坦克:" + m.id);
+    //             break;
+    //         case "move":
+    //             tanks[0].move(m.dir);
+    //             console.log("移动坦克:" + m.id);
+    //             break;
+    //     }
+    // }
     if (self) {
         rightSend(head, name, msg);
     } else {
         leftSend(head, name, msg);
     }
+
 }
 
 /////弹出提示信息，支持富文本
-function openTips(type, content) {
+function openTips(type, content) { //type:1提示，2警告，3错误
     var tips = document.getElementById("tips");
     tips.style.transform = "scale(1.0)";
     tips.style.opacity = "1.0";
@@ -37,10 +87,11 @@ function refreshUserList(info) {
     var user = JSON.parse(info);
     var userCount = user[0].loginUserSize;
     var list = document.getElementById("userList");
-    list.innerHTML = "<p class=\"menu-title\" style=\"margin-bottom: 0px;font-size: 90%\">在线用户列表</p>";
+    list.innerHTML = "<p class=\"menu-title\" style=\"margin-bottom: 0px;font-size: 90%\">在线用户</p>";
+    addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def-boy.svg", user[0]);
     for (var i = 1; i <= userCount; i++) {
         var sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
-        addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg");
+        addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg", user[i]);
     }
 }
 
@@ -48,17 +99,19 @@ function refreshUserList(info) {
 function logInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
     changeMyInfo(JSON.parse(info));
     isLogin = true;
+
     closeRegLogBox();
-    var h = document.getElementById("myHead");
-    h.removeEventListener("click", openRegLogBox);
-    h.addEventListener("click", function (e) {
-        openUser();
-    });
+    isLogBoxOpen = false;
+
+    if (getUserName() && getPsw()) {
+        setCookie("username", getUserName(), 5 / 24 / 60);
+        setCookie("password", getPsw(), 5 / 24 / 60);
+    }
+
+
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
     document.getElementById("checkPsw").value = "";
-
-    isLogBoxOpen = false;
 }
 
 /////////注册成功后调用此方法
@@ -66,6 +119,22 @@ function regInfo(info) { ///////传入一个json字符串数组，包含用户�
     console.log("返回信息:" + info);
     document.getElementById("checkPsw").value = "";
     changeToLog();
+}
+
+/////////注销后调用此方法
+function signOut() {
+    var info = "{\"UserID\": -1,\"UserName\": \"游客\",\"UserProfile\": \"\"}"
+    changeMyInfo(JSON.parse(info));
+
+    setCookie("username", "", 100);
+    setCookie("password", "", 100);
+
+    closeRight();
+    isRightOpen = false;
+
+    openTips(1, "注销成功");
+
+    isLogin = false;
 }
 
 ////文件发送

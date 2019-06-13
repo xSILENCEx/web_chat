@@ -26,7 +26,7 @@ function ConnectToServer() {
                         ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, jsonArray[1].MessageContent);
                         break;
                     case 2:
-                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, '<img src="../File/' + jsonArray[1].MessageContent + '"/>');
+                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, '<img width=100% height=auto src="../File/' + jsonArray[1].MessageContent + '"/>');
                         break;
                     case 3:
                         ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, '<a href="../File/' + jsonArray[1].MessageContent + '">' + jsonArray[1].MessageContent + '</a>');
@@ -45,6 +45,10 @@ function ConnectToServer() {
             channel.objects.ChatUser.ShowUserList.connect(function (userList) {
                 refreshUserList(userList);
             });
+            if (checkCookie("username") != "" && checkCookie("password") != "") {
+                UserLogin(getCookie("username"), getCookie("password"));
+                isLogin = true;
+            }
         });
     }
 }

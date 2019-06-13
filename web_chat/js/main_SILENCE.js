@@ -33,11 +33,11 @@ function getEdit() {
 //////显示左边的消息
 function leftSend(head, name, msg) {
 
-    if (msg.indexOf("<img") != -1) {
-        var s1 = msg.substr(0, 4);
-        var s2 = msg.substr(5, msg.length - 1);
-        msg = s1 + " style = \"width:100%\"" + s2;
-    }
+    // if (msg.indexOf("<img") != -1) {
+    //     var s1 = msg.substr(0, 4);
+    //     var s2 = msg.substr(5, msg.length - 1);
+    //     msg = s1 + " style = \"width:100%\"" + s2;
+    // }
 
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
@@ -66,11 +66,11 @@ function leftSend(head, name, msg) {
 ////////显示右边的消息
 function rightSend(head, name, msg) {
 
-    if (msg.indexOf("<img") != -1) {
-        var s1 = msg.substr(0, 4);
-        var s2 = msg.substr(5, msg.length - 1);
-        msg = s1 + " style = \"width:100%\"" + s2;
-    }
+    // if (msg.indexOf("<img") != -1) {
+    //     var s1 = msg.substr(0, 4);
+    //     var s2 = msg.substr(5, msg.length - 1);
+    //     msg = s1 + " style = \"width:100%\"" + s2;
+    // }
 
     var newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
@@ -312,35 +312,21 @@ document.getElementById("userSettings").addEventListener("click", function () {
     }
 });
 
-document.getElementById("closeUserMenu").addEventListener("click", function () {
-    closeUser();
-});
+document.getElementById("closeUserMenu").addEventListener("click", closeUser);
 
 ////网络设置
-document.getElementById("netSettings").addEventListener("click", function (e) {
-    openNetSet();
-});
+document.getElementById("netSettings").addEventListener("click", openNetSet);
 
-document.getElementById("closeNet").addEventListener("click", function (e) {
-    closeNetSet();
-});
+document.getElementById("closeNet").addEventListener("click", closeNetSet);
 
 //////关于
-document.getElementById("about").addEventListener("click", function (e) {
-    openAbout();
-});
+document.getElementById("about").addEventListener("click", openAbout);
 
-document.getElementById("closeAbout").addEventListener("click", function (e) {
-    closeAbout();
-});
+document.getElementById("closeAbout").addEventListener("click", closeAbout);
 
-document.getElementById("tipsBtn").addEventListener("click", function () {
-    closeTips();
-});
+document.getElementById("tipsBtn").addEventListener("click", closeTips);
 
-document.getElementById("settingBtn").addEventListener("click", function () {
-    openCloseSetting();
-});
+document.getElementById("settingBtn").addEventListener("click", openCloseSetting);
 
 ///////聊天列表//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var isLeftOpen = false; //左边栏是否打开
@@ -357,29 +343,51 @@ function closeLeft() {
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
-function addUserItem(obj, name, subTitle, headUrl) {
+function addUserItem(obj, name, subTitle, headUrl, info) {
+
     var userItem = document.createElement("div");
     userItem.setAttribute("class", "user-list-item");
 
     var userHead = document.createElement("img");
     userHead.setAttribute("alt", "#");
-    userHead.setAttribute("src", headUrl);
+
     userHead.setAttribute("class", "user-list-head");
 
     var userName = document.createElement("div");
     userName.setAttribute("class", "user-list-name");
-    userName.innerHTML = name;
 
     var userInfo = document.createElement("div");
     userInfo.setAttribute("class", "user-list-info");
-    userInfo.innerHTML = subTitle;
+
+    if (info.VisitorID) {
+        userHead.setAttribute("src", headUrl);
+        userName.innerHTML = name;
+        userInfo.innerHTML = subTitle;
+    } else {
+        userHead.setAttribute("src", headUrl);
+        userName.innerHTML = name;
+        userInfo.innerHTML = subTitle;
+    }
 
     userItem.appendChild(userHead);
     userItem.appendChild(userName);
     userItem.appendChild(userInfo);
 
     obj.appendChild(userItem);
+
+    if (info.VisitorID) {} else {
+        userItem.addEventListener("click", function () {
+            openUserDetail(JSON.stringify(info));
+        });
+    }
+
 }
+
+function openUserDetail(info) {
+    console.log("打开了用户详情页面:" + info);
+}
+
+function closeUserDetail() {}
 
 //////点击logo打开左侧栏
 document.getElementById("logo").addEventListener("click", function (event) {
@@ -405,17 +413,28 @@ var regOrLog = false;
 
 //改变用户信息
 function changeMyInfo(info) {
-    console.log(info);
     document.getElementById("myName").innerHTML = info.UserName;
+    document.getElementById("newNameEdit").value = info.UserName;
+    var h = document.getElementById("myHead");
     if (info.UserID == -1) {
+        h.removeEventListener("click", openUser);
+        h.addEventListener("click", openRegLogBox);
         document.getElementById("myState").innerHTML = "未登录";
     } else {
+        h.removeEventListener("click", openRegLogBox);
+        h.addEventListener("click", openUser);
         document.getElementById("myState").innerHTML = "在线";
     }
     if (info.UserProfile == "") {
-        document.getElementById("mySign").innerHTML = "这个人什么都没留下";
+        var s = document.getElementById("mySign");
+        s.innerHTML = "这个人什么都没有留下";
+        s.title = "这个人什么都没有留下";
+        document.getElementById("newSignEdit").placeholder = "这个人什么都没有留下";
     } else {
-        document.getElementById("mySign").innerHTML = info.UserProfile;
+        var s = document.getElementById("mySign");
+        document.getElementById("newSignEdit").value = info.UserProfile;
+        s.innerHTML = info.UserProfile;
+        s.title = info.UserProfile;
     }
 }
 
@@ -425,7 +444,8 @@ function getUserName() {
     if (userName.replace(/\s+/g, "").length != 0) {
         return userName;
     } else {
-        console.error("用户名不规范");
+        console.log("用户名不规范");
+        return false;
     }
 }
 
@@ -435,7 +455,8 @@ function getPsw() {
     if (passWd.replace(/\s+/g, "").length != 0) {
         return passWd;
     } else {
-        console.error("密码不规范");
+        console.log("密码不规范");
+        return false;
     }
 }
 
@@ -479,10 +500,9 @@ document.getElementById("logRegBox").addEventListener("click", function (e) {
     e.stopPropagation();
 });
 
-/////////注销时调用此方法
-function signOut() {
-    console.log("注销成功");
-}
+document.getElementById("signOut").addEventListener("click", function (e) {
+    signOut();
+});
 
 /////////打开登陆注册框
 function openRegLogBox() {
@@ -595,8 +615,8 @@ function smallScreen() {
 //////////服务器连接失败的提示信息
 function setConnectError(error) {
     var c = document.getElementById("connect");
-    c.value = "无法连接到服务器";
     c.title = "无法连接到服务器";
+    c.innerHTML = "E";
     c.style.backgroundColor = "rgba(255, 120, 120, 1.00)";
 }
 
@@ -620,8 +640,8 @@ function errorInfo(error) {
 ////////服务器连接成功的提示信息
 function connectSuccess() {
     var c = document.getElementById("connect");
-    c.value = "服务器连接成功";
     c.title = "已连接到服务器";
+    c.innerHTML = "S";
     c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
 }
 ////////输入框缩放
