@@ -63,9 +63,20 @@ bool ChatUser::UserRegister(QString name, QString password)
 		{
 			if (QFile("../UserResource/UserFavicon/-1.svg").copy("../UserResource/UserFavicon/" + QString::number(db->UserSelectID(name, password)) + ".svg"))
 			{
-				qInfo() << tr("User Register:%1.IP:%2").arg(name).arg(((QWebSocket*)this->parent()->parent()->parent())->peerAddress().toString());
-				emit ShowServerTips(1, QString::fromLocal8Bit("注册成功!"));
-				return true;
+				User u;
+				u = db->UserSelectAll(db->UserSelectID(name, password));
+				u.Favicon = QString::number(u.ID) + ".svg";
+				if (db->UserChangeAll(u))
+				{
+					qInfo() << tr("User Register:%1.IP:%2").arg(name).arg(((QWebSocket*)this->parent()->parent()->parent())->peerAddress().toString());
+					emit ShowServerTips(1, QString::fromLocal8Bit("注册成功!"));
+					return true;
+				}
+				else
+				{
+					emit ShowServerTips(3, QString::fromLocal8Bit("初始化用户信息失败!"));
+					return false;
+				}
 			}
 			else
 			{
@@ -94,7 +105,12 @@ bool ChatUser::UserLogin(QString name, QString password)
 		if (user.ID == id)
 		{
 			emit ShowServerTips(2, QString::fromLocal8Bit("已登录!<br/>请勿重复登录"));
-			return true;
+			return false;
+		}
+		if (UserCheckLogin(id))
+		{
+			emit ShowServerTips(2, QString::fromLocal8Bit("已其他终端登录!<br/>请勿重复登录"));
+			return false;
 		}
 		user = db->UserSelectAll(id);
 		emit ShowUserInfo(QJsonDocument(user.ConversionJson()).toJson());
@@ -174,6 +190,27 @@ bool ChatUser::UserChangePassword(QString oldpassword, QString newpassword)
 	emit ShowServerTips(2, QString::fromLocal8Bit("未登录!"));
 	return false;
 }
+bool ChatUser::UserChangeFavicon(QString filestring)
+{
+	QJsonObject jsonObject = QJsonDocument::fromJson(filestring.toUtf8()).object();
+	QByteArray byteArray1 = jsonObject.value("file").toString().split(',').at(1).toUtf8();
+	QByteArray byteArray2 = QByteArray::fromBase64(byteArray1);
+	QString fileType = jsonObject.value("filename").toString().split(".").last();
+	if(user.Favicon!="-1.svg")
+	QFile("../UserResource/UserFavicon/" + user.Favicon).remove();
+	QString filename = "../UserResource/UserFavicon/" + QString::number(user.ID) + fileType;
+	QFile file(filename);
+	if (file.open(QIODevice::WriteOnly))
+	{
+		file.write(byteArray2);
+		file.close();
+		user.Favicon = filename;
+		if (db->UserChangeAll(user))
+			user = db->UserSelectAll(user.ID);
+	}
+	//emit ShowServerTips(2, QString::fromLocal8Bit("未登录!"));
+	return false;
+}
 void ChatUser::UserChangePermission(int permission)
 {
 
@@ -190,4 +227,15 @@ void ChatUser::UserChangePermission(int permission)
 			user = db->UserSelectAll(u.ID);
 		}
 	}
+}
+bool ChatUser::UserCheckLogin(int id)
+{
+	for (int i = 0; i < loginUserList->size(); i++)
+	{
+		if ((*loginUserList)[i]->user.ID==id)
+		{
+			return true;
+		}
+	}
+	return false;
 }

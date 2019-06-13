@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QList>
 #include <QString>
 #include <QJsonObject>
 #include <QJsonArray>
@@ -19,6 +20,7 @@ public:
 	ChatUser(QObject* parent = nullptr);
 	~ChatUser();
 	DataBase* db;
+	QList<ChatUser*> *loginUserList;
 	User user;
 public slots:
 	bool UserRegister(QString, QString);
@@ -26,6 +28,7 @@ public slots:
 	bool UserLogout();
 	bool UserChangeInfo(QString, QString);
 	bool UserChangePassword(QString, QString);
+	bool UserChangeFavicon(QString);
 	bool SendUserMessage(int, QString);
 	void ReceiveUserMessage(ChatUser*, QString);
 	void ReceiveUserlist(QString);
@@ -41,4 +44,6 @@ signals:
 private:
 	QString ReceiveUserFile(QString);
 	void UserChangePermission(int);
+	bool UserCheckLogin(int);
+
 };

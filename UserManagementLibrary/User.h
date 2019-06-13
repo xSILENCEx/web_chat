@@ -17,6 +17,7 @@ public:
 	QString Name=QString::fromLocal8Bit("сн©м");
 	QString Password;
 	QString Profile;
+	QString Favicon="-1.svg";
 	int Permission = -1;
 	QJsonObject ConversionJson();
 

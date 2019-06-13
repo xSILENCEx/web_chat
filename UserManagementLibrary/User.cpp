@@ -10,6 +10,7 @@ User::User(const User& user)
 	Name = user.Name;
 	Password = user.Password;
 	Profile = user.Profile;
+	Favicon = user.Favicon;
 	Permission = user.Permission;
 }
 User& User::operator =(const User& user)
@@ -18,6 +19,7 @@ User& User::operator =(const User& user)
 	Name = user.Name;
 	Password = user.Password;
 	Profile = user.Profile;
+	Favicon = user.Favicon;
 	Permission = user.Permission;
 	return *this;
 }
@@ -31,6 +33,10 @@ QJsonObject User::ConversionJson()
 	json.insert("UserName", Name);
 	//json.insert("UserPassword", Password);
 	json.insert("UserProfile", Profile);
+	if (Favicon.isEmpty())
+		json.insert("UserFavicon", "-1.svg");
+	else
+		json.insert("UserFavicon", Favicon);
 	//json.insert("UserPermission", Permission);
 	return json;
 }

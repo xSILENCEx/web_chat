@@ -28,12 +28,13 @@ void DataBase::CreatBaseDDataBase()
 		QSqlQuery sqlQuery(userDataBase);
 		if (sqlQuery.exec("select count(*) from sqlite_master where type = 'table' and name = 'user'") && sqlQuery.next() && sqlQuery.value(0).toInt() == 0)
 		{
-			sqlQuery.exec("CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE,password TEXT NOT NULL,profile TEXT,permission INT DEFAULT 0)");
-			sqlQuery.prepare("INSERT INTO user (id,name, password, profile, permission) VALUES(:id,:name,:password,:profile,:permission)");
+			sqlQuery.exec("CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE,password TEXT NOT NULL,profile TEXT,favicon TEXT,permission INT DEFAULT 0)");
+			sqlQuery.prepare("INSERT INTO user (id,name, password, profile,favicon, permission) VALUES(:id,:name,:password,:profile,:favicon,:permission)");
 			sqlQuery.bindValue(":id", 0);
 			sqlQuery.bindValue(":name", "admin");
-			sqlQuery.bindValue(":password", "mainadmin");
+			sqlQuery.bindValue(":password", "admin");
 			sqlQuery.bindValue(":profile", QString::fromLocal8Bit("œµÕ≥ƒ¨»œ’À∫≈"));
+			sqlQuery.bindValue(":favicon", "0.svg");			
 			sqlQuery.bindValue(":permission", 2);
 			sqlQuery.exec();
 			qInfo() << "Creat Base User Table.Add admin user.";
@@ -103,6 +104,7 @@ User DataBase::UserSelectAll(int id)
 			user.Name = sqlQuery.value("name").toString();
 			user.Password = sqlQuery.value("password").toString();
 			user.Profile = sqlQuery.value("profile").toString();
+			user.Favicon = sqlQuery.value("favicon").toString();
 			user.Permission = sqlQuery.value("permission").toInt();
 			return user;
 		}
@@ -120,7 +122,7 @@ bool DataBase::UserChangeAll(User user)
 	if (userDataBase.isOpen())
 	{
 		QSqlQuery sqlQuery(userDataBase);
-		return sqlQuery.exec("update user set name='" + user.Name + "',password='" + user.Password + "',profile='" + user.Profile + "',permission='" + QString::number(user.Permission) + "' WHERE id='" + QString::number(user.ID) + "'");
+		return sqlQuery.exec("update user set name='" + user.Name + "',password='" + user.Password + "',profile='" + user.Profile + "',favicon='" + user.Favicon + "',permission='" + QString::number(user.Permission) + "' WHERE id='" + QString::number(user.ID) + "'");
 	}
 	else
 	{

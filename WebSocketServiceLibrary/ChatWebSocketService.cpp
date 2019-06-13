@@ -35,6 +35,7 @@ void ChatWebSocketService::CreatChannel()
 	QWebChannel* webChannel = new QWebChannel(webSocketTransport);
 	ChatUser* chatUser = new ChatUser(webChannel);
 	chatUser->db = db;
+	chatUser->loginUserList = &loginUserList;
 	visitorUserList.append(chatUser);
 
 	QObject::connect(chatUser, &ChatUser::UserMessageToServer, &chatServer, &ChatServer::ReceiveUserMessage);
