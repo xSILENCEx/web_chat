@@ -65,6 +65,9 @@ void HttpService::SetHttpRoute()
 	httpServer.route("/favicon.ico", [=](QHttpServerResponder && responder) {
 		FileResponse("favicon.ico", &responder,1);
 		});
+	httpServer.route("/tank_favicon.ico", [=](QHttpServerResponder&& responder) {
+		FileResponse("tank_favicon.ico", &responder, 1);
+		});
 	httpServer.route("/js/<arg>", [=](QString fileName, QHttpServerResponder && responder) {
 		FileResponse(QString("js/") + fileName, &responder,1);
 		});
