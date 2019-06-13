@@ -5,7 +5,6 @@ WebSocketService::WebSocketService(QObject* parent)
 {
 	db.CreatBaseDDataBase();
 	chatWebSocketService.db = &db;
-	tankGameWebSocketService.db = &db;
 }
 WebSocketService::~WebSocketService()
 {

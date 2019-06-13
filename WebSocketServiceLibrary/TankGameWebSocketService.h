@@ -14,7 +14,6 @@
 #include "../OtherLibrary/Config.h"
 #include "../UserManagementLibrary/DataBase.h"
 #include "TankGameServer.h"
-#include "TankGameUser.h"
 class TankGameWebSocketService : public QObject
 {
 	Q_OBJECT
@@ -22,18 +21,14 @@ class TankGameWebSocketService : public QObject
 public:
 	TankGameWebSocketService(QObject* parent = nullptr);
 	~TankGameWebSocketService();
-	DataBase* db;
 public slots:
 	void CreatChannel();
 
 private:
 	QWebSocketServer* webSocketServer;
+	QWebChannel webChannel;
 	TankGameServer tankGameServer;
-	QList<TankGameUser*> gameUserList;
-	QList<TankGameUser*> visitorUserList;
 
 	bool StartWebSocketServer();
 	void ConnectSlots();
-	QString UserListConversionJson();
-
 };

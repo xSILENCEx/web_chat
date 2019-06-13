@@ -56,9 +56,6 @@
     <ClCompile Include="TankGameServer.cpp">
       <Filter>Source Files\TankGame</Filter>
     </ClCompile>
-    <ClCompile Include="TankGameUser.cpp">
-      <Filter>Source Files\TankGame</Filter>
-    </ClCompile>
     <ClCompile Include="ChatWebSocketService.cpp">
       <Filter>Source Files\Chat</Filter>
     </ClCompile>
@@ -85,9 +82,6 @@
       <Filter>Header Files\Chat</Filter>
     </QtMoc>
     <QtMoc Include="TankGameServer.h">
-      <Filter>Header Files\TankGame</Filter>
-    </QtMoc>
-    <QtMoc Include="TankGameUser.h">
       <Filter>Header Files\TankGame</Filter>
     </QtMoc>
     <QtMoc Include="ChatWebSocketService.h">

@@ -8,7 +8,7 @@ TankGameServer::TankGameServer(QObject *parent)
 TankGameServer::~TankGameServer()
 {
 }
-void TankGameServer::ReceiveUserMessage(int id, QString message)
+void TankGameServer::SendUserMessage(QString message)
 {
-	emit ForwardUserMessage(id, message);
+	emit ShowUserMessage(message);
 }

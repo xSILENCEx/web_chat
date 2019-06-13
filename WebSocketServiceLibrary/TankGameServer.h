@@ -10,8 +10,7 @@ public:
 	TankGameServer(QObject* parent = nullptr);
 	~TankGameServer();
 public slots:
-	void ReceiveUserMessage(int, QString);
+	void SendUserMessage(QString);
 signals:
-	void ForwardUserMessage(int, QString);
-	void ForwardUserlist(QString);
+	void ShowUserMessage(QString);
 };
