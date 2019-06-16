@@ -535,13 +535,13 @@ a:active {
 #lrMain {
     position: relative;
     max-width: 400px;
-    height: 450px;
+    height: 380px;
     text-align: center;
     left: 0;
     right: 0;
     top: 50%;
     margin: 0 auto;
-    margin-top: -230px;
+    margin-top: -200px;
     padding: 30px;
     background-color: rgba(250, 250, 250, 1.00);
     transition: all 0.5s;
@@ -555,15 +555,8 @@ a:active {
     font-size: 20px;
     line-height: 20px;
     font-weight: bold;
+    margin-bottom: 50px;
     color: rgba(80, 80, 80, 1.00);
-}
-
-#logHead {
-    width: 60px;
-    height: 60px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: rgba(240, 240, 240, 1.00);
 }
 
 .input-box {

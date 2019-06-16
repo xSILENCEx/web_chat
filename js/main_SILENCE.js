@@ -484,11 +484,6 @@ document.getElementById("checkPsw").addEventListener("blur", function (e) {
     e.stopPropagation();
 });
 
-document.getElementById("logHead").addEventListener("click", function (e) {
-    console.log("选择头像");
-    e.stopPropagation();
-});
-
 document.getElementById("lrMain").addEventListener("click", function (e) {
     e.stopPropagation();
 });
