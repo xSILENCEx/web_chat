@@ -75,7 +75,7 @@ function refreshUserList(info) {
     var user = JSON.parse(info);
     var userCount = user[0].loginUserSize;
     var list = document.getElementById("userList");
-    list.innerHTML = "<p class=\"menu-title\" style=\"margin-bottom: 0px;font-size: 90%\">在线用户</p>";
+    list.innerHTML = "<p class=\"menu-title2\" style=\"margin: 0;font-size: 90%\">在线用户</p>";
     addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def-boy.svg", user[0]);
     for (var i = 1; i <= userCount; i++) {
         var sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
@@ -192,6 +192,6 @@ document.getElementById("logBtn").addEventListener("click", function (e) {
 });
 
 /////获取服务器端口信息
-document.getElementById("net-submit").addEventListener("click", function () {
-    console.log(getServerInfo());
+document.getElementById("newPswSet").addEventListener("click", function () {
+    console.log(getNewPswInfo());
 });

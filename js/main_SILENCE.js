@@ -169,14 +169,15 @@ var isRightOpen = false; //右边栏(设置)是否打开
 
 ////打开右边栏
 function openRight() {
-    document.getElementById("rightMenu").style.transform = "translateX(0px)";
+    document.getElementById("rightMenu").style.transform = "translateX(-300px)";
     document.getElementById("whole").style.transform = "translateX(-200px)";
 }
 
 /////关闭右边栏
 function closeRight() {
-    document.getElementById("rightMenu").style.transform = "translateX(300px)";
+    document.getElementById("rightMenu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
+    closeUserDetail();
     closeNetSet();
     closeAbout();
     closeUser();
@@ -202,10 +203,10 @@ function closeNetSet() {
     document.getElementById("net-menu").style.transform = "translateX(0px)";
 }
 
-function getServerInfo() {
-    var s = document.getElementById("server-ip").value;
-    var p1 = document.getElementById("server-port").value;
-    var p2 = document.getElementById("server-port2").value;
+function getNewPswInfo() {
+    var s = document.getElementById("oldPsw").value;
+    var p1 = document.getElementById("newPsw").value;
+    var p2 = document.getElementById("checkNewPsw").value;
 
     if (s.length != 0 && p1.length != 0 && p2.length != 0) {
         return "{\"server\":\"" + s + "\",\"port1\":\"" + p1 + "\",\"port2\":\"" + p2 + "\"}";
@@ -237,6 +238,9 @@ function putInfo(type, content) {
         case 3:
             tipsTitle.innerHTML = "错误";
             break;
+        case 4:
+            tipsTitle.innerHTML = "公告";
+            break;
     }
 
     tipsContent.innerHTML = content;
@@ -263,7 +267,7 @@ function openCloseSetting() {
         document.getElementById("settingBtn").style.color = "rgba(100, 100, 100, 0.00)";
         document.getElementById("userList").style.transform = "translateY(0px)";
         setItemBox.style.transform = "scale(0.1) translateY(0px)";
-        setItemBox.style.right = "25px";
+        setItemBox.style.right = "27px";
     } else {
         document.getElementById("settingBtn").style.color = "rgba(100, 100, 100, 1.00)";
         document.getElementById("userList").style.transform = "translateY(280px)";
@@ -331,13 +335,13 @@ var isLeftOpen = false; //左边栏是否打开
 
 //打开左边栏
 function openLeft() {
-    document.getElementById("leftMenu").style.transform = "translateX(0px)";
+    document.getElementById("leftMenu").style.transform = "translateX(300px)";
     document.getElementById("whole").style.transform = "translateX(200px)";
 }
 
 //关闭左边栏
 function closeLeft() {
-    document.getElementById("leftMenu").style.transform = "translateX(-300px)";
+    document.getElementById("leftMenu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
@@ -382,10 +386,13 @@ function addUserItem(obj, name, subTitle, headUrl, info) {
 }
 
 function openUserDetail(info) {
+    document.getElementById("userInfoBox").style.transform = "translateX(-300px)";
     console.log("打开了用户详情页面:" + info);
 }
 
-function closeUserDetail() {}
+function closeUserDetail() {
+    document.getElementById("userInfoBox").style.transform = "translateX(0px)";
+}
 
 //////点击logo打开左侧栏
 document.getElementById("logo").addEventListener("click", function (event) {
