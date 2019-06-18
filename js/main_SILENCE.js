@@ -3,7 +3,7 @@ onresize = function () {
     if (isSmall()) {
         smallScreen();
     } else {
-        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         bigScreen(w);
     }
 }
@@ -13,14 +13,14 @@ function softWindow() {
     if (isSmall()) {
         smallScreen();
     } else {
-        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         bigScreen(w);
     }
 }
 
 ///////清空输入框
 function clearEdit() {
-    var edit = document.getElementById("edit");
+    let edit = document.getElementById("edit");
     edit.value = "";
     edit.focus();
 }
@@ -33,18 +33,18 @@ function getEdit() {
 //////显示左边的消息
 function leftSend(head, name, msg) {
 
-    var newMsg = document.createElement("div");
+    let newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
 
-    var h = document.createElement("img");
+    let h = document.createElement("img");
     h.setAttribute("class", "head-img");
     h.setAttribute("src", head);
 
-    var lName = document.createElement("div");
+    let lName = document.createElement("div");
     lName.setAttribute("class", "user-name");
     lName.innerHTML = name;
 
-    var lMsg = document.createElement("div");
+    let lMsg = document.createElement("div");
     lMsg.setAttribute("class", "msg-box dot-c");
     lMsg.innerHTML = msg;
 
@@ -52,7 +52,7 @@ function leftSend(head, name, msg) {
     newMsg.appendChild(lName);
     newMsg.appendChild(lMsg);
 
-    var chatBox = document.getElementById("chatBox");
+    let chatBox = document.getElementById("chatBox");
     chatBox.appendChild(newMsg);
     scrollToBottom(newMsg);
 }
@@ -60,18 +60,18 @@ function leftSend(head, name, msg) {
 ////////显示右边的消息
 function rightSend(head, name, msg) {
 
-    var newMsg = document.createElement("div");
+    let newMsg = document.createElement("div");
     newMsg.setAttribute("class", "msg-item");
 
-    var h = document.createElement("img");
+    let h = document.createElement("img");
     h.setAttribute("class", "head-img2");
     h.setAttribute("src", head);
 
-    var lName = document.createElement("div");
+    let lName = document.createElement("div");
     lName.setAttribute("class", "user-name2");
     lName.innerHTML = name;
 
-    var lMsg = document.createElement("div");
+    let lMsg = document.createElement("div");
     lMsg.setAttribute("class", "msg-box2 theme");
     lMsg.innerHTML = msg;
 
@@ -79,7 +79,7 @@ function rightSend(head, name, msg) {
     newMsg.appendChild(lName);
     newMsg.appendChild(lMsg);
 
-    var chatBox = document.getElementById("chatBox");
+    let chatBox = document.getElementById("chatBox");
     chatBox.appendChild(newMsg);
     scrollToBottom(newMsg);
 }
@@ -118,13 +118,13 @@ document.getElementById("whole").addEventListener("click", function () {
 });
 //////Ctrl+Enter键发送
 document.onkeydown = function (e) {
-    var isEditing = document.getElementById("edit");
+    let isEditing = document.getElementById("edit");
     if ((13 == e.keyCode && e.ctrlKey) && isEditing == document.activeElement) {
         meSend(getEdit());
     }
 }
 ///////手势判断
-var startPoint = null;
+let startPoint = null;
 document.addEventListener("touchstart", function (e) {
     var e = e || window.event;
     startPoint = e.touches[0];
@@ -132,12 +132,12 @@ document.addEventListener("touchstart", function (e) {
 document.addEventListener("touchmove", function (e) {
     var e = e || window.event;
     //e.changedTouches能找到离开手机的手指，返回的是一个数组
-    var endPoint = e.changedTouches[0];
+    let endPoint = e.changedTouches[0];
     //计算终点与起点的差值
-    var x = endPoint.clientX - startPoint.clientX;
-    var y = endPoint.clientY - startPoint.clientY;
+    let x = endPoint.clientX - startPoint.clientX;
+    let y = endPoint.clientY - startPoint.clientY;
 
-    var d = 80; //滑动距离的参考值
+    let d = 80; //滑动距离的参考值
     if (Math.abs(x) > d && (!isLogBoxOpen)) {
         if (x > 0 && isSmall()) {
             if (isRightOpen) {
@@ -147,7 +147,7 @@ document.addEventListener("touchmove", function (e) {
                 openLeft();
                 isLeftOpen = true;
             }
-            var e = e || window.event;
+            let e = e || window.event;
             startPoint = e.touches[0];
         } else if (isSmall()) {
             if (isLeftOpen) {
@@ -158,14 +158,14 @@ document.addEventListener("touchmove", function (e) {
                 isRightOpen = true;
             }
 
-            var e = e || window.event;
+            let e = e || window.event;
             startPoint = e.touches[0];
         }
     }
 });
 
 //////设置//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var isRightOpen = false; //右边栏(设置)是否打开
+let isRightOpen = false; //右边栏(设置)是否打开
 
 ////打开右边栏
 function openRight() {
@@ -204,9 +204,9 @@ function closeNetSet() {
 }
 
 function getNewPswInfo() {
-    var s = document.getElementById("oldPsw").value;
-    var p1 = document.getElementById("newPsw").value;
-    var p2 = document.getElementById("checkNewPsw").value;
+    let s = document.getElementById("oldPsw").value;
+    let p1 = document.getElementById("newPsw").value;
+    let p2 = document.getElementById("checkNewPsw").value;
 
     if (s.length != 0 && p1.length != 0 && p2.length != 0) {
         return "{\"server\":\"" + s + "\",\"port1\":\"" + p1 + "\",\"port2\":\"" + p2 + "\"}";
@@ -224,9 +224,9 @@ function closeAbout() {
 }
 
 function putInfo(type, content) {
-    var tipsBody = document.getElementById("tipsBody");
-    var tipsTitle = document.getElementById("tipsTitle");
-    var tipsContent = document.getElementById("tipsContent");
+    let tipsBody = document.getElementById("tipsBody");
+    let tipsTitle = document.getElementById("tipsTitle");
+    let tipsContent = document.getElementById("tipsContent");
 
     switch (type) {
         case 1:
@@ -244,12 +244,12 @@ function putInfo(type, content) {
     }
 
     tipsContent.innerHTML = content;
-    var tipsHeight = tipsBody.clientHeight || tipsBody.offsetHeight;
+    let tipsHeight = tipsBody.clientHeight || tipsBody.offsetHeight;
     tipsBody.style.marginTop = "-" + tipsHeight / 2 + "px";
 }
 
 function closeTips() {
-    var tips = document.getElementById("tips");
+    let tips = document.getElementById("tips");
     tips.style.opacity = "0.0";
     tips.style.transform = "scale(1.2)";
     setTimeout(function () {
@@ -258,10 +258,10 @@ function closeTips() {
     }, 500);
 }
 
-var isSetItemOpen = false;
+let isSetItemOpen = false;
 
 function openCloseSetting() {
-    var setItemBox = document.getElementById("setItemBox");
+    let setItemBox = document.getElementById("setItemBox");
 
     if (isSetItemOpen) {
         document.getElementById("settingBtn").style.color = "rgba(100, 100, 100, 0.00)";
@@ -294,7 +294,7 @@ document.getElementById("setBtn").addEventListener("click", function (event) {
 });
 
 //////用户设置
-var isLogin = false;
+let isLogin = false;
 document.getElementById("userSettings").addEventListener("click", function () {
     if (isLogin) {
         openUser();
@@ -331,7 +331,7 @@ document.getElementById("tipsBtn").addEventListener("click", closeTips);
 document.getElementById("settingBtn").addEventListener("click", openCloseSetting);
 
 ///////聊天列表//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var isLeftOpen = false; //左边栏是否打开
+let isLeftOpen = false; //左边栏是否打开
 
 //打开左边栏
 function openLeft() {
@@ -347,18 +347,18 @@ function closeLeft() {
 
 function addUserItem(obj, name, subTitle, headUrl, info) {
 
-    var userItem = document.createElement("div");
+    let userItem = document.createElement("div");
     userItem.setAttribute("class", "user-list-item");
 
-    var userHead = document.createElement("img");
+    let userHead = document.createElement("img");
     userHead.setAttribute("alt", "#");
 
     userHead.setAttribute("class", "user-list-head");
 
-    var userName = document.createElement("div");
+    let userName = document.createElement("div");
     userName.setAttribute("class", "user-list-name");
 
-    var userInfo = document.createElement("div");
+    let userInfo = document.createElement("div");
     userInfo.setAttribute("class", "user-list-info");
 
     if (info.VisitorID) {
@@ -384,6 +384,12 @@ function addUserItem(obj, name, subTitle, headUrl, info) {
     }
 
 }
+
+//用户详细信息
+
+document.getElementById("closeDetail").addEventListener("click", function () {
+    closeUserDetail();
+});
 
 function openUserDetail(info) {
     document.getElementById("userInfoBox").style.transform = "translateX(-300px)";
@@ -413,14 +419,14 @@ document.getElementById("logo").addEventListener("click", function (event) {
 });
 
 //////登录////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var isLogBoxOpen = false;
-var regOrLog = false;
+let isLogBoxOpen = false;
+let regOrLog = false;
 
 //改变用户信息
 function changeMyInfo(info) {
     document.getElementById("myName").innerHTML = info.UserName;
     document.getElementById("newNameEdit").value = info.UserName;
-    var h = document.getElementById("myHead");
+    let h = document.getElementById("myHead");
     if (info.UserID == -1) {
         h.removeEventListener("click", openUser);
         h.addEventListener("click", openRegLogBox);
@@ -431,12 +437,12 @@ function changeMyInfo(info) {
         document.getElementById("myState").innerHTML = "在线";
     }
     if (info.UserProfile == "") {
-        var s = document.getElementById("mySign");
+        let s = document.getElementById("mySign");
         s.innerHTML = "这个人什么都没有留下";
         s.title = "这个人什么都没有留下";
         document.getElementById("newSignEdit").placeholder = "这个人什么都没有留下";
     } else {
-        var s = document.getElementById("mySign");
+        let s = document.getElementById("mySign");
         document.getElementById("newSignEdit").value = info.UserProfile;
         s.innerHTML = info.UserProfile;
         s.title = info.UserProfile;
@@ -445,7 +451,7 @@ function changeMyInfo(info) {
 
 //////////获取框中用户名
 function getUserName() {
-    var userName = document.getElementById("username").value;
+    let userName = document.getElementById("username").value;
     if (userName.replace(/\s+/g, "").length != 0) {
         return userName;
     } else {
@@ -456,7 +462,7 @@ function getUserName() {
 
 ////////获取框中密码
 function getPsw() {
-    var passWd = document.getElementById("password").value;
+    let passWd = document.getElementById("password").value;
     if (passWd.replace(/\s+/g, "").length != 0) {
         return passWd;
     } else {
@@ -507,7 +513,7 @@ document.getElementById("signOut").addEventListener("click", function (e) {
 /////////打开登陆注册框
 function openRegLogBox() {
     if (!isLogBoxOpen) {
-        var rBox = document.getElementById("logRegBox");
+        let rBox = document.getElementById("logRegBox");
         rBox.style.transform = "scale(1.0)";
         rBox.style.opacity = "1.0";
         setTimeout(function (e) {
@@ -525,7 +531,7 @@ function openRegLogBox() {
 /////关闭登录注册框
 function closeRegLogBox() {
     if (isLogBoxOpen) {
-        var rBox = document.getElementById("logRegBox");
+        let rBox = document.getElementById("logRegBox");
         rBox.style.backgroundColor = "rgba(0,0,0,0.00)";
         rBox.style.opacity = "0.0";
         setTimeout(function () {
@@ -539,8 +545,8 @@ function closeRegLogBox() {
 
 //////切换到登录模式
 function changeToLog() {
-    var l = document.getElementById("logBtn");
-    var r = document.getElementById("regBtn");
+    let l = document.getElementById("logBtn");
+    let r = document.getElementById("regBtn");
     document.getElementById("checkPsw").style.transform = "scale(0)";
     l.style.transform = "translateY(-50px)";
     r.style.transform = "translateY(-50px)";
@@ -552,8 +558,8 @@ function changeToLog() {
 
 /////////切换到注册模式
 function changeToReg() {
-    var l = document.getElementById("logBtn");
-    var r = document.getElementById("regBtn");
+    let l = document.getElementById("logBtn");
+    let r = document.getElementById("regBtn");
     document.getElementById("checkPsw").style.transform = "scale(1)";
     l.style.transform = "translateY(0px)";
     r.style.transform = "translateY(0px)";
@@ -564,8 +570,8 @@ function changeToReg() {
 
 //////判断两次密码是否相同
 function checkPsw() {
-    var p1 = document.getElementById("password").value;
-    var p2 = document.getElementById("checkPsw").value;
+    let p1 = document.getElementById("password").value;
+    let p2 = document.getElementById("checkPsw").value;
     if (p1 == p2) {
         return true;
     } else {
@@ -584,20 +590,20 @@ function scrollToBottom(obj) {
 
 ////////判断屏幕宽度是否大于2000
 function isSmall() {
-    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (w < 2000) return true;
     else return false;
 }
 
 ////////屏幕足够宽时调用此方法
 function bigScreen(width) {
-    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     document.getElementById("setBtn").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
     openRight();
     openLeft();
     isRightOpen = true;
     isLeftOpen = true;
-    var d = (width - 2000) / 2;
+    let d = (width - 2000) / 2;
     document.getElementById("rightMenu").style.transform = "translateX(-" + d + "px) translateY(160px)";
     document.getElementById("leftMenu").style.transform = "translateX(" + d + "px) translateY(160px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
@@ -614,7 +620,7 @@ function smallScreen() {
 
 //////////服务器连接失败的提示信息
 function setConnectError(error) {
-    var c = document.getElementById("connect");
+    let c = document.getElementById("connect");
     c.title = "无法连接到服务器";
     c.innerHTML = "×";
     c.style.backgroundColor = "rgba(255, 120, 120, 1.00)";
@@ -622,17 +628,17 @@ function setConnectError(error) {
 
 ////////服务器连接成功的提示信息
 function connectSuccess() {
-    var c = document.getElementById("connect");
+    let c = document.getElementById("connect");
     c.title = "已连接到服务器";
     c.innerHTML = "√";
     c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
 }
 
 ////////服务器断开后点击发送给予反馈
-var isToasted = false;
+let isToasted = false;
 
 function errorInfo(error) {
-    var c = document.getElementById("connect");
+    let c = document.getElementById("connect");
     if (!isToasted) {
         c.style.backgroundColor = "rgba(255, 0, 0, 1.00)";
         c.style.transform = "scale(1.1)";
@@ -646,10 +652,10 @@ function errorInfo(error) {
 }
 
 ////////输入框缩放
-var chatBox = document.getElementById("chatBox");
-var isPress = false;
-var barStartY = null;
-var oldY = null;
+let chatBox = document.getElementById("chatBox");
+let isPress = false;
+let barStartY = null;
+let oldY = null;
 
 document.getElementById("toolBar").addEventListener("mousedown", function (e) {
     startResize(e);
@@ -677,7 +683,7 @@ document.addEventListener("touchend", function (e) {
 
 function startResize(e) {
     if (!isPress) {
-        var e = e || window.event;
+        let e = e || window.event;
         barStartY = e.clientY || e.touches[0].clientY;
         oldY = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
         isPress = true;
@@ -686,10 +692,10 @@ function startResize(e) {
 
 function reSizeEdit(e) {
     if (isPress) {
-        var e = e || window.event;
-        var limit = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
-        var editBox = document.getElementById("editBox");
-        var distance = oldY - ((e.clientY || e.changedTouches[0].clientY) - barStartY) + "px";
+        let e = e || window.event;
+        let limit = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
+        let editBox = document.getElementById("editBox");
+        let distance = oldY - ((e.clientY || e.changedTouches[0].clientY) - barStartY) + "px";
 
         chatBox.style.bottom = distance;
         editBox.style.height = distance;

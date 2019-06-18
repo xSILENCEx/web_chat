@@ -13,7 +13,7 @@ onload = function () {
 }
 
 function setEditState(state) {
-    var editBox = document.getElementById("edit");
+    let editBox = document.getElementById("edit");
     if (state) {
         editBox.removeAttribute("disabled");
         editBox.setAttribute("placeholder", "在这里输入消息");
@@ -24,24 +24,24 @@ function setEditState(state) {
 }
 
 function setCookie(cName, cValue, exDays) { //设置cookie
-    var d = new Date();
+    let d = new Date();
     d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toGMTString();
+    let expires = "expires=" + d.toGMTString();
     document.cookie = cName + "=" + cValue + "; " + expires;
 }
 
 function getCookie(cName) { //获取cookie
-    var name = cName + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
+    let name = cName + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
     return "";
 }
 
 function checkCookie(value) { //检查cookie
-    var v = getCookie(value);
+    let v = getCookie(value);
     if (v != "") {
         return true;
     } else {
@@ -61,7 +61,7 @@ function ReceiveByServer(self, head, name, msg) {
 
 /////弹出提示信息，支持富文本
 function openTips(type, content) { //type:1提示，2警告，3错误
-    var tips = document.getElementById("tips");
+    let tips = document.getElementById("tips");
     tips.style.transform = "scale(1.0)";
     tips.style.opacity = "1.0";
     setTimeout(function () {
@@ -72,20 +72,20 @@ function openTips(type, content) { //type:1提示，2警告，3错误
 
 /////刷新用户列表
 function refreshUserList(info) {
-    var user = JSON.parse(info);
-    var userCount = user[0].loginUserSize;
-    var list = document.getElementById("userList");
+    let user = JSON.parse(info);
+    let userCount = user[0].loginUserSize;
+    let list = document.getElementById("userList");
     list.innerHTML = "<p class=\"menu-title2\" style=\"margin: 0;font-size: 90%\">在线用户</p>";
     addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def-boy.svg", user[0]);
-    for (var i = 1; i <= userCount; i++) {
-        var sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
+    for (let i = 1; i <= userCount; i++) {
+        let sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
         addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg", user[i]);
     }
 }
 
 /////////登录成功后调用此方法
 function logInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
-    var json = JSON.parse(info);
+    let json = JSON.parse(info);
     changeMyInfo(json);
     isLogin = true;
     setEditState(true);
@@ -98,9 +98,6 @@ function logInfo(info) { ///////传入一个json字符串数组，包含用户�
         setCookie("userID", json.UserID, 10 / 24 / 60);
         setCookie("userHeadUrl", '../UserFavicon/' + json.UserFavicon, 10 / 24 / 60);
     }
-
-    console.log("用户id: " + getCookie("userID"));
-
 
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
@@ -116,7 +113,7 @@ function regInfo(info) { ///////传入一个json字符串数组，包含用户�
 
 /////////注销后调用此方法
 function signOut() {
-    var info = "{\"UserID\": -1,\"UserName\": \"游客\",\"UserProfile\": \"\"}"
+    let info = "{\"UserID\": -1,\"UserName\": \"游客\",\"UserProfile\": \"\"}"
     changeMyInfo(JSON.parse(info));
 
     setCookie("username", "", 100);
@@ -136,12 +133,12 @@ document.getElementById("file-box").onclick = function () {
 }
 document.getElementById("files2").onchange = function () {
 
-    var file = document.getElementById("files2").files[0];
-    var reader = new FileReader();
+    let file = document.getElementById("files2").files[0];
+    let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function (evt) {
         setTimeout(function () {
-            var jsonObject = {}
+            let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
             SendMessageToServer(3, JSON.stringify(jsonObject))
@@ -155,12 +152,12 @@ document.getElementById("pic-box").onclick = function () {
     document.getElementById("files1").click();
 }
 document.getElementById("files1").onchange = function () {
-    var file = document.getElementById("files1").files[0];
-    var reader = new FileReader();
+    let file = document.getElementById("files1").files[0];
+    let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function (evt) {
         setTimeout(function () {
-            var jsonObject = {}
+            let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
             SendMessageToServer(2, JSON.stringify(jsonObject))
@@ -178,10 +175,8 @@ function choosePic() {
 //点击登录注册按钮
 document.getElementById("logBtn").addEventListener("click", function (e) {
     if (this.value == "确认登录") {
-        console.log("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
         UserLogin(getUserName(), getPsw());
     } else {
-        console.log("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
         if (checkPsw()) {
             UserRegister(getUserName(), getPsw());
         } else {
