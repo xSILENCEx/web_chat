@@ -147,7 +147,7 @@ document.addEventListener("touchmove", function (e) {
                 openLeft();
                 isLeftOpen = true;
             }
-            let e = e || window.event;
+            var e = e || window.event;
             startPoint = e.touches[0];
         } else if (isSmall()) {
             if (isLeftOpen) {
@@ -158,7 +158,7 @@ document.addEventListener("touchmove", function (e) {
                 isRightOpen = true;
             }
 
-            let e = e || window.event;
+            var e = e || window.event;
             startPoint = e.touches[0];
         }
     }
@@ -393,7 +393,6 @@ document.getElementById("closeDetail").addEventListener("click", function () {
 
 function openUserDetail(info) {
     document.getElementById("userInfoBox").style.transform = "translateX(-300px)";
-    console.log("打开了用户详情页面:" + info);
 }
 
 function closeUserDetail() {
@@ -683,7 +682,7 @@ document.addEventListener("touchend", function (e) {
 
 function startResize(e) {
     if (!isPress) {
-        let e = e || window.event;
+        var e = e || window.event;
         barStartY = e.clientY || e.touches[0].clientY;
         oldY = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
         isPress = true;
@@ -692,7 +691,7 @@ function startResize(e) {
 
 function reSizeEdit(e) {
     if (isPress) {
-        let e = e || window.event;
+        var e = e || window.event;
         let limit = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
         let editBox = document.getElementById("editBox");
         let distance = oldY - ((e.clientY || e.changedTouches[0].clientY) - barStartY) + "px";

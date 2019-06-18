@@ -50,7 +50,7 @@ function checkCookie(value) { //检查cookie
 }
 
 /////////接收来自服务器的消息
-function ReceiveByServer(self, head, name, msg) {
+function ReceiveByServer(self, head, name, msg, fromId = 0) {
     if (self) {
         rightSend(head, name, msg);
     } else {
@@ -76,10 +76,10 @@ function refreshUserList(info) {
     let userCount = user[0].loginUserSize;
     let list = document.getElementById("userList");
     list.innerHTML = "<p class=\"menu-title2\" style=\"margin: 0;font-size: 90%\">在线用户</p>";
-    addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def-boy.svg", user[0]);
+    addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def.svg", user[0]);
     for (let i = 1; i <= userCount; i++) {
         let sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
-        addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg", user[i]);
+        addUserItem(list, user[i].UserName, sign, '../UserFavicon/' + user[i].UserFavicon, user[i]);
     }
 }
 
@@ -113,6 +113,7 @@ function regInfo(info) { ///////传入一个json字符串数组，包含用户�
 
 /////////注销后调用此方法
 function signOut() {
+    UserSignOut();
     let info = "{\"UserID\": -1,\"UserName\": \"游客\",\"UserProfile\": \"\"}"
     changeMyInfo(JSON.parse(info));
 

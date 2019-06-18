@@ -53,9 +53,9 @@ function ConnectToServer() {
     }
 }
 
-function SendMessageToServer(type, message) {
+function SendMessageToServer(type, message, toId = 0) {
     try {
-        channel.objects.ChatUser.SendUserMessage(type, message, function (value) {});
+        channel.objects.ChatUser.SendUserMessage(type, message, toId, function (value) {});
     } catch (e) {
         errorInfo(e);
     }
@@ -76,3 +76,5 @@ function UserLogin(name, password) {
         errorInfo(e);
     }
 }
+
+function UserSignOut() {}
