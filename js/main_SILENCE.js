@@ -602,7 +602,7 @@ function bigScreen(width) {
     openLeft();
     isRightOpen = true;
     isLeftOpen = true;
-    let d = (width - 2000) / 2;
+    let d = (width - 1400) / 2;
     document.getElementById("rightMenu").style.transform = "translateX(-" + d + "px) translateY(160px)";
     document.getElementById("leftMenu").style.transform = "translateX(" + d + "px) translateY(160px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
@@ -651,7 +651,6 @@ function errorInfo(error) {
 }
 
 ////////输入框缩放
-let chatBox = document.getElementById("chatBox");
 let isPress = false;
 let barStartY = null;
 let oldY = null;
@@ -682,6 +681,7 @@ document.addEventListener("touchend", function (e) {
 
 function startResize(e) {
     if (!isPress) {
+        let chatBox = document.getElementById("chatBox");
         var e = e || window.event;
         barStartY = e.clientY || e.touches[0].clientY;
         oldY = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
@@ -691,6 +691,7 @@ function startResize(e) {
 
 function reSizeEdit(e) {
     if (isPress) {
+        let chatBox = document.getElementById("chatBox");
         var e = e || window.event;
         let limit = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
         let editBox = document.getElementById("editBox");

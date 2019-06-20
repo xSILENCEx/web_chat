@@ -2,6 +2,11 @@
     font-family: '微软雅黑';
 }
 
+body {
+    padding: 0;
+    margin: 0;
+}
+
 a {
     user-select: none;
     text-decoration: none;
@@ -42,23 +47,6 @@ a:active {
     height: 100%;
     max-width: 1400px;
     margin: 0 auto;
-}
-
-#chatBox {
-    position: absolute;
-    top: 60px;
-    bottom: 100px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    overflow: auto;
-    max-width: 1400px;
-    background-color: rgba(250, 250, 250, 1.00);
-    -webkit-overflow-scrolling: touch;
-}
-
-#chatBox::-webkit-scrollbar {
-    display: none
 }
 
 #toolBar {
@@ -642,11 +630,16 @@ a:active {
 }
 
 #closeLogBox {
+    cursor: pointer;
+    user-select: none;
     position: absolute;
     right: 20px;
     top: 20px;
     width: 20px;
     height: 20px;
+    font-size: 80%;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 1.00);
     background-color: rgba(255, 120, 120, 1.00);
 }
 
@@ -659,12 +652,6 @@ a:active {
     -ms-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
-}
-
-#chatList {
-    height: 100%;
-    padding-bottom: 300px;
-    overflow: auto;
 }
 
 #userList {
@@ -716,43 +703,6 @@ a:active {
 }
 
 .user-list-info {
-    width: 60%;
-    float: left;
-    margin-left: 10px;
-    font-size: 70%;
-    color: rgba(55, 55, 55, 1.00);
-}
-
-.chat-list-item {
-    cursor: pointer;
-    float: left;
-    padding: 6px;
-    margin: 16px 0 0 14px;
-    width: 260px;
-    background-color: rgba(240, 240, 240, 1.00);
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-}
-
-.chat-list-head {
-    float: left;
-    width: 36px;
-    height: 36px;
-}
-
-.chat-list-name {
-    width: 50%;
-    float: left;
-    margin-left: 10px;
-    font-size: 80%;
-    font-weight: bold;
-    color: rgba(65, 65, 65, 1.00);
-}
-
-.chat-list-info {
     width: 60%;
     float: left;
     margin-left: 10px;
