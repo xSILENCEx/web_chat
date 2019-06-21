@@ -8,11 +8,9 @@ onload = function () {
     softWindow();
 
     /////自动发送系统提示信息
-    // leftSend("../img/system.svg", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。");
 
-    new MessageItem("群聊", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。", "../img/def.svg", 0, 0, 0).addToWin();
-    new MessageItem("123", "1234567890", "../img/def.svg", 0, 1, 2).addToWin();
-    new MessageItem("哈哈哈哈", "1234567890", "../img/def.svg", 0, 1, 3).addToWin();
+    new MessageItem("群聊", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。", "../img/def.svg", 0, 0).addToWin();
+    new MessageItem("群聊", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 0).addToWin();
 }
 
 function setEditState(state) {
