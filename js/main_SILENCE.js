@@ -178,7 +178,7 @@ function closeRight() {
     document.getElementById("rightMenu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
     closeUserDetail();
-    closeNetSet();
+    closePswSet();
     closeAbout();
     closeUser();
 }
@@ -193,13 +193,19 @@ function closeUser() {
     document.getElementById("user-setting-menu").style.transform = "translateX(0px)";
 }
 
-/////打开网络设置
-function openNetSet() {
-    document.getElementById("net-menu").style.transform = "translateX(-300px)";
+/////打开密码设置
+function openPswSet() {
+    if (isLogin) {
+        document.getElementById("net-menu").style.transform = "translateX(-300px)";
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
+
 }
 
 //////关闭网络设置
-function closeNetSet() {
+function closePswSet() {
     document.getElementById("net-menu").style.transform = "translateX(0px)";
 }
 
@@ -307,9 +313,9 @@ document.getElementById("userSettings").addEventListener("click", function () {
 document.getElementById("closeUserMenu").addEventListener("click", closeUser);
 
 ////网络设置
-document.getElementById("netSettings").addEventListener("click", openNetSet);
+document.getElementById("pswSettings").addEventListener("click", openPswSet);
 
-document.getElementById("closeNet").addEventListener("click", closeNetSet);
+document.getElementById("closeNet").addEventListener("click", closePswSet);
 
 /////坦克大战
 document.getElementById("addTank").addEventListener("click", function () {
@@ -317,6 +323,7 @@ document.getElementById("addTank").addEventListener("click", function () {
         window.location.href = "game";
     } else {
         openRegLogBox();
+        isLogBoxOpen = true;
     }
 });
 

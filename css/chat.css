@@ -105,8 +105,7 @@
     padding: 6px;
     margin: 16px 0 0 14px;
     width: 260px;
-    border: 1px solid rgba(160, 160, 160, 1.00);
-    background-color: rgba(240, 240, 240, 1.00);
+    background-color: rgba(230, 230, 230, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;

@@ -11,6 +11,10 @@ onload = function () {
 
     new MessageItem("群聊", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。", "../img/def.svg", 0, 0).addToWin();
     new MessageItem("群聊", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 0).addToWin();
+    new MessageItem("群聊", "更新一下内容", "../img/def.svg", 0, 0).addToWin();
+    new MessageItem("陌生人", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 1).addToWin();
+    new MessageItem("陌生人2", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 2).addToWin();
+    new MessageItem("陌生人3", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 3).addToWin();
 }
 
 function setEditState(state) {
@@ -130,8 +134,14 @@ function signOut() {
 }
 
 ////文件发送
-document.getElementById("file-box").onclick = function () {
-    document.getElementById("files2").click();
+document.getElementById("fileBox").onclick = function () {
+    if (isLogin) {
+        document.getElementById("files2").click();
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
+
 }
 document.getElementById("files2").onchange = function () {
 
@@ -143,15 +153,21 @@ document.getElementById("files2").onchange = function () {
             let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
-            SendMessageToServer(3, JSON.stringify(jsonObject))
+            SendMessageToServer(3, JSON.stringify(jsonObject));
         }, 1000);
     }
     document.getElementById("files2").value = "";
 }
 
 /////图片选择与发送
-document.getElementById("pic-box").onclick = function () {
-    document.getElementById("files1").click();
+document.getElementById("picBox").onclick = function () {
+    if (isLogin) {
+        document.getElementById("files1").click();
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
+
 }
 document.getElementById("files1").onchange = function () {
     let file = document.getElementById("files1").files[0];
