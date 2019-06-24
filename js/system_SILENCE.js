@@ -98,10 +98,10 @@ function logInfo(info) { ///////传入一个json字符串数组，包含用户�
     isLogBoxOpen = false;
 
     if (getUserName() && getPsw()) {
-        setCookie("username", getUserName(), 10 / 24 / 60);
-        setCookie("password", getPsw(), 10 / 24 / 60);
-        setCookie("userID", json.UserID, 10 / 24 / 60);
-        setCookie("userHeadUrl", '../UserFavicon/' + json.UserFavicon, 10 / 24 / 60);
+        setCookie("username", getUserName(), 10);
+        setCookie("password", getPsw(), 10);
+        setCookie("userID", json.UserID, 10);
+        setCookie("userHeadUrl", '../UserFavicon/' + json.UserFavicon, 10);
     }
 
     document.getElementById("username").value = "";

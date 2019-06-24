@@ -204,7 +204,7 @@ function openPswSet() {
 
 }
 
-//////关闭网络设置
+//////关闭密码设置
 function closePswSet() {
     document.getElementById("net-menu").style.transform = "translateX(0px)";
 }
@@ -399,6 +399,16 @@ document.getElementById("closeDetail").addEventListener("click", function () {
 });
 
 function openUserDetail(info) {
+    let userInfo = JSON.parse(info);
+    document.getElementById("detailHead").setAttribute("src", "../UserFavicon/" + userInfo.UserFavicon);
+    document.getElementById("detailName").innerHTML = userInfo.UserName + "  ID: " + userInfo.UserID;
+    document.getElementById("detailSign").innerHTML = userInfo.UserProfile;
+    document.getElementById("regTime").innerHTML = "注册时间:20xx.xx.xx";
+    if (getCookie("userID") == userInfo.UserID) {
+        document.getElementById("sendPerMsg").style.display = "none";
+    } else {
+        document.getElementById("sendPerMsg").style.display = "block";
+    }
     document.getElementById("userInfoBox").style.transform = "translateX(-300px)";
 }
 
