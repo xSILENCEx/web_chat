@@ -3,7 +3,7 @@ onresize = function () {
     if (isSmall()) {
         smallScreen();
     } else {
-        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         bigScreen(w);
     }
 }
@@ -13,14 +13,14 @@ function softWindow() {
     if (isSmall()) {
         smallScreen();
     } else {
-        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         bigScreen(w);
     }
 }
 
 ///////清空输入框
 function clearEdit() {
-    var edit = document.getElementById("edit");
+    let edit = document.getElementById("edit");
     edit.value = "";
     edit.focus();
 }
@@ -28,72 +28,6 @@ function clearEdit() {
 ///////获取输入框内容
 function getEdit() {
     return document.getElementById("edit").value;
-}
-
-//////显示左边的消息
-function leftSend(head, name, msg) {
-
-    // if (msg.indexOf("<img") != -1) {
-    //     var s1 = msg.substr(0, 4);
-    //     var s2 = msg.substr(5, msg.length - 1);
-    //     msg = s1 + " style = \"width:100%\"" + s2;
-    // }
-
-    var newMsg = document.createElement("div");
-    newMsg.setAttribute("class", "msg-item");
-
-    var h = document.createElement("img");
-    h.setAttribute("class", "head-img");
-    h.setAttribute("src", head);
-
-    var lName = document.createElement("div");
-    lName.setAttribute("class", "user-name");
-    lName.innerHTML = name;
-
-    var lMsg = document.createElement("div");
-    lMsg.setAttribute("class", "msg-box dot-c");
-    lMsg.innerHTML = msg;
-
-    newMsg.appendChild(h);
-    newMsg.appendChild(lName);
-    newMsg.appendChild(lMsg);
-
-    var chatBox = document.getElementById("chatBox");
-    chatBox.appendChild(newMsg);
-    scrollToBottom(newMsg);
-}
-
-////////显示右边的消息
-function rightSend(head, name, msg) {
-
-    // if (msg.indexOf("<img") != -1) {
-    //     var s1 = msg.substr(0, 4);
-    //     var s2 = msg.substr(5, msg.length - 1);
-    //     msg = s1 + " style = \"width:100%\"" + s2;
-    // }
-
-    var newMsg = document.createElement("div");
-    newMsg.setAttribute("class", "msg-item");
-
-    var h = document.createElement("img");
-    h.setAttribute("class", "head-img2");
-    h.setAttribute("src", head);
-
-    var lName = document.createElement("div");
-    lName.setAttribute("class", "user-name2");
-    lName.innerHTML = name;
-
-    var lMsg = document.createElement("div");
-    lMsg.setAttribute("class", "msg-box2 theme");
-    lMsg.innerHTML = msg;
-
-    newMsg.appendChild(h);
-    newMsg.appendChild(lName);
-    newMsg.appendChild(lMsg);
-
-    var chatBox = document.getElementById("chatBox");
-    chatBox.appendChild(newMsg);
-    scrollToBottom(newMsg);
 }
 
 //////////当前用户发送消息的动作
@@ -130,13 +64,13 @@ document.getElementById("whole").addEventListener("click", function () {
 });
 //////Ctrl+Enter键发送
 document.onkeydown = function (e) {
-    var isEditing = document.getElementById("edit");
+    let isEditing = document.getElementById("edit");
     if ((13 == e.keyCode && e.ctrlKey) && isEditing == document.activeElement) {
         meSend(getEdit());
     }
 }
 ///////手势判断
-var startPoint = null;
+let startPoint = null;
 document.addEventListener("touchstart", function (e) {
     var e = e || window.event;
     startPoint = e.touches[0];
@@ -144,12 +78,12 @@ document.addEventListener("touchstart", function (e) {
 document.addEventListener("touchmove", function (e) {
     var e = e || window.event;
     //e.changedTouches能找到离开手机的手指，返回的是一个数组
-    var endPoint = e.changedTouches[0];
+    let endPoint = e.changedTouches[0];
     //计算终点与起点的差值
-    var x = endPoint.clientX - startPoint.clientX;
-    var y = endPoint.clientY - startPoint.clientY;
+    let x = endPoint.clientX - startPoint.clientX;
+    let y = endPoint.clientY - startPoint.clientY;
 
-    var d = 80; //滑动距离的参考值
+    let d = 80; //滑动距离的参考值
     if (Math.abs(x) > d && (!isLogBoxOpen)) {
         if (x > 0 && isSmall()) {
             if (isRightOpen) {
@@ -177,19 +111,20 @@ document.addEventListener("touchmove", function (e) {
 });
 
 //////设置//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var isRightOpen = false; //右边栏(设置)是否打开
+let isRightOpen = false; //右边栏(设置)是否打开
 
 ////打开右边栏
 function openRight() {
-    document.getElementById("rightMenu").style.transform = "translateX(0px)";
+    document.getElementById("rightMenu").style.transform = "translateX(-300px)";
     document.getElementById("whole").style.transform = "translateX(-200px)";
 }
 
 /////关闭右边栏
 function closeRight() {
-    document.getElementById("rightMenu").style.transform = "translateX(300px)";
+    document.getElementById("rightMenu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
-    closeNetSet();
+    closeUserDetail();
+    closePswSet();
     closeAbout();
     closeUser();
 }
@@ -204,26 +139,20 @@ function closeUser() {
     document.getElementById("user-setting-menu").style.transform = "translateX(0px)";
 }
 
-/////打开网络设置
-function openNetSet() {
-    document.getElementById("net-menu").style.transform = "translateX(-300px)";
-}
-
-//////关闭网络设置
-function closeNetSet() {
-    document.getElementById("net-menu").style.transform = "translateX(0px)";
-}
-
-function getServerInfo() {
-    var s = document.getElementById("server-ip").value;
-    var p1 = document.getElementById("server-port").value;
-    var p2 = document.getElementById("server-port2").value;
-
-    if (s.length != 0 && p1.length != 0 && p2.length != 0) {
-        return "{\"server\":\"" + s + "\",\"port1\":\"" + p1 + "\",\"port2\":\"" + p2 + "\"}";
+/////打开密码设置
+function openPswSet() {
+    if (isLogin) {
+        document.getElementById("net-menu").style.transform = "translateX(-300px)";
     } else {
-        return "信息不完整";
+        openRegLogBox();
+        isLogBoxOpen = true;
     }
+
+}
+
+//////关闭密码设置
+function closePswSet() {
+    document.getElementById("net-menu").style.transform = "translateX(0px)";
 }
 
 function openAbout() {
@@ -234,30 +163,8 @@ function closeAbout() {
     document.getElementById("about-menu").style.transform = "translateX(0px)";
 }
 
-function putInfo(type, content) {
-    var tipsBody = document.getElementById("tipsBody");
-    var tipsTitle = document.getElementById("tipsTitle");
-    var tipsContent = document.getElementById("tipsContent");
-
-    switch (type) {
-        case 1:
-            tipsTitle.innerHTML = "提示";
-            break;
-        case 2:
-            tipsTitle.innerHTML = "警告";
-            break;
-        case 3:
-            tipsTitle.innerHTML = "错误";
-            break;
-    }
-
-    tipsContent.innerHTML = content;
-    var tipsHeight = tipsBody.clientHeight || tipsBody.offsetHeight;
-    tipsBody.style.marginTop = "-" + tipsHeight / 2 + "px";
-}
-
 function closeTips() {
-    var tips = document.getElementById("tips");
+    let tips = document.getElementById("tips");
     tips.style.opacity = "0.0";
     tips.style.transform = "scale(1.2)";
     setTimeout(function () {
@@ -266,16 +173,16 @@ function closeTips() {
     }, 500);
 }
 
-var isSetItemOpen = false;
+let isSetItemOpen = false;
 
 function openCloseSetting() {
-    var setItemBox = document.getElementById("setItemBox");
+    let setItemBox = document.getElementById("setItemBox");
 
     if (isSetItemOpen) {
         document.getElementById("settingBtn").style.color = "rgba(100, 100, 100, 0.00)";
         document.getElementById("userList").style.transform = "translateY(0px)";
         setItemBox.style.transform = "scale(0.1) translateY(0px)";
-        setItemBox.style.right = "25px";
+        setItemBox.style.right = "27px";
     } else {
         document.getElementById("settingBtn").style.color = "rgba(100, 100, 100, 1.00)";
         document.getElementById("userList").style.transform = "translateY(280px)";
@@ -302,7 +209,7 @@ document.getElementById("setBtn").addEventListener("click", function (event) {
 });
 
 //////用户设置
-var isLogin = false;
+let isLogin = false;
 document.getElementById("userSettings").addEventListener("click", function () {
     if (isLogin) {
         openUser();
@@ -315,9 +222,20 @@ document.getElementById("userSettings").addEventListener("click", function () {
 document.getElementById("closeUserMenu").addEventListener("click", closeUser);
 
 ////网络设置
-document.getElementById("netSettings").addEventListener("click", openNetSet);
+document.getElementById("pswSettings").addEventListener("click", openPswSet);
 
-document.getElementById("closeNet").addEventListener("click", closeNetSet);
+document.getElementById("closeNet").addEventListener("click", closePswSet);
+
+/////坦克大战
+document.getElementById("addTank").addEventListener("click", function () {
+    if (isLogin) {
+        window.location.href = "game";
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
+});
+
 
 //////关于
 document.getElementById("about").addEventListener("click", openAbout);
@@ -329,34 +247,34 @@ document.getElementById("tipsBtn").addEventListener("click", closeTips);
 document.getElementById("settingBtn").addEventListener("click", openCloseSetting);
 
 ///////聊天列表//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var isLeftOpen = false; //左边栏是否打开
+let isLeftOpen = false; //左边栏是否打开
 
 //打开左边栏
 function openLeft() {
-    document.getElementById("leftMenu").style.transform = "translateX(0px)";
+    document.getElementById("leftMenu").style.transform = "translateX(300px)";
     document.getElementById("whole").style.transform = "translateX(200px)";
 }
 
 //关闭左边栏
 function closeLeft() {
-    document.getElementById("leftMenu").style.transform = "translateX(-300px)";
+    document.getElementById("leftMenu").style.transform = "translateX(0px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 
 function addUserItem(obj, name, subTitle, headUrl, info) {
 
-    var userItem = document.createElement("div");
+    let userItem = document.createElement("div");
     userItem.setAttribute("class", "user-list-item");
 
-    var userHead = document.createElement("img");
+    let userHead = document.createElement("img");
     userHead.setAttribute("alt", "#");
 
     userHead.setAttribute("class", "user-list-head");
 
-    var userName = document.createElement("div");
+    let userName = document.createElement("div");
     userName.setAttribute("class", "user-list-name");
 
-    var userInfo = document.createElement("div");
+    let userInfo = document.createElement("div");
     userInfo.setAttribute("class", "user-list-info");
 
     if (info.VisitorID) {
@@ -383,11 +301,29 @@ function addUserItem(obj, name, subTitle, headUrl, info) {
 
 }
 
+//用户详细信息
+
+document.getElementById("closeDetail").addEventListener("click", function () {
+    closeUserDetail();
+});
+
 function openUserDetail(info) {
-    console.log("打开了用户详情页面:" + info);
+    let userInfo = JSON.parse(info);
+    document.getElementById("detailHead").setAttribute("src", "../UserFavicon/" + userInfo.UserFavicon);
+    document.getElementById("detailName").innerHTML = userInfo.UserName + "  ID: " + userInfo.UserID;
+    document.getElementById("detailSign").innerHTML = userInfo.UserProfile;
+    document.getElementById("regTime").innerHTML = "注册时间:20xx.xx.xx";
+    if (getCookie("userID") == userInfo.UserID) {
+        document.getElementById("sendPerMsg").style.display = "none";
+    } else {
+        document.getElementById("sendPerMsg").style.display = "block";
+    }
+    document.getElementById("userInfoBox").style.transform = "translateX(-300px)";
 }
 
-function closeUserDetail() {}
+function closeUserDetail() {
+    document.getElementById("userInfoBox").style.transform = "translateX(0px)";
+}
 
 //////点击logo打开左侧栏
 document.getElementById("logo").addEventListener("click", function (event) {
@@ -408,14 +344,14 @@ document.getElementById("logo").addEventListener("click", function (event) {
 });
 
 //////登录////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var isLogBoxOpen = false;
-var regOrLog = false;
+let isLogBoxOpen = false;
+let regOrLog = false;
 
 //改变用户信息
 function changeMyInfo(info) {
     document.getElementById("myName").innerHTML = info.UserName;
     document.getElementById("newNameEdit").value = info.UserName;
-    var h = document.getElementById("myHead");
+    let h = document.getElementById("myHead");
     if (info.UserID == -1) {
         h.removeEventListener("click", openUser);
         h.addEventListener("click", openRegLogBox);
@@ -426,12 +362,12 @@ function changeMyInfo(info) {
         document.getElementById("myState").innerHTML = "在线";
     }
     if (info.UserProfile == "") {
-        var s = document.getElementById("mySign");
+        let s = document.getElementById("mySign");
         s.innerHTML = "这个人什么都没有留下";
         s.title = "这个人什么都没有留下";
         document.getElementById("newSignEdit").placeholder = "这个人什么都没有留下";
     } else {
-        var s = document.getElementById("mySign");
+        let s = document.getElementById("mySign");
         document.getElementById("newSignEdit").value = info.UserProfile;
         s.innerHTML = info.UserProfile;
         s.title = info.UserProfile;
@@ -440,7 +376,7 @@ function changeMyInfo(info) {
 
 //////////获取框中用户名
 function getUserName() {
-    var userName = document.getElementById("username").value;
+    let userName = document.getElementById("username").value;
     if (userName.replace(/\s+/g, "").length != 0) {
         return userName;
     } else {
@@ -451,7 +387,7 @@ function getUserName() {
 
 ////////获取框中密码
 function getPsw() {
-    var passWd = document.getElementById("password").value;
+    let passWd = document.getElementById("password").value;
     if (passWd.replace(/\s+/g, "").length != 0) {
         return passWd;
     } else {
@@ -486,11 +422,6 @@ document.getElementById("checkPsw").addEventListener("blur", function (e) {
     e.stopPropagation();
 });
 
-document.getElementById("logHead").addEventListener("click", function (e) {
-    console.log("选择头像");
-    e.stopPropagation();
-});
-
 document.getElementById("lrMain").addEventListener("click", function (e) {
     e.stopPropagation();
 });
@@ -507,7 +438,7 @@ document.getElementById("signOut").addEventListener("click", function (e) {
 /////////打开登陆注册框
 function openRegLogBox() {
     if (!isLogBoxOpen) {
-        var rBox = document.getElementById("logRegBox");
+        let rBox = document.getElementById("logRegBox");
         rBox.style.transform = "scale(1.0)";
         rBox.style.opacity = "1.0";
         setTimeout(function (e) {
@@ -525,7 +456,7 @@ function openRegLogBox() {
 /////关闭登录注册框
 function closeRegLogBox() {
     if (isLogBoxOpen) {
-        var rBox = document.getElementById("logRegBox");
+        let rBox = document.getElementById("logRegBox");
         rBox.style.backgroundColor = "rgba(0,0,0,0.00)";
         rBox.style.opacity = "0.0";
         setTimeout(function () {
@@ -539,8 +470,8 @@ function closeRegLogBox() {
 
 //////切换到登录模式
 function changeToLog() {
-    var l = document.getElementById("logBtn");
-    var r = document.getElementById("regBtn");
+    let l = document.getElementById("logBtn");
+    let r = document.getElementById("regBtn");
     document.getElementById("checkPsw").style.transform = "scale(0)";
     l.style.transform = "translateY(-50px)";
     r.style.transform = "translateY(-50px)";
@@ -552,8 +483,8 @@ function changeToLog() {
 
 /////////切换到注册模式
 function changeToReg() {
-    var l = document.getElementById("logBtn");
-    var r = document.getElementById("regBtn");
+    let l = document.getElementById("logBtn");
+    let r = document.getElementById("regBtn");
     document.getElementById("checkPsw").style.transform = "scale(1)";
     l.style.transform = "translateY(0px)";
     r.style.transform = "translateY(0px)";
@@ -564,8 +495,8 @@ function changeToReg() {
 
 //////判断两次密码是否相同
 function checkPsw() {
-    var p1 = document.getElementById("password").value;
-    var p2 = document.getElementById("checkPsw").value;
+    let p1 = document.getElementById("password").value;
+    let p2 = document.getElementById("checkPsw").value;
     if (p1 == p2) {
         return true;
     } else {
@@ -584,20 +515,20 @@ function scrollToBottom(obj) {
 
 ////////判断屏幕宽度是否大于2000
 function isSmall() {
-    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (w < 2000) return true;
     else return false;
 }
 
 ////////屏幕足够宽时调用此方法
 function bigScreen(width) {
-    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     document.getElementById("setBtn").innerHTML = "<div style='font-size:16px'>一个简单的群聊网站<div>";
     openRight();
     openLeft();
     isRightOpen = true;
     isLeftOpen = true;
-    var d = (width - 2000) / 2;
+    let d = (width - 1400) / 2;
     document.getElementById("rightMenu").style.transform = "translateX(-" + d + "px) translateY(160px)";
     document.getElementById("leftMenu").style.transform = "translateX(" + d + "px) translateY(160px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
@@ -614,17 +545,25 @@ function smallScreen() {
 
 //////////服务器连接失败的提示信息
 function setConnectError(error) {
-    var c = document.getElementById("connect");
+    let c = document.getElementById("connect");
     c.title = "无法连接到服务器";
-    c.innerHTML = "E";
+    c.innerHTML = "×";
     c.style.backgroundColor = "rgba(255, 120, 120, 1.00)";
 }
 
+////////服务器连接成功的提示信息
+function connectSuccess() {
+    let c = document.getElementById("connect");
+    c.title = "已连接到服务器";
+    c.innerHTML = "√";
+    c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
+}
+
 ////////服务器断开后点击发送给予反馈
-var isToasted = false;
+let isToasted = false;
 
 function errorInfo(error) {
-    var c = document.getElementById("connect");
+    let c = document.getElementById("connect");
     if (!isToasted) {
         c.style.backgroundColor = "rgba(255, 0, 0, 1.00)";
         c.style.transform = "scale(1.1)";
@@ -637,18 +576,10 @@ function errorInfo(error) {
     }, 100);
 }
 
-////////服务器连接成功的提示信息
-function connectSuccess() {
-    var c = document.getElementById("connect");
-    c.title = "已连接到服务器";
-    c.innerHTML = "S";
-    c.style.backgroundColor = "rgba(118, 178, 74, 1.00)";
-}
 ////////输入框缩放
-var chatBox = document.getElementById("chatBox");
-var isPress = false;
-var barStartY = null;
-var oldY = null;
+let isPress = false;
+let barStartY = null;
+let oldY = null;
 
 document.getElementById("toolBar").addEventListener("mousedown", function (e) {
     startResize(e);
@@ -676,6 +607,7 @@ document.addEventListener("touchend", function (e) {
 
 function startResize(e) {
     if (!isPress) {
+        let chatBox = document.getElementById("chatBox");
         var e = e || window.event;
         barStartY = e.clientY || e.touches[0].clientY;
         oldY = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
@@ -685,10 +617,11 @@ function startResize(e) {
 
 function reSizeEdit(e) {
     if (isPress) {
+        let chatBox = document.getElementById("chatBox");
         var e = e || window.event;
-        var limit = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
-        var editBox = document.getElementById("editBox");
-        var distance = oldY - ((e.clientY || e.changedTouches[0].clientY) - barStartY) + "px";
+        let limit = parseInt(getComputedStyle(chatBox, null).getPropertyValue("bottom"));
+        let editBox = document.getElementById("editBox");
+        let distance = oldY - ((e.clientY || e.changedTouches[0].clientY) - barStartY) + "px";
 
         chatBox.style.bottom = distance;
         editBox.style.height = distance;

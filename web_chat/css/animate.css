@@ -18,7 +18,7 @@
     -o-transition: all 0.5s;
 }
 
-#pic-box:hover {
+#picBox:hover {
     opacity: 0.6;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -27,7 +27,7 @@
     -o-transition: all 0.5s;
 }
 
-#file-box:hover {
+#fileBox:hover {
     opacity: 0.6;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -172,6 +172,7 @@
 .setting-item:hover {
     transform: scale(1.1);
     transition: all 0.5s;
+    background-color: rgba(200, 200, 200, 1.00);
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;
     -moz-transition: all 0.5s;
