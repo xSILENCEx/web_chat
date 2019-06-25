@@ -27,17 +27,13 @@ class MessageItem {
             msg.innerHTML = this.content;
 
             if (this.dir == 0) {
-
                 h.setAttribute("class", "head-img");
                 name.setAttribute("class", "user-name");
                 msg.setAttribute("class", "msg-box dot-c");
-
             } else {
-
                 h.setAttribute("class", "head-img2");
                 name.setAttribute("class", "user-name2");
                 msg.setAttribute("class", "msg-box2 theme");
-
             }
 
             newMsg.appendChild(h);
