@@ -34,7 +34,7 @@ void HttpService::FileResponse(QString fileName, QHttpServerResponder* responder
 			file.setFileName(QString("../web_game/") + fileName);
 		else
 		{
-			qWarning() << tr("QQHttpServer Response Failure: File not exist - %1").arg(file.fileName());
+			qWarning() << tr("QHttpServer Response Failure: File not exist - %1").arg(file.fileName());
 			responder->write(QHttpServerResponder::StatusCode::NotFound);
 		}
 	}
@@ -50,7 +50,7 @@ void HttpService::FileResponse(QString fileName, QHttpServerResponder* responder
 	}
 	else
 	{
-		qWarning() << tr("QQHttpServer Response Failure: File not open - %1").arg(file.fileName());
+		qWarning() << tr("QHttpServer Response Failure: File not open - %1").arg(file.fileName());
 		responder->write(QHttpServerResponder::StatusCode::NotFound);
 	}
 }

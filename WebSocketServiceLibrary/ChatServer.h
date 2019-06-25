@@ -13,8 +13,8 @@ public:
 	ChatServer(QObject* parent = nullptr);
 	~ChatServer();
 public slots:
-	void ReceiveUserMessage(ChatUser*, QString);
+	void ReceiveUserMessage(ChatUser*, QString, int);
 signals:
-	void ForwardUserMessage(ChatUser*, QString);
+	void ForwardUserMessage(ChatUser*, QString, int);
 	void ForwardUserlist(QString);
 };

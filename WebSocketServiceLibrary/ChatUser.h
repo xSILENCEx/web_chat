@@ -20,7 +20,7 @@ public:
 	ChatUser(QObject* parent = nullptr);
 	~ChatUser();
 	DataBase* db;
-	QList<ChatUser*> *loginUserList;
+	QList<ChatUser*>* loginUserList;
 	User user;
 public slots:
 	bool UserRegister(QString, QString);
@@ -29,14 +29,14 @@ public slots:
 	bool UserChangeInfo(QString, QString);
 	bool UserChangePassword(QString, QString);
 	bool UserChangeFavicon(QString);
-	bool SendUserMessage(int, QString);
-	void ReceiveUserMessage(ChatUser*, QString);
+	bool SendUserMessage(int, QString, int);
+	void ReceiveUserMessage(ChatUser*, QString, int);
 	void ReceiveUserlist(QString);
 signals:
 	void VisitorConversionUser(ChatUser*);
 	void UserConversionVisitor(ChatUser*);
-	void UserMessageToServer(ChatUser*, QString);
-	void ShowUserMessage(bool, QString);
+	void UserMessageToServer(ChatUser*, QString, int);
+	void ShowUserMessage(bool, QString, int);
 	void ShowUserList(QString);
 	void ShowUserInfo(QString);
 

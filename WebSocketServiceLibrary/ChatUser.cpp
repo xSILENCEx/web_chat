@@ -23,7 +23,7 @@ QString ChatUser::ReceiveUserFile(QString filestring)
 	}
 	return "";
 }
-bool ChatUser::SendUserMessage(int type, QString content)
+bool ChatUser::SendUserMessage(int type, QString content, int toID)
 {
 	Message message;
 	message.Type = type;
@@ -42,13 +42,23 @@ bool ChatUser::SendUserMessage(int type, QString content)
 	QJsonArray jsonArray;
 	jsonArray.insert(0, user.ConversionJson());
 	jsonArray.insert(1, message.ConversionJson());
-	emit UserMessageToServer(this, QJsonDocument(jsonArray).toJson());
+	emit UserMessageToServer(this, QJsonDocument(jsonArray).toJson(), toID);
 	return true;
 }
 
-void ChatUser::ReceiveUserMessage(ChatUser* chatUser, QString message)
+void ChatUser::ReceiveUserMessage(ChatUser* chatUser, QString message, int toID)
 {
-	emit ShowUserMessage(this == chatUser, message);
+	if (toID == 0)
+	{
+		emit ShowUserMessage(this == chatUser, message, toID);
+	}
+	else
+	{
+		if (user.ID == toID || this == chatUser)
+		{
+			emit ShowUserMessage(this == chatUser, message, toID);
+		}
+	}
 }
 void ChatUser::ReceiveUserlist(QString userlist)
 {
@@ -154,7 +164,7 @@ bool ChatUser::UserLogout()
 }
 bool ChatUser::UserChangeInfo(QString name, QString profile)
 {
-	if (user.ID!=-1)
+	if (user.ID != -1)
 	{
 		User u = user;
 		u.Name = name;
@@ -174,7 +184,7 @@ bool ChatUser::UserChangePassword(QString oldpassword, QString newpassword)
 {
 	if (user.ID != -1)
 	{
-		if (oldpassword==newpassword)
+		if (oldpassword == user.Password)
 		{
 			User u = user;
 			u.Password = newpassword;
@@ -196,8 +206,8 @@ bool ChatUser::UserChangeFavicon(QString filestring)
 	QByteArray byteArray1 = jsonObject.value("file").toString().split(',').at(1).toUtf8();
 	QByteArray byteArray2 = QByteArray::fromBase64(byteArray1);
 	QString fileType = jsonObject.value("filename").toString().split(".").last();
-	if(user.Favicon!="-1.svg")
-	QFile("../UserResource/UserFavicon/" + user.Favicon).remove();
+	if (user.Favicon != "-1.svg")
+		QFile("../UserResource/UserFavicon/" + user.Favicon).remove();
 	QString filename = "../UserResource/UserFavicon/" + QString::number(user.ID) + fileType;
 	QFile file(filename);
 	if (file.open(QIODevice::WriteOnly))
@@ -214,7 +224,7 @@ bool ChatUser::UserChangeFavicon(QString filestring)
 void ChatUser::UserChangePermission(int permission)
 {
 
-	if (user.Permission==-1)
+	if (user.Permission == -1)
 	{
 		user.Permission = permission;
 	}
@@ -232,7 +242,7 @@ bool ChatUser::UserCheckLogin(int id)
 {
 	for (int i = 0; i < loginUserList->size(); i++)
 	{
-		if ((*loginUserList)[i]->user.ID==id)
+		if ((*loginUserList)[i]->user.ID == id)
 		{
 			return true;
 		}
