@@ -55,7 +55,6 @@ function ReceiveByServer(self, head, name, msg, fromId = 0) {
     } else {
         new MessageItem(name, msg, head, 0, fromId).addToWin();
     }
-
 }
 
 /////弹出提示信息，支持富文本

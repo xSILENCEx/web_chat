@@ -310,7 +310,7 @@ document.getElementById("closeDetail").addEventListener("click", function () {
 function openUserDetail(info) {
     let userInfo = JSON.parse(info);
     document.getElementById("detailHead").setAttribute("src", "../UserFavicon/" + userInfo.UserFavicon);
-    document.getElementById("detailName").innerHTML = userInfo.UserName + "  ID: " + userInfo.UserID;
+    document.getElementById("detailName").innerHTML = userInfo.UserName + "  ID:" + userInfo.UserID;
     document.getElementById("detailSign").innerHTML = userInfo.UserProfile;
     document.getElementById("regTime").innerHTML = "注册时间:20xx.xx.xx";
     if (getCookie("userID") == userInfo.UserID) {
@@ -326,7 +326,17 @@ function closeUserDetail() {
 }
 
 document.getElementById("sendPerMsg").addEventListener("click", function (e) {
-    console.log("666");
+    chatObj = parseInt(document.getElementById("detailName").innerHTML.split(":", 2)[1]);
+    if (!document.getElementById("W" + chatObj)) {
+        let winId = "W" + chatObj;
+        let hUrl = document.getElementById("detailHead").getAttribute("src");
+        let n = document.getElementById("detailName").innerHTML.split(" ", 2)[0];
+        let t = new MessageItem(n, "Echo", hUrl, 1, chatObj);
+        t.addToWin()
+        t.destroy();
+        closeRight();
+        isRightOpen = false;
+    }
 });
 
 //////点击logo打开左侧栏

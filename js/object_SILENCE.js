@@ -6,6 +6,7 @@ class MessageItem {
         this.dir = dir;
         this.id = "W" + id;
         this.uId = id;
+        this.obj;
     }
 
     addToWin() {
@@ -43,15 +44,21 @@ class MessageItem {
             newMsg.appendChild(name);
             newMsg.appendChild(msg);
 
-            document.getElementById(this.id).appendChild(newMsg);
+            this.obj = newMsg;
+
+            document.getElementById(this.id).appendChild(this.obj);
             scrollToBottom(newMsg);
 
         } else {
-            let chatItem = new ChatItem(this.id, this.headUrl, this.name, this.content, this.uId);
+            let chatItem = new ChatItem(this.id, this.headUrl, this.name, this.content);
             chatItem.create();
             chatItems[this.id] = chatItem;
             this.addToWin();
         }
+    }
+
+    destroy() {
+        document.getElementById(this.id).removeChild(this.obj);
     }
 }
 
@@ -69,6 +76,7 @@ class ChatWindow {
         document.getElementById("chatBox").appendChild(newWindow);
         this.obj = newWindow;
         this.obj.style.transform = "translateX(-100%) scale(0.5)";
+        chatObj = parseInt(this.id.split("", 2)[1]);
     }
 
     open() {
@@ -83,6 +91,7 @@ class ChatWindow {
             closeLeft();
             isLeftOpen = false;
         }
+        chatObj = parseInt(this.id.split("", 2)[1]);
     }
 
     close() {
@@ -108,7 +117,7 @@ let chatObj = 0;
 let chatItems = [];
 class ChatItem {
 
-    constructor(chatWinId, headUrl, name, lastMsg, id) {
+    constructor(chatWinId, headUrl, name, lastMsg) {
         this.chatWinId = chatWinId;
         this.headUrl = headUrl;
         this.name = name;
@@ -119,7 +128,6 @@ class ChatItem {
         this.nameBox;
         this.infoBox;
         this.itemId = chatWinId + "ITEM";
-        this.id = id;
     }
 
     create() {
@@ -160,8 +168,6 @@ class ChatItem {
                 if (!w.getState()) {
                     w.open();
                     nowWindow = w;
-                    chatObj = this.id;
-                    console.log(chatObj);
                 }
             });
         }
