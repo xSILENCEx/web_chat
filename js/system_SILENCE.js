@@ -149,6 +149,7 @@ function signOut() {
     isRightOpen = false;
 
     isLogin = false;
+    location.reload();
 }
 
 ////文件发送
@@ -171,7 +172,7 @@ document.getElementById("files2").onchange = function () {
             let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
-            SendMessageToServer(3, JSON.stringify(jsonObject));
+            SendMessageToServer(3, JSON.stringify(jsonObject), chatObj);
         }, 1000);
     }
     document.getElementById("files2").value = "";
@@ -196,7 +197,7 @@ document.getElementById("files1").onchange = function () {
             let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
-            SendMessageToServer(2, JSON.stringify(jsonObject))
+            SendMessageToServer(2, JSON.stringify(jsonObject), chatObj)
         }, 1000);
 
     }

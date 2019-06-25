@@ -5,12 +5,13 @@ class MessageItem {
         this.headUrl = headUrl;
         this.dir = dir;
         this.id = "W" + id;
+        this.uId = id;
     }
 
     addToWin() {
         if (document.getElementById(this.id)) {
 
-            chatItems[this.id].refresh(this.headUrl, this.name, this.content);
+            chatItems[this.id].refresh(this.headUrl, this.content);
 
             let newMsg = document.createElement("div");
             newMsg.setAttribute("class", "msg-item");
@@ -46,7 +47,7 @@ class MessageItem {
             scrollToBottom(newMsg);
 
         } else {
-            let chatItem = new ChatItem(this.id, this.headUrl, this.name, this.content);
+            let chatItem = new ChatItem(this.id, this.headUrl, this.name, this.content, this.uId);
             chatItem.create();
             chatItems[this.id] = chatItem;
             this.addToWin();
@@ -103,10 +104,11 @@ class ChatWindow {
 }
 
 let nowWindow;
+let chatObj = 0;
 let chatItems = [];
 class ChatItem {
 
-    constructor(chatWinId, headUrl, name, lastMsg) {
+    constructor(chatWinId, headUrl, name, lastMsg, id) {
         this.chatWinId = chatWinId;
         this.headUrl = headUrl;
         this.name = name;
@@ -117,6 +119,7 @@ class ChatItem {
         this.nameBox;
         this.infoBox;
         this.itemId = chatWinId + "ITEM";
+        this.id = id;
     }
 
     create() {
@@ -157,15 +160,16 @@ class ChatItem {
                 if (!w.getState()) {
                     w.open();
                     nowWindow = w;
+                    chatObj = this.id;
+                    console.log(chatObj);
                 }
             });
         }
 
     }
 
-    refresh(head, name, info) {
+    refresh(head, info) {
         this.headBox.setAttribute("src", head);
-        this.nameBox.innerHTML = name;
         this.infoBox.innerHTML = info;
     }
 }
