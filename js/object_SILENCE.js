@@ -46,14 +46,11 @@ class MessageItem {
             scrollToBottom(newMsg);
 
         } else {
-
             let chatItem = new ChatItem(this.id, this.headUrl, this.name, this.content);
             chatItem.create();
             chatItems[this.id] = chatItem;
             this.addToWin();
-
         }
-
     }
 }
 

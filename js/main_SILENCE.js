@@ -30,60 +30,6 @@ function getEdit() {
     return document.getElementById("edit").value;
 }
 
-//////显示左边的消息
-function leftSend(head, name, msg) {
-
-    let newMsg = document.createElement("div");
-    newMsg.setAttribute("class", "msg-item");
-
-    let h = document.createElement("img");
-    h.setAttribute("class", "head-img");
-    h.setAttribute("src", head);
-
-    let lName = document.createElement("div");
-    lName.setAttribute("class", "user-name");
-    lName.innerHTML = name;
-
-    let lMsg = document.createElement("div");
-    lMsg.setAttribute("class", "msg-box dot-c");
-    lMsg.innerHTML = msg;
-
-    newMsg.appendChild(h);
-    newMsg.appendChild(lName);
-    newMsg.appendChild(lMsg);
-
-    let chatBox = document.getElementById("chatBox");
-    chatBox.appendChild(newMsg);
-    scrollToBottom(newMsg);
-}
-
-////////显示右边的消息
-function rightSend(head, name, msg) {
-
-    let newMsg = document.createElement("div");
-    newMsg.setAttribute("class", "msg-item");
-
-    let h = document.createElement("img");
-    h.setAttribute("class", "head-img2");
-    h.setAttribute("src", head);
-
-    let lName = document.createElement("div");
-    lName.setAttribute("class", "user-name2");
-    lName.innerHTML = name;
-
-    let lMsg = document.createElement("div");
-    lMsg.setAttribute("class", "msg-box2 theme");
-    lMsg.innerHTML = msg;
-
-    newMsg.appendChild(h);
-    newMsg.appendChild(lName);
-    newMsg.appendChild(lMsg);
-
-    let chatBox = document.getElementById("chatBox");
-    chatBox.appendChild(newMsg);
-    scrollToBottom(newMsg);
-}
-
 //////////当前用户发送消息的动作
 function meSend(msg) {
     ///清空键值

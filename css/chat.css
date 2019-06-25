@@ -170,6 +170,10 @@
     -o-transition: all 0.5s;
 }
 
+.chat-window::-webkit-scrollbar {
+    display: none;
+}
+
 #sendPerMsg {
     cursor: pointer;
     text-align: center;

@@ -8,13 +8,7 @@ onload = function () {
     softWindow();
 
     /////自动发送系统提示信息
-
     new MessageItem("群聊", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。", "../img/def.svg", 0, 0).addToWin();
-    new MessageItem("群聊", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 0).addToWin();
-    new MessageItem("群聊", "更新一下内容", "../img/def.svg", 0, 0).addToWin();
-    new MessageItem("陌生人", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 1).addToWin();
-    new MessageItem("陌生人2", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 2).addToWin();
-    new MessageItem("陌生人3", "哈哈哈哈哈哈哈哈哈哈哈", "../img/def.svg", 0, 3).addToWin();
 }
 
 function setEditState(state) {
@@ -57,9 +51,9 @@ function checkCookie(value) { //检查cookie
 /////////接收来自服务器的消息
 function ReceiveByServer(self, head, name, msg, fromId = 0) {
     if (self) {
-        rightSend(head, name, msg);
+        new MessageItem(name, msg, head, 1, fromId).addToWin();
     } else {
-        leftSend(head, name, msg);
+        new MessageItem(name, msg, head, 0, fromId).addToWin();
     }
 
 }
