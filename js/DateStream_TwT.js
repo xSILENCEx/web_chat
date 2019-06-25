@@ -79,10 +79,13 @@ function UserLogin(name, password) {
 
 function UserSignOut() {
     console.log("用户注销");
-
 }
 
-function changeUserInfo(userHead, userName, userSign) {
+function changeHead() {
+    console.log("更改用户头像");
+}
+
+function changeUserInfo(userName, userSign) {
     console.log("用户修改信息");
 }
 

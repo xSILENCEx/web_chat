@@ -65,7 +65,7 @@ function ReceiveByServer(self, head, name, msg, fromId = 0) {
 }
 
 /////弹出提示信息，支持富文本
-function openTips(type, content) { //type:1提示，2警告，3错误
+function openTips(type, content) { //type:1提示，2警告，3错误，4公告
     let tips = document.getElementById("tips");
     tips.style.transform = "scale(1.0)";
     tips.style.opacity = "1.0";
