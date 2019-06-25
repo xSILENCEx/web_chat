@@ -77,4 +77,17 @@ function UserLogin(name, password) {
     }
 }
 
-function UserSignOut() {}
+function UserSignOut() {
+    console.log("用户注销");
+
+}
+
+function changeUserInfo(userHead, userName, userSign) {
+    console.log("用户修改信息");
+}
+
+function changePsw(oldPsw, newPsw) {
+    console.log("用户修改密码");
+    console.log(oldPsw);
+    console.log(newPsw);
+}

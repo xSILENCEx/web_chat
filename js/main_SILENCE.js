@@ -209,49 +209,12 @@ function closePswSet() {
     document.getElementById("net-menu").style.transform = "translateX(0px)";
 }
 
-function getNewPswInfo() {
-    let s = document.getElementById("oldPsw").value;
-    let p1 = document.getElementById("newPsw").value;
-    let p2 = document.getElementById("checkNewPsw").value;
-
-    if (s.length != 0 && p1.length != 0 && p2.length != 0) {
-        return "{\"server\":\"" + s + "\",\"port1\":\"" + p1 + "\",\"port2\":\"" + p2 + "\"}";
-    } else {
-        return "信息不完整";
-    }
-}
-
 function openAbout() {
     document.getElementById("about-menu").style.transform = "translateX(-300px)";
 }
 
 function closeAbout() {
     document.getElementById("about-menu").style.transform = "translateX(0px)";
-}
-
-function putInfo(type, content) {
-    let tipsBody = document.getElementById("tipsBody");
-    let tipsTitle = document.getElementById("tipsTitle");
-    let tipsContent = document.getElementById("tipsContent");
-
-    switch (type) {
-        case 1:
-            tipsTitle.innerHTML = "提示";
-            break;
-        case 2:
-            tipsTitle.innerHTML = "警告";
-            break;
-        case 3:
-            tipsTitle.innerHTML = "错误";
-            break;
-        case 4:
-            tipsTitle.innerHTML = "公告";
-            break;
-    }
-
-    tipsContent.innerHTML = content;
-    let tipsHeight = tipsBody.clientHeight || tipsBody.offsetHeight;
-    tipsBody.style.marginTop = "-" + tipsHeight / 2 + "px";
 }
 
 function closeTips() {

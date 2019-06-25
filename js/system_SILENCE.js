@@ -75,6 +75,30 @@ function openTips(type, content) { //type:1提示，2警告，3错误
     putInfo(type, content);
 }
 
+function putInfo(type, content) {
+    let tipsBody = document.getElementById("tipsBody");
+    let tipsTitle = document.getElementById("tipsTitle");
+    let tipsContent = document.getElementById("tipsContent");
+
+    switch (type) {
+        case 1:
+            tipsTitle.innerHTML = "提示";
+            break;
+        case 2:
+            tipsTitle.innerHTML = "警告";
+            break;
+        case 3:
+            tipsTitle.innerHTML = "错误";
+            break;
+        case 4:
+            tipsTitle.innerHTML = "公告";
+            break;
+    }
+    tipsContent.innerHTML = content;
+    let tipsHeight = tipsBody.clientHeight || tipsBody.offsetHeight;
+    tipsBody.style.transform = "translateY(-" + (tipsHeight / 2) + "px)";
+}
+
 /////刷新用户列表
 function refreshUserList(info) {
     let user = JSON.parse(info);
@@ -206,5 +230,13 @@ document.getElementById("logBtn").addEventListener("click", function (e) {
 
 /////获取服务器端口信息
 document.getElementById("newPswSet").addEventListener("click", function () {
-    console.log(getNewPswInfo());
+    let oldP = document.getElementById("oldPsw").value;
+    let newP1 = document.getElementById("newPsw").value;
+    let newP2 = document.getElementById("checkNewPsw").value;
+
+    if (oldP.length != 0 && newP1.length != 0 && newP2.length != 0 && newP1 == newP2) {
+        changePsw(oldP, newP1);
+    } else {
+        console.log("密码信息有误");
+    }
 });
