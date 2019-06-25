@@ -8,29 +8,39 @@ onload = function () {
     softWindow();
 
     /////自动发送系统提示信息
-    leftSend("../img/system.svg", "系统提示", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。");
+    new MessageItem("群聊", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。", "../img/def.svg", 0, 0).addToWin();
+}
 
+function setEditState(state) {
+    let editBox = document.getElementById("edit");
+    if (state) {
+        editBox.removeAttribute("disabled");
+        editBox.setAttribute("placeholder", "在这里输入消息");
+    } else {
+        editBox.setAttribute("disabled", "disabled");
+        editBox.setAttribute("placeholder", "登陆后才能发送消息");
+    }
 }
 
 function setCookie(cName, cValue, exDays) { //设置cookie
-    var d = new Date();
+    let d = new Date();
     d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toGMTString();
+    let expires = "expires=" + d.toGMTString();
     document.cookie = cName + "=" + cValue + "; " + expires;
 }
 
 function getCookie(cName) { //获取cookie
-    var name = cName + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
+    let name = cName + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
     return "";
 }
 
 function checkCookie(value) { //检查cookie
-    var v = getCookie(value);
+    let v = getCookie(value);
     if (v != "") {
         return true;
     } else {
@@ -39,41 +49,18 @@ function checkCookie(value) { //检查cookie
 }
 
 /////////接收来自服务器的消息
-var tanks = [];
-
-tanks[id].move(dir);
-
-function ReceiveByServer(self, head, name, msg) {
-    // var m = JSON.parse(msg);
-    // var tankObj;
-    // if (m.obj == "tank") {
-    //     switch (m.cmd) {
-    //         case "create":
-    //             tankObj = createNewTank(m);
-    //             tankObj.create();
-    //             tanks[tanks.length] = tankObj;
-    //             console.log("创建坦克:" + m.id);
-    //             break;
-    //         case "destroy":
-    //             console.log("销毁坦克:" + m.id);
-    //             break;
-    //         case "move":
-    //             tanks[0].move(m.dir);
-    //             console.log("移动坦克:" + m.id);
-    //             break;
-    //     }
-    // }
+function ReceiveByServer(self, head, name, msg, fromId = 0) {
     if (self) {
-        rightSend(head, name, msg);
+        new MessageItem(name, msg, head, 1, fromId).addToWin();
     } else {
-        leftSend(head, name, msg);
+        new MessageItem(name, msg, head, 0, fromId).addToWin();
     }
 
 }
 
 /////弹出提示信息，支持富文本
-function openTips(type, content) { //type:1提示，2警告，3错误
-    var tips = document.getElementById("tips");
+function openTips(type, content) { //type:1提示，2警告，3错误，4公告
+    let tips = document.getElementById("tips");
     tips.style.transform = "scale(1.0)";
     tips.style.opacity = "1.0";
     setTimeout(function () {
@@ -82,32 +69,58 @@ function openTips(type, content) { //type:1提示，2警告，3错误
     putInfo(type, content);
 }
 
+function putInfo(type, content) {
+    let tipsBody = document.getElementById("tipsBody");
+    let tipsTitle = document.getElementById("tipsTitle");
+    let tipsContent = document.getElementById("tipsContent");
+
+    switch (type) {
+        case 1:
+            tipsTitle.innerHTML = "提示";
+            break;
+        case 2:
+            tipsTitle.innerHTML = "警告";
+            break;
+        case 3:
+            tipsTitle.innerHTML = "错误";
+            break;
+        case 4:
+            tipsTitle.innerHTML = "公告";
+            break;
+    }
+    tipsContent.innerHTML = content;
+    let tipsHeight = tipsBody.clientHeight || tipsBody.offsetHeight;
+    tipsBody.style.transform = "translateY(-" + (tipsHeight / 2) + "px)";
+}
+
 /////刷新用户列表
 function refreshUserList(info) {
-    var user = JSON.parse(info);
-    var userCount = user[0].loginUserSize;
-    var list = document.getElementById("userList");
-    list.innerHTML = "<p class=\"menu-title\" style=\"margin-bottom: 0px;font-size: 90%\">在线用户</p>";
-    addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def-boy.svg", user[0]);
-    for (var i = 1; i <= userCount; i++) {
-        var sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
-        addUserItem(list, user[i].UserName, sign, "/img/def-boy.svg", user[i]);
+    let user = JSON.parse(info);
+    let userCount = user[0].loginUserSize;
+    let list = document.getElementById("userList");
+    list.innerHTML = "<p class=\"menu-title2\" style=\"margin: 0;font-size: 90%\">在线用户</p>";
+    addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def.svg", user[0]);
+    for (let i = 1; i <= userCount; i++) {
+        let sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
+        addUserItem(list, user[i].UserName, sign, '../UserFavicon/' + user[i].UserFavicon, user[i]);
     }
 }
 
 /////////登录成功后调用此方法
 function logInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
-    changeMyInfo(JSON.parse(info));
+    let json = JSON.parse(info);
+    changeMyInfo(json);
     isLogin = true;
-
+    setEditState(true);
     closeRegLogBox();
     isLogBoxOpen = false;
 
     if (getUserName() && getPsw()) {
-        setCookie("username", getUserName(), 5 / 24 / 60);
-        setCookie("password", getPsw(), 5 / 24 / 60);
+        setCookie("username", getUserName(), 10);
+        setCookie("password", getPsw(), 10);
+        setCookie("userID", json.UserID, 10);
+        setCookie("userHeadUrl", '../UserFavicon/' + json.UserFavicon, 10);
     }
-
 
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
@@ -123,51 +136,64 @@ function regInfo(info) { ///////传入一个json字符串数组，包含用户�
 
 /////////注销后调用此方法
 function signOut() {
-    var info = "{\"UserID\": -1,\"UserName\": \"游客\",\"UserProfile\": \"\"}"
+    UserSignOut();
+    let info = "{\"UserID\": -1,\"UserName\": \"游客\",\"UserProfile\": \"\"}"
     changeMyInfo(JSON.parse(info));
 
     setCookie("username", "", 100);
     setCookie("password", "", 100);
+    setCookie("userID", "", 100);
+    setCookie("userHeadUrl", "", 100);
 
     closeRight();
     isRightOpen = false;
-
-    openTips(1, "注销成功");
 
     isLogin = false;
 }
 
 ////文件发送
-document.getElementById("file-box").onclick = function () {
-    document.getElementById("files2").click();
+document.getElementById("fileBox").onclick = function () {
+    if (isLogin) {
+        document.getElementById("files2").click();
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
+
 }
 document.getElementById("files2").onchange = function () {
 
-    var file = document.getElementById("files2").files[0];
-    var reader = new FileReader();
+    let file = document.getElementById("files2").files[0];
+    let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function (evt) {
         setTimeout(function () {
-            var jsonObject = {}
+            let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
-            SendMessageToServer(3, JSON.stringify(jsonObject))
+            SendMessageToServer(3, JSON.stringify(jsonObject));
         }, 1000);
     }
     document.getElementById("files2").value = "";
 }
 
 /////图片选择与发送
-document.getElementById("pic-box").onclick = function () {
-    document.getElementById("files1").click();
+document.getElementById("picBox").onclick = function () {
+    if (isLogin) {
+        document.getElementById("files1").click();
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
+
 }
 document.getElementById("files1").onchange = function () {
-    var file = document.getElementById("files1").files[0];
-    var reader = new FileReader();
+    let file = document.getElementById("files1").files[0];
+    let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function (evt) {
         setTimeout(function () {
-            var jsonObject = {}
+            let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
             SendMessageToServer(2, JSON.stringify(jsonObject))
@@ -185,10 +211,8 @@ function choosePic() {
 //点击登录注册按钮
 document.getElementById("logBtn").addEventListener("click", function (e) {
     if (this.value == "确认登录") {
-        console.log("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
         UserLogin(getUserName(), getPsw());
     } else {
-        console.log("用户名 : " + getUserName() + "\n" + "密码 : " + getPsw());
         if (checkPsw()) {
             UserRegister(getUserName(), getPsw());
         } else {
@@ -199,6 +223,14 @@ document.getElementById("logBtn").addEventListener("click", function (e) {
 });
 
 /////获取服务器端口信息
-document.getElementById("net-submit").addEventListener("click", function () {
-    console.log(getServerInfo());
+document.getElementById("newPswSet").addEventListener("click", function () {
+    let oldP = document.getElementById("oldPsw").value;
+    let newP1 = document.getElementById("newPsw").value;
+    let newP2 = document.getElementById("checkNewPsw").value;
+
+    if (oldP.length != 0 && newP1.length != 0 && newP2.length != 0 && newP1 == newP2) {
+        changePsw(oldP, newP1);
+    } else {
+        console.log("密码信息有误");
+    }
 });

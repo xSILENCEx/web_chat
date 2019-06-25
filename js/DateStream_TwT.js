@@ -23,13 +23,13 @@ function ConnectToServer() {
                 var jsonArray = JSON.parse(message);
                 switch (jsonArray[1].MessageType) {
                     case 1:
-                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, jsonArray[1].MessageContent);
+                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, jsonArray[1].MessageContent);
                         break;
                     case 2:
-                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, '<img width=100% height=auto src="../File/' + jsonArray[1].MessageContent + '"/>');
+                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, '<img width=100% height=auto src="../File/' + jsonArray[1].MessageContent + '"/>');
                         break;
                     case 3:
-                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserID + '.svg', jsonArray[0].UserName, '<a href="../File/' + jsonArray[1].MessageContent + '">' + jsonArray[1].MessageContent + '</a>');
+                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, '<a href="../File/' + jsonArray[1].MessageContent + '">' + jsonArray[1].MessageContent + '</a>');
                         break;
                 }
             });
@@ -53,9 +53,9 @@ function ConnectToServer() {
     }
 }
 
-function SendMessageToServer(type, message) {
+function SendMessageToServer(type, message, toId = 0) {
     try {
-        channel.objects.ChatUser.SendUserMessage(type, message, function (value) {});
+        channel.objects.ChatUser.SendUserMessage(type, message, toId, function (value) {});
     } catch (e) {
         errorInfo(e);
     }
@@ -75,4 +75,22 @@ function UserLogin(name, password) {
     } catch (e) {
         errorInfo(e);
     }
+}
+
+function UserSignOut() {
+    console.log("用户注销");
+}
+
+function changeHead() {
+    console.log("更改用户头像");
+}
+
+function changeUserInfo(userName, userSign) {
+    console.log("用户修改信息");
+}
+
+function changePsw(oldPsw, newPsw) {
+    console.log("用户修改密码");
+    console.log(oldPsw);
+    console.log(newPsw);
 }
