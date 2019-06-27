@@ -1,18 +1,19 @@
 class MessageItem {
-    constructor(name, content, headUrl, dir, id) {
+    constructor(name, content, headUrl, dir, id, msgType) {
         this.name = name;
         this.content = content;
         this.headUrl = headUrl;
         this.dir = dir;
         this.id = "W" + id;
         this.uId = id;
+        this.msgType = msgType;
         this.obj;
     }
 
     addToWin() {
         if (document.getElementById(this.id)) {
 
-            chatItems[this.id].refresh(this.headUrl, this.content);
+            chatItems[this.id].refresh(this.headUrl, this.content, this.name, this.msgType);
 
             let newMsg = document.createElement("div");
             newMsg.setAttribute("class", "msg-item");
@@ -143,7 +144,7 @@ class ChatItem {
 
         let itemMsg = document.createElement("div");
         itemMsg.setAttribute("class", "chat-list-info");
-        itemMsg.innerHTML = this.lastMsg;
+        itemMsg.innerHTML = this.name + " : " + this.lastMsg;
         this.infoBox = itemMsg;
 
         newItem.appendChild(itemHead);
@@ -170,8 +171,19 @@ class ChatItem {
 
     }
 
-    refresh(head, info) {
+    refresh(head, info, name, type) {
         this.headBox.setAttribute("src", head);
-        this.infoBox.innerHTML = info;
+        switch (type) {
+            case 1:
+                this.infoBox.innerHTML = name + " : " + info;
+                break;
+            case 2:
+                this.infoBox.innerHTML = name + " : " + "[图片]";
+                break;
+            case 3:
+                this.infoBox.innerHTML = name + " : " + "[文件]";
+                break;
+        }
+
     }
 }
