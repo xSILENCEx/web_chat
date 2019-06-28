@@ -286,6 +286,7 @@ function addUserItem(obj, name, subTitle, headUrl, info) {
         userHead.setAttribute("src", headUrl);
         userName.innerHTML = name;
         userInfo.innerHTML = subTitle;
+        userItem.setAttribute("id", "userItem" + info.UserID);
     }
 
     userItem.appendChild(userHead);
@@ -392,6 +393,7 @@ function changeMyInfo(info) {
 function refreshHead(newUrl) {
     document.getElementById("myHead").childNodes[0].setAttribute("src", newUrl);
     document.getElementById("uSetHead").setAttribute("src", newUrl);
+    document.getElementsByClassName("user-bg-in")[0].style.background = "url(" + newUrl + ") no-repeat center center";
 }
 
 //////////获取框中用户名

@@ -118,10 +118,11 @@ function logInfo(info) { ///////传入一个json字符串数组，包含用户�
         setCookie("username", getUserName(), 10);
         setCookie("password", getPsw(), 10);
         setCookie("userID", json.UserID, 10);
-        setCookie("userHeadUrl", './UserFavicon/' + json.UserFavicon, 10);
-        refreshHead(getCookie("userHeadUrl"));
     }
 
+    setCookie("userHeadUrl", './UserFavicon/' + json.UserFavicon, 10);
+
+    refreshHead(getCookie("userHeadUrl"));
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
     document.getElementById("checkPsw").value = "";
@@ -136,6 +137,7 @@ function regInfo(info) { ///////传入一个json字符串数组，包含用户�
 
 /////////注销后调用此方法
 function signOut() {
+    isLogin = false;
     UserSignOut();
     let info = "{\"UserID\": -1,\"UserName\": \"游客\",\"UserProfile\": \"\"}"
     changeMyInfo(JSON.parse(info));
@@ -148,8 +150,9 @@ function signOut() {
     closeRight();
     isRightOpen = false;
 
-    isLogin = false;
-    location.reload();
+    setTimeout(function () {
+        location.reload();
+    }, 500);
 }
 
 //头像修改
