@@ -101,7 +101,7 @@ function refreshUserList(info) {
     addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def.svg", user[0]);
     for (let i = 1; i <= userCount; i++) {
         let sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
-        addUserItem(list, user[i].UserName, sign, '../UserFavicon/' + user[i].UserFavicon, user[i]);
+        addUserItem(list, user[i].UserName, sign, './UserFavicon/' + user[i].UserFavicon, user[i]);
     }
 }
 
@@ -118,7 +118,8 @@ function logInfo(info) { ///////传入一个json字符串数组，包含用户�
         setCookie("username", getUserName(), 10);
         setCookie("password", getPsw(), 10);
         setCookie("userID", json.UserID, 10);
-        setCookie("userHeadUrl", '../UserFavicon/' + json.UserFavicon, 10);
+        setCookie("userHeadUrl", './UserFavicon/' + json.UserFavicon, 10);
+        refreshHead(getCookie("userHeadUrl"));
     }
 
     document.getElementById("username").value = "";
@@ -149,6 +150,32 @@ function signOut() {
 
     isLogin = false;
     location.reload();
+}
+
+//头像修改
+document.getElementById("uSetHead").onclick = function () {
+    if (isLogin) {
+        document.getElementById("files3").click();
+    } else {
+        openRegLogBox();
+        isLogBoxOpen = true;
+    }
+
+}
+document.getElementById("files3").onchange = function () {
+
+    let file = document.getElementById("files3").files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (evt) {
+        setTimeout(function () {
+            let jsonObject = {}
+            jsonObject.filename = file.name;
+            jsonObject.file = evt.target.result;
+            changeHead(JSON.stringify(jsonObject));
+        }, 1000);
+    }
+    document.getElementById("files3").value = "";
 }
 
 ////文件发送

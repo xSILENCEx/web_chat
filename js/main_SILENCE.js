@@ -388,6 +388,12 @@ function changeMyInfo(info) {
     }
 }
 
+//刷新头像
+function refreshHead(newUrl) {
+    document.getElementById("myHead").childNodes[0].setAttribute("src", newUrl);
+    document.getElementById("uSetHead").setAttribute("src", newUrl);
+}
+
 //////////获取框中用户名
 function getUserName() {
     let userName = document.getElementById("username").value;
@@ -492,7 +498,9 @@ function closeRegLogBox() {
 function changeToLog() {
     let l = document.getElementById("logBtn");
     let r = document.getElementById("regBtn");
-    document.getElementById("checkPsw").style.transform = "scale(0)";
+    let c = document.getElementById("checkPsw");
+    c.style.transform = "scale(0)";
+    c.setAttribute("disabled", "true");
     l.style.transform = "translateY(-50px)";
     r.style.transform = "translateY(-50px)";
     document.getElementById("logTitle").innerHTML = "登录";
@@ -505,7 +513,9 @@ function changeToLog() {
 function changeToReg() {
     let l = document.getElementById("logBtn");
     let r = document.getElementById("regBtn");
-    document.getElementById("checkPsw").style.transform = "scale(1)";
+    let c = document.getElementById("checkPsw");
+    c.style.transform = "scale(1)";
+    c.removeAttribute("disabled");
     l.style.transform = "translateY(0px)";
     r.style.transform = "translateY(0px)";
     document.getElementById("logTitle").innerHTML = "注册";
