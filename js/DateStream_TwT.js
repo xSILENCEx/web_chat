@@ -88,7 +88,6 @@ function UserSignOut() {
 }
 
 function changeHead(fileString) {
-    console.log("更改用户头像");
     try {
         channel.objects.ChatUser.UserChangeFavicon(fileString, function (value) {});
     } catch (e) {

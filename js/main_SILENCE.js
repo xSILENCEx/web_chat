@@ -394,6 +394,9 @@ function refreshHead(newUrl) {
     document.getElementById("myHead").childNodes[0].setAttribute("src", newUrl);
     document.getElementById("uSetHead").setAttribute("src", newUrl);
     document.getElementsByClassName("user-bg-in")[0].style.background = "url(" + newUrl + ") no-repeat center center";
+    if (document.getElementById("userItem" + getCookie("UserID"))) {
+        document.getElementById("userItem" + getCookie("UserID")).childNodes[0].setAttribute("src", newUrl);
+    }
 }
 
 //////////获取框中用户名
