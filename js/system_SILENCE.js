@@ -66,6 +66,9 @@ function openTips(type, content) { //type:1提示，2警告，3错误，4公告
         tips.style.backgroundColor = "rgba(0,0,0,0.5)";
     }, 500);
     putInfo(type, content);
+    if (content == "用户密码更改成功!" || content == "用户信息更改成功!") {
+        closeRight();
+    }
 }
 
 function putInfo(type, content) {
@@ -233,11 +236,6 @@ document.getElementById("files1").onchange = function () {
     document.getElementById("files1").value = "";
 }
 
-/////选择头像时调用此方法
-function choosePic() {
-    console.log("选择头像");
-}
-
 //点击登录注册按钮
 document.getElementById("logBtn").addEventListener("click", function (e) {
     if (this.value == "确认登录") {
@@ -252,7 +250,7 @@ document.getElementById("logBtn").addEventListener("click", function (e) {
     e.stopPropagation();
 });
 
-/////获取服务器端口信息
+/////获取密码修改信息
 document.getElementById("newPswSet").addEventListener("click", function () {
     let oldP = document.getElementById("oldPsw").value;
     let newP1 = document.getElementById("newPsw").value;
@@ -261,6 +259,6 @@ document.getElementById("newPswSet").addEventListener("click", function () {
     if (oldP.length != 0 && newP1.length != 0 && newP2.length != 0 && newP1 == newP2) {
         changePsw(oldP, newP1);
     } else {
-        console.log("密码信息有误");
+        document.getElementById("pswTips").style.color = "rgba(200,0,0,1.00)";
     }
 });

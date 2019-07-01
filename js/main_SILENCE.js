@@ -154,6 +154,7 @@ function openPswSet() {
 //////关闭密码设置
 function closePswSet() {
     document.getElementById("net-menu").style.transform = "translateX(0px)";
+    document.getElementById("pswTips").style.color = "rgba(200,0,0,0.00)";
 }
 
 function openAbout() {
@@ -218,6 +219,12 @@ document.getElementById("userSettings").addEventListener("click", function () {
         openRegLogBox();
         isLogBoxOpen = true;
     }
+});
+
+document.getElementById("changeInfo").addEventListener("click", function () {
+    let newName = document.getElementById("newNameEdit").value;
+    let newSign = document.getElementById("newSignEdit").value;
+    changeUserInfo(newName, newSign);
 });
 
 document.getElementById("closeUserMenu").addEventListener("click", closeUser);
@@ -389,7 +396,7 @@ function changeMyInfo(info) {
     }
 }
 
-//刷新头像
+//刷新所有头像
 function refreshHead(newUrl) {
     document.getElementById("myHead").childNodes[0].setAttribute("src", newUrl);
     document.getElementById("uSetHead").setAttribute("src", newUrl);
