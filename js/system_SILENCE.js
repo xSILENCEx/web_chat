@@ -104,7 +104,7 @@ function refreshUserList(info) {
     addUserItem(list, user[0].VisitorName, "游客数量:" + user[0].VisitorSize, "/img/def.svg", user[0]);
     for (let i = 1; i <= userCount; i++) {
         let sign = user[i].UserProfile == "" ? "这个人什么都没留下" : user[i].UserProfile;
-        addUserItem(list, user[i].UserName, sign, './UserFavicon/' + user[i].UserFavicon, user[i]);
+        addUserItem(list, user[i].UserName, sign, '../UserFavicon/' + user[i].UserFavicon + "/" + Math.random(), user[i]);
     }
 }
 
@@ -123,7 +123,7 @@ function logInfo(info) { ///////传入一个json字符串数组，包含用户�
         setCookie("userID", json.UserID, 10);
     }
 
-    setCookie("userHeadUrl", './UserFavicon/' + json.UserFavicon, 10);
+    setCookie("userHeadUrl", '../UserFavicon/' + json.UserFavicon, 10);
 
     refreshHead(getCookie("userHeadUrl"));
     document.getElementById("username").value = "";
@@ -133,7 +133,6 @@ function logInfo(info) { ///////传入一个json字符串数组，包含用户�
 
 /////////注册成功后调用此方法
 function regInfo(info) { ///////传入一个json字符串数组，包含用户的所有信息
-    console.log("返回信息:" + info);
     document.getElementById("checkPsw").value = "";
     changeToLog();
 }
@@ -239,12 +238,18 @@ document.getElementById("files1").onchange = function () {
 //点击登录注册按钮
 document.getElementById("logBtn").addEventListener("click", function (e) {
     if (this.value == "确认登录") {
-        UserLogin(getUserName(), getPsw());
+        let n = getUserName();
+        let p = getPsw();
+        if (checkUserName(n) && checkPassword(p)) {
+            UserLogin(getUserName(), getPsw());
+        } else {
+            openTips(3, "用户名或密码有误");
+        }
     } else {
-        if (checkPsw()) {
+        if (checkPsw() && checkUserName(getUserName()) && checkPassword(getPsw())) {
             UserRegister(getUserName(), getPsw());
         } else {
-            openTips(3, "密码不一致");
+            openTips(3, "用户名或密码有误");
         }
     }
     e.stopPropagation();
@@ -262,3 +267,15 @@ document.getElementById("newPswSet").addEventListener("click", function () {
         document.getElementById("pswTips").style.color = "rgba(200,0,0,1.00)";
     }
 });
+
+//检查用户名是否合法
+function checkUserName(name) {
+    let objRegExp = /^[a-zA-Z0-9\u4E00-\u9FA5_]{1,16}$/;
+    return objRegExp.test(name);
+}
+
+//检查密码是否合法
+function checkPassword(password) {
+    let objRegExp = /^[a-zA-Z0-9_]{1,16}$/;
+    return objRegExp.test(password);
+}

@@ -24,13 +24,13 @@ function ConnectToServer() {
                 var t = jsonArray[1].MessageType;
                 switch (t) {
                     case 1:
-                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, jsonArray[1].MessageContent, toID);
+                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon + "/" + Math.random(), jsonArray[0].UserName, jsonArray[1].MessageContent, toID);
                         break;
                     case 2:
-                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, '<img width=100% height=auto src="../File/' + jsonArray[1].MessageContent + '"/>', toID);
+                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon + "/" + Math.random(), jsonArray[0].UserName, '<img width=100% height=auto src="../File/' + jsonArray[1].MessageContent + '"/>', toID);
                         break;
                     case 3:
-                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, '<a href="../File/' + jsonArray[1].MessageContent + '">' + jsonArray[1].MessageContent + '</a>', toID);
+                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon + "/" + Math.random(), jsonArray[0].UserName, '<a href="../File/' + jsonArray[1].MessageContent + '">' + jsonArray[1].MessageContent + '</a>', toID);
                         break;
                 }
             });
@@ -89,7 +89,9 @@ function UserSignOut() {
 
 function changeHead(fileString) {
     try {
-        channel.objects.ChatUser.UserChangeFavicon(fileString, function (value) {});
+        channel.objects.ChatUser.UserChangeFavicon(fileString, function (value) {
+            refreshHead('../UserFavicon/' + value + "/" + Math.random());
+        });
     } catch (e) {
         errorInfo(e);
     }

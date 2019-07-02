@@ -398,6 +398,7 @@ function changeMyInfo(info) {
 
 //刷新所有头像
 function refreshHead(newUrl) {
+    console.log(newUrl);
     document.getElementById("myHead").childNodes[0].setAttribute("src", newUrl);
     document.getElementById("uSetHead").setAttribute("src", newUrl);
     document.getElementsByClassName("user-bg-in")[0].style.background = "url(" + newUrl + ") no-repeat center center";
@@ -409,23 +410,13 @@ function refreshHead(newUrl) {
 //////////获取框中用户名
 function getUserName() {
     let userName = document.getElementById("username").value;
-    if (userName.replace(/\s+/g, "").length != 0) {
-        return userName;
-    } else {
-        console.log("用户名不规范");
-        return false;
-    }
+    return userName;
 }
 
 ////////获取框中密码
 function getPsw() {
     let passWd = document.getElementById("password").value;
-    if (passWd.replace(/\s+/g, "").length != 0) {
-        return passWd;
-    } else {
-        console.log("密码不规范");
-        return false;
-    }
+    return passWd;
 }
 
 document.getElementById("password").onkeydown = function (e) {
@@ -510,7 +501,11 @@ function closeRegLogBox() {
 function changeToLog() {
     let l = document.getElementById("logBtn");
     let r = document.getElementById("regBtn");
+    let u = document.getElementById("username");
+    let p = document.getElementById("password");
     let c = document.getElementById("checkPsw");
+    u.setAttribute("placeholder", "用户名/USERNAME");
+    p.setAttribute("placeholder", "密码/PASSWORD");
     c.style.transform = "scale(0)";
     c.setAttribute("disabled", "true");
     l.style.transform = "translateY(-50px)";
@@ -525,7 +520,11 @@ function changeToLog() {
 function changeToReg() {
     let l = document.getElementById("logBtn");
     let r = document.getElementById("regBtn");
+    let u = document.getElementById("username");
+    let p = document.getElementById("password");
     let c = document.getElementById("checkPsw");
+    u.setAttribute("placeholder", "用户名 / 字母数字汉字下划线");
+    p.setAttribute("placeholder", "密码 / 字母数字汉字下划线");
     c.style.transform = "scale(1)";
     c.removeAttribute("disabled");
     l.style.transform = "translateY(0px)";
