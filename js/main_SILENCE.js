@@ -66,8 +66,6 @@ document.getElementById("whole").addEventListener("click", function () {
 document.getElementById("edit").onkeydown = function (e) {
     if (13 == e.keyCode && e.ctrlKey) {
         meSend(getEdit());
-    } else if (13 == e.keyCode) {
-        this.value = this.value + "<br>";
     }
 }
 ///////手势判断
