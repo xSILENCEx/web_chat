@@ -318,7 +318,7 @@ function openUserDetail(info) {
     document.getElementById("detailHead").setAttribute("src", "../UserFavicon/" + userInfo.UserFavicon);
     document.getElementById("detailName").innerHTML = userInfo.UserName + "  ID:" + userInfo.UserID;
     document.getElementById("detailSign").innerHTML = userInfo.UserProfile;
-    document.getElementById("regTime").innerHTML = "注册时间:20xx.xx.xx";
+    document.getElementById("regTime").innerHTML = "当前IP:" + userInfo.UserIP;
     if (getCookie("userID") == userInfo.UserID) {
         document.getElementById("sendPerMsg").style.display = "none";
     } else {
@@ -396,7 +396,6 @@ function changeMyInfo(info) {
 
 //刷新所有头像
 function refreshHead(newUrl) {
-    console.log(newUrl);
     document.getElementById("myHead").childNodes[0].setAttribute("src", newUrl);
     document.getElementById("uSetHead").setAttribute("src", newUrl);
     document.getElementsByClassName("user-bg-in")[0].style.background = "url(" + newUrl + ") no-repeat center center";

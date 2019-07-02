@@ -30,7 +30,7 @@ function ConnectToServer() {
                         ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon + "/" + Math.random(), jsonArray[0].UserName, '<img width=100% height=auto src="../File/' + jsonArray[1].MessageContent + '"/>', toID);
                         break;
                     case 3:
-                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon + "/" + Math.random(), jsonArray[0].UserName, '<a href="../File/' + jsonArray[1].MessageContent + '">' + jsonArray[1].MessageContent + '</a>', toID);
+                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon + "/" + Math.random(), jsonArray[0].UserName, createFileBox(jsonArray[1].MessageContent, jsonArray[1].MessageTime), toID);
                         break;
                 }
             });
@@ -116,4 +116,11 @@ function changePsw(oldPsw, newPsw) {
         errorInfo(e);
     }
 
+}
+
+function createFileBox(url, time) {
+
+    let b = '<a target="_blank" class="new-file" href="../File/' + url + '"><img src="../img/fileICO.png" class="file-ico"><div class="file-name">' + url + '</div><div class="file-time">发送时间: ' + time + '</div></a>';
+
+    return b;
 }
